@@ -218,8 +218,8 @@ export default function UeberUnsPage() {
             >
               <div className="rounded-2xl overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80"
-                  alt="Team von St. Masch Dach & Fassade"
+                  src="/handwerk-leidenschaft.jpg"
+                  alt="Dachdecker bei der Arbeit im Dachstuhl mit einfallendem Sonnenlicht"
                   className="w-full h-[500px] object-cover"
                 />
               </div>
