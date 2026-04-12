@@ -31,15 +31,6 @@ const projects: Project[] = [
     tall: true,
   },
   {
-    id: 3,
-    title: "WDVS Fassadendämmung",
-    location: "Berlin-Reinickendorf",
-    category: "Fassade",
-    image: "/referenz-weisses-haus.jpg",
-    description: "Energetische Fassadensanierung eines Wohnblocks mit 160 mm Mineralwolle-WDVS.",
-    year: "2023",
-  },
-  {
     id: 4,
     title: "Photovoltaik Einfamilienhaus",
     location: "Potsdam",
@@ -67,15 +58,6 @@ const projects: Project[] = [
     description: "Dachausbau mit mehreren VELUX-Dachfenstern für einen hellen, modernen Wohnraum unterm Dach.",
     year: "2023",
     tall: true,
-  },
-  {
-    id: 7,
-    title: "Fassadenverkleidung Klinker",
-    location: "Berlin-Pankow",
-    category: "Fassade",
-    image: "/referenz-weisses-haus.jpg",
-    description: "Vorgehängte Klinkerfassade mit hinterlüfteter Konstruktion für ein Mehrfamilienhaus.",
-    year: "2024",
   },
   {
     id: 8,
