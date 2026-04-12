@@ -143,7 +143,7 @@ export default function Kontakt() {
                 src="https://maps.google.com/maps?q=Ruppiner+Chaussee+221,+13503+Berlin&t=&z=15&ie=UTF8&iwloc=&output=embed"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                className="w-full h-full border-0 grayscale contrast-[1.1] opacity-90"
+                className="w-full h-full border-0"
                 allowFullScreen
               />
             </div>
