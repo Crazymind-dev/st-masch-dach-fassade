@@ -5,6 +5,11 @@ export const alt = `${company.name} — Dachdecker-Meisterbetrieb in Berlin`
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
+/**
+ * OG image rendered via Satori (next/og). Satori only supports
+ * flexbox, so every container with more than one child must have an
+ * explicit display: flex (or contents/none).
+ */
 export default function OpengraphImage() {
   return new ImageResponse(
     (
@@ -23,9 +28,11 @@ export default function OpengraphImage() {
           fontFamily: "sans-serif",
         }}
       >
+        {/* Top: logo lockup */}
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div
             style={{
+              display: "flex",
               fontSize: 24,
               fontWeight: 800,
               letterSpacing: 4,
@@ -36,11 +43,19 @@ export default function OpengraphImage() {
           >
             Meisterbetrieb Berlin
           </div>
-          <div style={{ fontSize: 72, fontWeight: 900, lineHeight: 1 }}>
+          <div
+            style={{
+              display: "flex",
+              fontSize: 72,
+              fontWeight: 900,
+              lineHeight: 1,
+            }}
+          >
             ST. MASCH
           </div>
           <div
             style={{
+              display: "flex",
               fontSize: 24,
               fontWeight: 700,
               letterSpacing: 3,
@@ -53,39 +68,40 @@ export default function OpengraphImage() {
           </div>
         </div>
 
+        {/* Bottom: claim + credentials */}
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div
             style={{
-              fontSize: 48,
+              display: "flex",
+              flexDirection: "column",
+              fontSize: 56,
               fontWeight: 900,
               lineHeight: 1.1,
               maxWidth: 900,
             }}
           >
-            Weil Geborgenheit
-            <br />
-            beim <span style={{ color: "#ff5b01" }}>Dach</span> beginnt
+            <div style={{ display: "flex" }}>Weil Geborgenheit</div>
+            <div style={{ display: "flex", color: "#ff5b01" }}>
+              beim Dach beginnt.
+            </div>
           </div>
           <div
             style={{
               display: "flex",
               gap: 40,
-              marginTop: 32,
+              marginTop: 40,
               fontSize: 22,
-              color: "rgba(255,255,255,0.7)",
+              color: "rgba(255,255,255,0.75)",
             }}
           >
-            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-              <span style={{ color: "#ff5b01", fontWeight: 800 }}>●</span>{" "}
-              Dachdecker-Meister
+            <div style={{ display: "flex", alignItems: "center" }}>
+              ● Dachdecker-Meister
             </div>
-            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-              <span style={{ color: "#ff5b01", fontWeight: 800 }}>●</span>{" "}
-              BAFA-Energieberater
+            <div style={{ display: "flex", alignItems: "center" }}>
+              ● BAFA-Energieberater
             </div>
-            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-              <span style={{ color: "#ff5b01", fontWeight: 800 }}>●</span>{" "}
-              Enphase Solar Partner
+            <div style={{ display: "flex", alignItems: "center" }}>
+              ● Enphase Solar Partner
             </div>
           </div>
         </div>
