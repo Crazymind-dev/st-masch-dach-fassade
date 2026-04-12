@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ST. MASCH — Styleguide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Raleway:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #ff5b01;
+    --orange-dark: #e86425;
+    --orange-deep: #c44200;
+    --beige: #f5f0eb;
+    --beige-light: #f8f6f2;
+    --dark: #1a1a1a;
+    --black: #111111;
+    --white: #ffffff;
+    --font-display: 'Playfair Display', serif;
+    --font-heading: 'Raleway', sans-serif;
+    --font-body: 'Roboto', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    background: var(--beige);
+    color: var(--dark);
+    line-height: 1.6;
+  }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; }
+  section { border-bottom: 1px solid rgba(26,26,26,0.08); }
+  section:last-child { border-bottom: none; }
+
+  /* Hero */
+  .hero {
+    background: var(--dark);
+    color: var(--white);
+    padding: 5rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: -40%; right: -10%;
+    width: 60%; height: 120%;
+    background: radial-gradient(circle, rgba(255,91,1,0.35) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+  .hero-eyebrow {
+    font-family: var(--font-heading);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 1rem;
+  }
+  .hero .logo {
+    display: flex; flex-direction: column; align-items: flex-start;
+    margin-bottom: 2.5rem;
+  }
+  .hero .logo-primary {
+    font-family: var(--font-heading);
+    font-size: 22px; font-weight: 800; color: var(--white);
+    line-height: 1;
+  }
+  .hero .logo-sub {
+    font-family: var(--font-heading);
+    font-size: 10px; font-weight: 700; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--orange);
+    margin-top: 6px;
+  }
+  .hero p.sub {
+    font-size: 17px; font-weight: 300; line-height: 1.7; color: rgba(255,255,255,0.75);
+    max-width: 600px;
+  }
+
+  /* Section header */
+  h2.section-title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+    color: var(--dark);
+  }
+  h2.section-title .accent { color: var(--orange); }
+  .section-label {
+    font-family: var(--font-heading);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+  .section-desc {
+    color: rgba(26,26,26,0.6);
+    margin-bottom: 3rem;
+    max-width: 640px;
+  }
+
+  /* Color swatches */
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+  .swatch { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  .swatch-color { height: 120px; position: relative; }
+  .swatch-info { padding: 1rem 1.25rem; }
+  .swatch-info .name {
+    font-family: var(--font-heading); font-weight: 700; font-size: 14px; color: var(--dark);
+  }
+  .swatch-info .hex {
+    font-family: 'SF Mono', Menlo, monospace;
+    font-size: 12px; color: rgba(26,26,26,0.55); margin-top: 2px;
+  }
+  .swatch-info .use {
+    font-size: 12px; color: rgba(26,26,26,0.6); margin-top: 0.75rem; line-height: 1.45;
+  }
+
+  /* Typography samples */
+  .type-sample { background: var(--white); border-radius: 16px; padding: 2rem; margin-bottom: 1rem; }
+  .type-sample .meta {
+    font-family: 'SF Mono', Menlo, monospace; font-size: 11px;
+    color: rgba(26,26,26,0.5); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px;
+  }
+  .display-xl { font-family: var(--font-display); font-size: 3.5rem; font-weight: 900; line-height: 1.05; }
+  .display-lg { font-family: var(--font-display); font-size: 2.5rem; font-weight: 900; line-height: 1.1; }
+  .display-md { font-family: var(--font-display); font-size: 1.75rem; font-weight: 700; line-height: 1.2; }
+  .heading-lg { font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; }
+  .heading-md { font-family: var(--font-heading); font-size: 1rem; font-weight: 700; }
+  .heading-eyebrow {
+    font-family: var(--font-heading); font-size: 11px; font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase; color: var(--orange);
+  }
+  .body-lg { font-family: var(--font-body); font-size: 17px; font-weight: 300; line-height: 1.7; }
+  .body-md { font-family: var(--font-body); font-size: 15px; font-weight: 400; line-height: 1.6; }
+  .body-sm { font-family: var(--font-body); font-size: 13px; font-weight: 400; color: rgba(26,26,26,0.6); }
+
+  /* Buttons */
+  .btn-group { display: flex; flex-wrap: wrap; gap: 1rem; }
+  .btn {
+    font-family: var(--font-heading); font-weight: 700; font-size: 13px;
+    letter-spacing: 2px; text-transform: uppercase; padding: 1rem 2rem;
+    border-radius: 999px; border: none; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    transition: all 0.25s ease; text-decoration: none;
+  }
+  .btn-primary { background: var(--orange); color: var(--white); box-shadow: 0 4px 24px rgba(255,91,1,0.3); }
+  .btn-primary:hover { background: var(--orange-dark); transform: translateY(-1px); box-shadow: 0 8px 32px rgba(255,91,1,0.4); }
+  .btn-dark { background: var(--dark); color: var(--white); }
+  .btn-dark:hover { background: #2a2a2a; }
+  .btn-outline { background: transparent; color: var(--dark); border: 2px solid var(--dark); }
+  .btn-outline:hover { background: var(--dark); color: var(--white); }
+  .btn-ghost { background: rgba(26,26,26,0.05); color: var(--dark); }
+  .btn-ghost:hover { background: rgba(26,26,26,0.1); }
+
+  /* Cards */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .card {
+    background: var(--white); border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 16px; padding: 1.75rem; transition: transform 0.3s;
+  }
+  .card:hover { transform: translateY(-4px); border-color: rgba(255,91,1,0.4); }
+  .card-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: rgba(255,91,1,0.08); color: var(--orange);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem;
+  }
+  .card h3 {
+    font-family: var(--font-heading); font-weight: 700; font-size: 18px;
+    margin-bottom: 0.5rem;
+  }
+  .card p { font-size: 14px; color: rgba(26,26,26,0.6); line-height: 1.55; }
+
+  /* Badge */
+  .badge-row { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .badge {
+    font-family: var(--font-heading); font-size: 9px; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px;
+    border-radius: 999px; line-height: 1;
+  }
+  .badge-orange { background: var(--orange); color: var(--white); }
+  .badge-orange-soft { background: rgba(255,91,1,0.15); color: var(--orange); }
+  .badge-dark { background: var(--dark); color: var(--white); }
+  .badge-outline { background: transparent; color: var(--dark); border: 1px solid rgba(26,26,26,0.2); }
+
+  /* Pill / Eyebrow */
+  .pill-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .pill {
+    padding: 6px 12px; border-radius: 999px;
+    font-family: var(--font-heading); font-size: 11px; font-weight: 600;
+    background: rgba(255,91,1,0.08); color: var(--orange);
+  }
+
+  /* Spacing demo */
+  .spacing-row { display: flex; align-items: flex-end; gap: 1rem; flex-wrap: wrap; }
+  .space-block {
+    background: rgba(255,91,1,0.25); border-radius: 4px; position: relative;
+  }
+  .space-block span {
+    position: absolute; top: 100%; left: 0; right: 0; text-align: center;
+    font-size: 11px; color: rgba(26,26,26,0.6); margin-top: 4px;
+    font-family: 'SF Mono', Menlo, monospace;
+  }
+
+  /* Shadow demo */
+  .shadow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
+  .shadow-box {
+    background: var(--white); border-radius: 16px; padding: 1.5rem; text-align: center;
+    font-family: 'SF Mono', Menlo, monospace; font-size: 12px; color: rgba(26,26,26,0.6);
+  }
+  .shadow-sm { box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  .shadow-md { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+  .shadow-lg { box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
+  .shadow-orange { box-shadow: 0 4px 24px rgba(255,91,1,0.3); }
+  .shadow-orange-intense { box-shadow: 0 8px 40px rgba(255,91,1,0.45); }
+
+  /* Dark section */
+  .dark-section { background: var(--dark); color: var(--white); padding: 4rem 2rem; }
+  .dark-section h2 { color: var(--white); }
+  .dark-section .section-desc { color: rgba(255,255,255,0.6); }
+  .dark-section .card { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); }
+  .dark-section .card h3 { color: var(--white); }
+  .dark-section .card p { color: rgba(255,255,255,0.7); }
+
+  /* Mini nav preview */
+  .nav-preview {
+    background: var(--beige); border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 12px; padding: 1rem 1.5rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .nav-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .nav-link {
+    font-family: var(--font-heading); font-size: 13px; font-weight: 500;
+    color: rgba(26,26,26,0.7); text-decoration: none;
+  }
+  .nav-link.active { color: var(--orange); }
+  .nav-link.highlight {
+    color: var(--orange); display: inline-flex; align-items: center; gap: 6px;
+  }
+  .nav-link.highlight::after {
+    content: "Neu"; font-size: 9px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; background: var(--orange); color: var(--white);
+    padding: 2px 6px; border-radius: 999px; line-height: 1;
+  }
+
+  /* Footer */
+  footer {
+    background: var(--black); color: rgba(255,255,255,0.85);
+    padding: 2rem; text-align: center;
+  }
+  footer a { color: var(--orange); text-decoration: none; }
+
+  @media (max-width: 640px) {
+    .container { padding: 2.5rem 1.25rem; }
+    .hero { padding: 3rem 1.25rem; }
+    .display-xl { font-size: 2.25rem; }
+    .display-lg { font-size: 1.75rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="logo">
+      <span class="logo-primary">ST. MASCH</span>
+      <span class="logo-sub">Dach · Fassade · Solar</span>
+    </div>
+    <span class="hero-eyebrow">Styleguide v1</span>
+    <h1>Farben, Typografie,<br><span style="color: var(--orange)">Bausteine</span></h1>
+    <p class="sub">Alle Design-Tokens der Website auf einen Blick — Farben, Fonts, Buttons, Cards und Abstandsystem. Dient als Referenz für künftige Erweiterungen und Druckmaterialien.</p>
+  </div>
+</section>
+
+<!-- Colors -->
+<section>
+  <div class="container">
+    <span class="section-label">01 — Farben</span>
+    <h2 class="section-title">Farbpalette <span class="accent">Tokens</span></h2>
+    <p class="section-desc">Brand-Orange führt, Beige trägt, Dark stabilisiert. Keine weiteren Akzentfarben — Konsistenz über Vielfalt.</p>
+
+    <div class="swatches">
+      <div class="swatch">
+        <div class="swatch-color" style="background: var(--orange);"></div>
+        <div class="swatch-info">
+          <div class="name">Brand Orange</div>
+          <div class="hex">#ff5b01</div>
+          <div class="use">Primärbutton, Akzent­worte, Highlights, CTAs. Sparsam einsetzen — Wirkung lebt vom Kontrast.</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: var(--orange-dark);"></div>
+        <div class="swatch-info">
+          <div class="name">Orange Dark</div>
+          <div class="hex">#e86425</div>
+          <div class="use">Hover-Zustand primärer Buttons, subtile Gradienten.</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: var(--orange-deep);"></div>
+        <div class="swatch-info">
+          <div class="name">Orange Deep</div>
+          <div class="hex">#c44200</div>
+          <div class="use">Gradient-Stops und Nacht-Akzente.</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: var(--beige);"></div>
+        <div class="swatch-info">
+          <div class="name">Brand Beige</div>
+          <div class="hex">#f5f0eb</div>
+          <div class="use">Standard-Hintergrund. Warm, handwerklich, nicht steril-weiß.</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: var(--beige-light);"></div>
+        <div class="swatch-info">
+          <div class="name">Beige Light</div>
+          <div class="hex">#f8f6f2</div>
+          <div class="use">Input-Felder, feine Unterlagen.</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: var(--dark);"></div>
+        <div class="swatch-info">
+          <div class="name">Brand Dark</div>
+          <div class="hex">#1a1a1a</div>
+          <div class="use">Text, dunkle Sections (Solar, Kontakt), Gegenpol zum Orange.</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: var(--black);"></div>
+        <div class="swatch-info">
+          <div class="name">Brand Black</div>
+          <div class="hex">#111111</div>
+          <div class="use">Footer, tiefe Schatten.</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: var(--white); border-bottom: 1px solid rgba(0,0,0,0.05);"></div>
+        <div class="swatch-info">
+          <div class="name">White</div>
+          <div class="hex">#ffffff</div>
+          <div class="use">Cards, Light-Sections. Nie als Basis-Hintergrund — dafür ist Beige da.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Typography -->
+<section>
+  <div class="container">
+    <span class="section-label">02 — Typografie</span>
+    <h2 class="section-title">Drei Schriften, <span class="accent">drei Jobs</span></h2>
+    <p class="section-desc">Playfair für Emotion (Headlines), Raleway für Struktur (Navigation, Labels), Roboto für Lesbarkeit (Fließtext). Nie mischen innerhalb einer Einheit.</p>
+
+    <div class="type-sample">
+      <div class="meta">Playfair Display · 900 · Display XL</div>
+      <div class="display-xl">Weil <span style="color: var(--orange)">Geborgenheit</span><br>beim Dach beginnt</div>
+    </div>
+    <div class="type-sample">
+      <div class="meta">Playfair Display · 900 · Display LG</div>
+      <div class="display-lg">Ihr <span style="color: var(--orange)">Meisterbetrieb</span> für Dach, Fassade & Solar</div>
+    </div>
+    <div class="type-sample">
+      <div class="meta">Playfair Display · 700 · Display MD</div>
+      <div class="display-md">Was das für Sie <span style="color: var(--orange)">bedeutet</span></div>
+    </div>
+    <div class="type-sample">
+      <div class="meta">Raleway · 700 · Heading LG + Eyebrow</div>
+      <div class="heading-eyebrow">Unsere Leistungen</div>
+      <div class="heading-lg" style="margin-top: 0.5rem;">PV-Anlagen</div>
+    </div>
+    <div class="type-sample">
+      <div class="meta">Roboto · 300 · Body LG — für einleitende Absätze</div>
+      <p class="body-lg">Ein Dach ist mehr als Ziegel und Holz. Es ist das Versprechen, dass draußen draußen bleibt — und drinnen ein Ort entsteht, an dem man sich fallen lassen kann.</p>
+    </div>
+    <div class="type-sample">
+      <div class="meta">Roboto · 400 · Body MD — Standardtext</div>
+      <p class="body-md">Wir kennen das Dach. Und wir wissen, wie ein Dachfenster sauber hineingehört. Als Meisterbetrieb mit eigener Energieberatung im Haus planen wir jede Maßnahme bis zum letzten Detail.</p>
+    </div>
+    <div class="type-sample">
+      <div class="meta">Roboto · 400 · Body SM — Meta, Labels</div>
+      <p class="body-sm">Stand April 2026 · Beratung kostenlos · Antrag vor Auftragsvergabe</p>
+    </div>
+  </div>
+</section>
+
+<!-- Navigation preview -->
+<section>
+  <div class="container">
+    <span class="section-label">03 — Navigation</span>
+    <h2 class="section-title">Header- und <span class="accent">Link-Styles</span></h2>
+    <p class="section-desc">Logo zweizeilig, Dach/Solar/Fassade als Dropdowns, Förderung visuell hervorgehoben mit „Neu"-Pill.</p>
+
+    <div class="nav-preview">
+      <div style="display: flex; flex-direction: column;">
+        <span style="font-family: var(--font-heading); font-size: 16px; font-weight: 800;">ST. MASCH</span>
+        <span style="font-family: var(--font-heading); font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-top: 2px;">Dach · Fassade · Solar</span>
+      </div>
+      <div class="nav-links">
+        <a href="#" class="nav-link">Dach ▾</a>
+        <a href="#" class="nav-link active">Solar ▾</a>
+        <a href="#" class="nav-link">Fassade ▾</a>
+        <a href="#" class="nav-link highlight">Förderung</a>
+        <a href="#" class="nav-link">Über uns</a>
+        <a href="#" class="nav-link">Kontakt</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Buttons -->
+<section>
+  <div class="container">
+    <span class="section-label">04 — Buttons</span>
+    <h2 class="section-title">Vier Button-<span class="accent">Varianten</span></h2>
+    <p class="section-desc">Primary führt — davon nur einer pro Screen. Dark und Outline als Sekundär-Optionen. Ghost für Tertiäres.</p>
+
+    <div class="btn-group">
+      <button class="btn btn-primary">Angebot anfragen →</button>
+      <button class="btn btn-dark">030 — 844 17 068</button>
+      <button class="btn btn-outline">Mehr erfahren</button>
+      <button class="btn btn-ghost">Zurück</button>
+    </div>
+  </div>
+</section>
+
+<!-- Badges & Pills -->
+<section>
+  <div class="container">
+    <span class="section-label">05 — Badges & Tags</span>
+    <h2 class="section-title">Kleine <span class="accent">Akzente</span></h2>
+    <p class="section-desc">Badges markieren Status (Neu, Kategorie). Pills listen Material/Leistung.</p>
+
+    <div style="margin-bottom: 2rem;">
+      <div class="body-sm" style="margin-bottom: 0.75rem;">Badges</div>
+      <div class="badge-row">
+        <span class="badge badge-orange">Neu</span>
+        <span class="badge badge-orange-soft">Förderfähig</span>
+        <span class="badge badge-dark">Meisterbetrieb</span>
+        <span class="badge badge-outline">Photovoltaik</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="body-sm" style="margin-bottom: 0.75rem;">Pills (Materialien, Leistungen)</div>
+      <div class="pill-row">
+        <span class="pill">Tondachziegel</span>
+        <span class="pill">Schiefer</span>
+        <span class="pill">VELUX Partner</span>
+        <span class="pill">Enphase IQ</span>
+        <span class="pill">WDVS</span>
+        <span class="pill">Indach-PV</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Cards -->
+<section>
+  <div class="container">
+    <span class="section-label">06 — Cards</span>
+    <h2 class="section-title">Standard-<span class="accent">Leistungskarten</span></h2>
+    <p class="section-desc">Icon oben, Titel, Kurzbeschreibung. Heben sich bei Hover leicht (–4 px) mit oranger Border.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        </div>
+        <h3>Dach</h3>
+        <p>Neubau, Sanierung oder Reparatur — Ihr Dach hält, wenn es von Meistern kommt.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/></svg>
+        </div>
+        <h3>Solar & Energie</h3>
+        <p>PV, Speicher und Wärmepumpe — vom Dachprofi geplant, nicht vom Vertrieb verkauft.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01"/></svg>
+        </div>
+        <h3>Fassade</h3>
+        <p>Schön, warm, werthaltig — mit WDVS, VHF oder Klinker aus einer Hand.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Spacing -->
+<section>
+  <div class="container">
+    <span class="section-label">07 — Abstände</span>
+    <h2 class="section-title">Spacing-<span class="accent">Skala</span></h2>
+    <p class="section-desc">Achter-Raster. Sections 64–128 px (4–8 rem), Cards 24–28 px intern, Typo-Stacks 8–16 px.</p>
+
+    <div class="spacing-row">
+      <div class="space-block" style="width: 4px; height: 40px;"><span>4 px</span></div>
+      <div class="space-block" style="width: 8px; height: 48px;"><span>8 px</span></div>
+      <div class="space-block" style="width: 16px; height: 56px;"><span>16 px</span></div>
+      <div class="space-block" style="width: 24px; height: 64px;"><span>24 px</span></div>
+      <div class="space-block" style="width: 32px; height: 72px;"><span>32 px</span></div>
+      <div class="space-block" style="width: 48px; height: 80px;"><span>48 px</span></div>
+      <div class="space-block" style="width: 64px; height: 96px;"><span>64 px</span></div>
+      <div class="space-block" style="width: 96px; height: 120px;"><span>96 px</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Shadows -->
+<section>
+  <div class="container">
+    <span class="section-label">08 — Schatten</span>
+    <h2 class="section-title">Fünf <span class="accent">Höhenstufen</span></h2>
+    <p class="section-desc">Von subtil (Card-Standard) bis dramatisch (Hover-CTA). Orange-Schatten nur für Primärbuttons.</p>
+
+    <div class="shadow-grid">
+      <div class="shadow-box shadow-sm">shadow-sm</div>
+      <div class="shadow-box shadow-md">shadow-md</div>
+      <div class="shadow-box shadow-lg">shadow-lg</div>
+      <div class="shadow-box shadow-orange" style="color: var(--orange);">shadow-orange</div>
+      <div class="shadow-box shadow-orange-intense" style="color: var(--orange);">orange-intense</div>
+    </div>
+  </div>
+</section>
+
+<!-- Dark section preview -->
+<section class="dark-section">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <span class="section-label" style="color: var(--orange);">09 — Dark Mode Blocks</span>
+    <h2 class="section-title" style="color: var(--white);">Dunkle <span class="accent">Sections</span></h2>
+    <p class="section-desc">Für Solar, Kontakt und Kombinations-Strategie-Blöcke. Cards werden glasig, Borders als weiße Transparenz.</p>
+
+    <div class="card-grid" style="margin-top: 2rem;">
+      <div class="card">
+        <div class="card-icon" style="background: rgba(255,91,1,0.2); color: var(--orange);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="4"/></svg>
+        </div>
+        <h3>Indach-PV</h3>
+        <p>Module werden direkt in die Eindeckung integriert — kein Aufbau, sondern Teil des Dachs. Unsere Spezialität.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background: rgba(255,91,1,0.2); color: var(--orange);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="10" rx="2"/><path d="M6 12h2M16 12h2"/></svg>
+        </div>
+        <h3>Stromspeicher</h3>
+        <p>Enphase IQ Batteriespeicher — Eigenverbrauchsquote auf über 80 %.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Usage notes -->
+<section>
+  <div class="container">
+    <span class="section-label">10 — Prinzipien</span>
+    <h2 class="section-title">Design-<span class="accent">Regeln</span></h2>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+      <div class="card">
+        <h3>Ein Orange pro Screen</h3>
+        <p>Nie zwei primäre Buttons nebeneinander. Orange markiert Wichtigstes — jedes weitere Orange verwässert.</p>
+      </div>
+      <div class="card">
+        <h3>Beige ist die Basis</h3>
+        <p>Nicht Weiß. Beige ist wärmer, handwerklicher, näher am Produkt. Weiß bleibt Cards und Formular-Feldern vorbehalten.</p>
+      </div>
+      <div class="card">
+        <h3>Playfair nur für Headlines</h3>
+        <p>Nie im Fließtext. Raleway für Labels und Navigation, Roboto für alles Lesbare.</p>
+      </div>
+      <div class="card">
+        <h3>Du oder Sie — konsequent</h3>
+        <p>Die Website siezt durchgehend. Keine Mischung — Zielgruppe 45–70 erwartet diese Verbindlichkeit.</p>
+      </div>
+      <div class="card">
+        <h3>Kürze > Länge</h3>
+        <p>Card-Beschreibungen ≤ 20 Wörter. Lange Texte auf Detailseiten. Mobile liest niemand 50-Wort-Blöcke.</p>
+      </div>
+      <div class="card">
+        <h3>Touch-Targets ≥ 44 px</h3>
+        <p>Apple-HIG-Minimum. Gilt für Buttons, Links, Form-Inputs — besonders auf Mobile wichtig.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>ST. MASCH · Styleguide v1 · April 2026 · <a href="https://st-masch-dach.vercel.app">st-masch-dach.vercel.app</a></p>
+</footer>
+
+</body>
+</html>
