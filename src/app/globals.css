@@ -35,30 +35,16 @@ body {
   background-size: 200px 200px;
 }
 
-/* Animated card glow aura */
-@property --card-glow-angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-
-@keyframes card-glow-spin {
-  to { --card-glow-angle: 360deg; }
-}
-
+/* Animated card glow aura — follows mouse */
 .card-glow-aura {
   border-radius: 0.75rem;
-  background: conic-gradient(
-    from var(--card-glow-angle),
-    #ff5b01,
-    #ff8c42,
-    #ffb347,
-    #ff5b01,
-    #c44200,
-    #ff5b01
+  background: radial-gradient(
+    320px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(255, 91, 1, 0.55),
+    rgba(255, 140, 66, 0.25) 25%,
+    transparent 55%
   );
-  filter: blur(12px);
-  animation: card-glow-spin 8s linear infinite;
+  filter: blur(6px);
 }
 
 /* Accessibility: Font size */

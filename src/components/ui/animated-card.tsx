@@ -1,14 +1,31 @@
+"use client"
+
 import * as React from "react"
 import { cn } from "@/lib/utils"
 
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function AnimatedCard({ className, children, ...props }: CardProps) {
+  const ref = React.useRef<HTMLDivElement>(null)
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = ref.current
+    if (!el) return
+    const rect = el.getBoundingClientRect()
+    el.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`)
+    el.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`)
+  }
+
   return (
-    <div className={cn("relative group/glow", className)} {...props}>
+    <div
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      className={cn("relative group/glow", className)}
+      {...props}
+    >
       <div
         aria-hidden
-        className="card-glow-aura pointer-events-none absolute -inset-[2px] opacity-20 group-hover/glow:opacity-80 transition-opacity duration-500"
+        className="card-glow-aura pointer-events-none absolute -inset-[2px] opacity-0 group-hover/glow:opacity-100 transition-opacity duration-300"
       />
       <div className="group/animated-card relative h-full w-full overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
         {children}
