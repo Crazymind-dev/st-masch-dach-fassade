@@ -126,8 +126,8 @@ export default function UeberUns() {
 
             <div className="relative w-full max-w-[300px] sm:max-w-[360px] aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl mx-auto">
               <img
-                src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80"
-                alt="Dachdecker-Team bei der Arbeit"
+                src="/dachdecker-meister.jpg"
+                alt="Dachdeckermeister im Sonnenuntergang auf einem neu errichteten Dachstuhl über Berlin"
                 className="w-full h-full object-cover"
               />
 
