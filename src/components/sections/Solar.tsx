@@ -101,8 +101,8 @@ export default function Solar() {
           >
             <div className="relative rounded-2xl overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&q=80"
-                alt="Solaranlage auf einem Dach"
+                src="/solar-haus.jpg"
+                alt="Einfamilienhaus mit integrierter Photovoltaikanlage auf dem Dach"
                 className="w-full h-[300px] sm:h-[400px] md:h-[500px] object-cover"
               />
 
