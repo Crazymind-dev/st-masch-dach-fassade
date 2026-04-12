@@ -52,7 +52,13 @@ const topicChoices = [
 export default function Kontakt() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: "-100px" })
-  const [topic, setTopic] = useState<string>("")
+  const [topics, setTopics] = useState<string[]>([])
+
+  const toggleTopic = (value: string) => {
+    setTopics((prev) =>
+      prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value]
+    )
+  }
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle")
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -193,15 +199,18 @@ export default function Kontakt() {
                 onSubmit={handleSubmit}
                 className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-5 sm:p-6 md:p-8 space-y-5"
               >
-                {/* Topic radio cards */}
+                {/* Topic checkbox cards (multi-select) */}
                 <div>
-                  <label className="font-heading text-xs font-bold uppercase tracking-wider text-gray-400 mb-3 block">
+                  <label className="font-heading text-xs font-bold uppercase tracking-wider text-gray-400 mb-1 block">
                     Worum geht es?
                   </label>
+                  <p className="font-body text-[11px] text-white/45 mb-3">
+                    Mehrfachauswahl möglich
+                  </p>
                   <div className="grid grid-cols-2 gap-2">
                     {topicChoices.map((choice) => {
                       const Icon = choice.icon
-                      const selected = topic === choice.value
+                      const selected = topics.includes(choice.value)
                       return (
                         <label
                           key={choice.value}
@@ -213,11 +222,11 @@ export default function Kontakt() {
                           )}
                         >
                           <input
-                            type="radio"
-                            name="topic"
+                            type="checkbox"
+                            name="topics"
                             value={choice.value}
                             checked={selected}
-                            onChange={(e) => setTopic(e.target.value)}
+                            onChange={() => toggleTopic(choice.value)}
                             className="sr-only"
                           />
                           <Icon
