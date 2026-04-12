@@ -108,27 +108,27 @@ export default function Kontakt() {
               {contactInfo.map((item, i) => (
                 <motion.div
                   key={item.label}
-                  className="flex gap-3 sm:gap-4 items-start"
+                  className="flex gap-3 sm:gap-4 items-center"
                   initial={{ opacity: 0, y: 20 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
                 >
-                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-brand-orange/15 flex items-center justify-center text-brand-orange flex-shrink-0">
+                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-brand-orange/15 flex items-center justify-center text-brand-orange flex-shrink-0">
                     {item.icon}
                   </div>
-                  <div>
-                    <div className="font-heading text-xs font-bold uppercase tracking-wider text-gray-500 mb-1">
+                  <div className="flex flex-col min-w-0">
+                    <div className="font-heading text-[10px] sm:text-xs font-bold uppercase tracking-wider text-brand-orange/90 mb-0.5 leading-none">
                       {item.label}
                     </div>
                     {item.href ? (
                       <a
                         href={item.href}
-                        className="font-body text-base text-white no-underline hover:text-brand-orange transition-colors min-h-[44px] inline-flex items-center"
+                        className="font-body text-sm sm:text-base text-white no-underline hover:text-brand-orange transition-colors leading-snug"
                       >
                         {item.value}
                       </a>
                     ) : (
-                      <div className="font-body text-base text-white">
+                      <div className="font-body text-sm sm:text-base text-white leading-snug">
                         {item.value}
                       </div>
                     )}
