@@ -373,7 +373,7 @@ export default function UeberUnsPage() {
                   <img
                     src={t.image}
                     alt={t.name}
-                    className="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full aspect-square object-cover object-top group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/60 to-transparent" />
                 </div>
