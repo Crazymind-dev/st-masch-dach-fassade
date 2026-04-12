@@ -79,22 +79,22 @@ const zertifikate = [
 
 const team = [
   {
-    name: "Stefan Masch",
+    name: "Stephan Büchner",
     role: "Geschäftsführer & Dachdeckermeister",
     image: "/team-1.jpg",
   },
   {
-    name: "Thomas Müller",
+    name: "Patrick Conrad",
     role: "Projektleiter Dach & Fassade",
     image: "/team-3.jpg",
   },
   {
-    name: "Marco Schmidt",
+    name: "Justin Korn",
     role: "Solar-Spezialist",
     image: "/team-2.jpg",
   },
   {
-    name: "Sarah Becker",
+    name: "Roxana Wenck",
     role: "Dachdeckergesellin",
     image: "/team-4.jpg",
   },
