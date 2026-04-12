@@ -229,9 +229,13 @@ export default function SolarPage() {
         </div>
       </section>
 
-      {/* Section 2 - Unsere Leistungen (dark) */}
-      <section className="py-24 bg-brand-dark">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
+      {/* Section 2 - Unsere Leistungen (Bento) */}
+      <section className="relative py-24 bg-brand-dark overflow-hidden">
+        {/* Ambient glows */}
+        <div className="absolute top-1/4 -left-32 w-[500px] h-[500px] bg-brand-orange/10 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute bottom-0 -right-32 w-[400px] h-[400px] bg-brand-orange/10 rounded-full blur-[120px] pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
           <motion.div
             className="text-center mb-16"
             initial="hidden"
@@ -248,58 +252,148 @@ export default function SolarPage() {
             </h2>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left - feature list */}
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-6 auto-rows-[180px] gap-4 md:gap-5"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={stagger}
+          >
+            {/* Card 1: PV-Anlagen — hero card */}
             <motion.div
-              className="space-y-8"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={stagger}
+              className="md:col-span-4 md:row-span-2 relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.07] to-white/[0.02] backdrop-blur-xl p-8 md:p-10 group hover:border-brand-orange/40 transition-colors duration-500"
+              variants={fadeUp}
+              transition={{ duration: 0.6 }}
             >
-              {leistungen.map((l) => (
-                <motion.div
-                  key={l.title}
-                  className="flex gap-5"
-                  variants={fadeUp}
-                  transition={{ duration: 0.5 }}
-                >
-                  <div className="w-12 h-12 rounded-xl bg-brand-orange/20 flex items-center justify-center flex-shrink-0">
-                    <l.icon className="w-6 h-6 text-brand-orange" />
+              <div className="absolute -top-20 -right-20 w-[300px] h-[300px] bg-brand-orange/25 rounded-full blur-[100px] group-hover:bg-brand-orange/40 transition-colors duration-700" />
+              <div className="relative z-10 h-full flex flex-col justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-2xl bg-brand-orange/20 border border-brand-orange/30 flex items-center justify-center">
+                    <Sun className="w-6 h-6 text-brand-orange" />
                   </div>
-                  <div>
-                    <h3 className="font-heading text-lg font-bold text-white mb-1">
-                      {l.title}
-                    </h3>
-                    <p className="font-body text-sm text-white/50 leading-relaxed">
-                      {l.description}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
+                  <span className="font-heading text-xs font-bold uppercase tracking-widest text-brand-orange">
+                    Hauptleistung
+                  </span>
+                </div>
+                <div>
+                  <h3 className="font-display text-4xl md:text-6xl font-black text-white leading-[0.95] mb-4 md:mb-6">
+                    PV-Anlagen
+                  </h3>
+                  <p className="font-body text-sm md:text-base text-white/60 leading-relaxed max-w-lg">
+                    Maßgeschneiderte Photovoltaik-Anlagen für Ihr Dach — Einfamilienhaus, Mehrfamilienhaus oder Gewerbeimmobilie. Wir planen und installieren mit hochwertigen Modulen führender Hersteller.
+                  </p>
+                </div>
+              </div>
             </motion.div>
 
-            {/* Right - image */}
+            {/* Card 2: Image */}
             <motion.div
-              className="relative"
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
+              className="md:col-span-2 md:row-span-2 relative overflow-hidden rounded-3xl border border-white/10"
+              variants={fadeUp}
+              transition={{ duration: 0.6 }}
             >
-              <div className="rounded-2xl overflow-hidden">
-                <img
-                  src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&w=800&q=80"
-                  alt="Solaranlage auf einem Hausdach"
-                  className="w-full h-[500px] object-cover"
-                />
-              </div>
-              <div className="absolute -bottom-6 -left-6 bg-brand-orange rounded-2xl p-6 shadow-xl">
-                <p className="font-display text-3xl font-black text-white">25+</p>
-                <p className="font-body text-sm text-white/80">Jahre Garantie</p>
+              <img
+                src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&w=800&q=80"
+                alt="Solaranlage auf einem Hausdach"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent" />
+              <div className="absolute bottom-6 left-6 right-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-3">
+                  <Award className="w-3.5 h-3.5 text-brand-orange" />
+                  <span className="font-heading text-[10px] font-bold uppercase tracking-widest text-white">
+                    Enphase Partner
+                  </span>
+                </div>
+                <p className="font-heading text-base font-bold text-white">
+                  Zertifizierte Installation
+                </p>
               </div>
             </motion.div>
-          </div>
+
+            {/* Card 3: Stromspeicher */}
+            <motion.div
+              className="md:col-span-2 relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-6 hover:border-brand-orange/40 transition-colors duration-500"
+              variants={fadeUp}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="flex items-start gap-4 h-full">
+                <div className="w-10 h-10 rounded-xl bg-brand-orange/20 flex items-center justify-center flex-shrink-0">
+                  <BatteryCharging className="w-5 h-5 text-brand-orange" />
+                </div>
+                <div>
+                  <h3 className="font-heading text-base font-bold text-white mb-1.5">
+                    Stromspeicher
+                  </h3>
+                  <p className="font-body text-xs text-white/55 leading-relaxed">
+                    Enphase IQ — Eigenverbrauch maximieren, auch nachts.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Card 4: 25+ Garantie */}
+            <motion.div
+              className="md:col-span-2 relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-orange to-brand-orange-dark p-6 shadow-[0_8px_40px_rgba(255,91,1,0.3)]"
+              variants={fadeUp}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="absolute -top-8 -right-8 w-32 h-32 bg-white/10 rounded-full blur-2xl" />
+              <div className="relative z-10 h-full flex flex-col justify-between">
+                <span className="font-heading text-[10px] font-bold uppercase tracking-widest text-white/80">
+                  Produktgarantie
+                </span>
+                <div>
+                  <p className="font-display text-5xl font-black text-white leading-none">
+                    25+
+                  </p>
+                  <p className="font-body text-sm text-white/90 mt-1">Jahre</p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Card 5: Monitoring */}
+            <motion.div
+              className="md:col-span-3 relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-6 hover:border-brand-orange/40 transition-colors duration-500"
+              variants={fadeUp}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="flex items-start gap-4 h-full">
+                <div className="w-10 h-10 rounded-xl bg-brand-orange/20 flex items-center justify-center flex-shrink-0">
+                  <Monitor className="w-5 h-5 text-brand-orange" />
+                </div>
+                <div>
+                  <h3 className="font-heading text-base font-bold text-white mb-1.5">
+                    Monitoring & Wartung
+                  </h3>
+                  <p className="font-body text-xs text-white/55 leading-relaxed">
+                    Echtzeit-Überwachung via Enphase App. Unser Wartungsservice sichert den optimalen Betrieb.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Card 6: Home Energy */}
+            <motion.div
+              className="md:col-span-3 relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-6 hover:border-brand-orange/40 transition-colors duration-500"
+              variants={fadeUp}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="flex items-start gap-4 h-full">
+                <div className="w-10 h-10 rounded-xl bg-brand-orange/20 flex items-center justify-center flex-shrink-0">
+                  <Home className="w-5 h-5 text-brand-orange" />
+                </div>
+                <div>
+                  <h3 className="font-heading text-base font-bold text-white mb-1.5">
+                    Home Energy Management
+                  </h3>
+                  <p className="font-body text-xs text-white/55 leading-relaxed">
+                    Intelligente Steuerung von Wallbox, Wärmepumpe und Speicher — zentral und automatisch.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
