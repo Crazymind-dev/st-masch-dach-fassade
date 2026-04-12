@@ -26,10 +26,10 @@ export const services: ServiceDetail[] = [
     features: [
       { title: "Neueindeckung", description: "Komplette Neueindeckung Ihres Steildachs mit Materialien Ihrer Wahl — von klassischen Tondachziegeln bis hin zu edlem Naturschiefer." },
       { title: "Dachsanierung", description: "Fachgerechte Sanierung bestehender Steildächer inkl. Unterkonstruktion, Dämmung und Eindeckung nach aktuellem Stand der Technik." },
+      { title: "Wärmedämmung", description: "Aufsparrendämmung, Zwischensparrendämmung und Einblasdämmung — passgenau zum Dachaufbau." },
       { title: "Dachreparatur", description: "Schnelle und professionelle Reparatur von Sturmschäden, undichten Stellen oder beschädigten Ziegeln." },
-      { title: "Dachfenster", description: "Einbau und Austausch von Dachfenstern aller gängigen Hersteller für mehr Licht und Wohnkomfort." },
     ],
-    materials: ["Tondachziegel", "Betondachsteine", "Naturschiefer", "Faserzement", "Bitumenschindeln"],
+    materials: ["Tondachziegel", "Betondachsteine", "Naturschiefer", "Zementbedachung", "Faserzement", "Bitumendachschindeln"],
     process: [
       { step: 1, title: "Beratung & Aufmaß", description: "Kostenlose Vor-Ort-Besichtigung und Bestandsaufnahme Ihres Dachs." },
       { step: 2, title: "Angebot", description: "Detailliertes, transparentes Angebot mit Materialoptionen und Zeitplan." },
@@ -52,7 +52,8 @@ export const services: ServiceDetail[] = [
       { title: "Bitumenschweißbahn", description: "Klassische und bewährte Abdichtung mit mehrlagigen Bitumenschweißbahnen für maximale Dichtigkeit." },
       { title: "EPDM-Abdichtung", description: "Hochelastische Kautschuk-Abdichtung — besonders langlebig, UV-beständig und wartungsarm." },
       { title: "Flüssigkunststoff", description: "Nahtlose Abdichtung auch bei komplexen Anschlüssen und Durchdringungen." },
-      { title: "Flachdachsanierung", description: "Professionelle Sanierung undichter Flachdächer mit Analyse der Schadensursache." },
+      { title: "Gefälle- & Flachdachdämmung", description: "Energetische Aufwertung mit fachgerechtem Gefälle — vermeidet stehendes Wasser." },
+      { title: "Flachdachreparatur", description: "Professionelle Sanierung undichter Flachdächer mit Analyse der Schadensursache." },
     ],
     materials: ["Bitumenschweißbahn", "EPDM-Dichtungsbahn", "Kunststoff (PVC/TPO)", "Flüssigkunststoff", "Bitumendickbeschichtung"],
     process: [
@@ -76,6 +77,7 @@ export const services: ServiceDetail[] = [
     features: [
       { title: "Extensive Begrünung", description: "Pflegeleichte, leichte Begrünung mit Sedum, Moosen und Kräutern — ideal für Flachdächer." },
       { title: "Intensive Begrünung", description: "Begehbare Dachgärten mit Sträuchern, Stauden und sogar kleinen Bäumen." },
+      { title: "Schrägdachbegrünung", description: "Extensive Begrünung auch für geneigte Dächer bis ca. 30° — mit Rutschsicherung und passendem Substrat." },
       { title: "Retentionsdach", description: "Spezialsystem zur Regenwasserrückhaltung — entlastet die Kanalisation und spart Abwassergebühren." },
       { title: "Gründachwartung", description: "Regelmäßige Pflege und Wartung Ihrer Dachbegrünung für langfristige Funktion." },
     ],
@@ -95,12 +97,15 @@ export const services: ServiceDetail[] = [
       "Die Fassade ist die Visitenkarte Ihres Gebäudes und gleichzeitig ein entscheidender Faktor für die Energieeffizienz. Wir bieten alle gängigen Fassadensysteme — vom klassischen WDVS über vorgehängte hinterlüftete Fassaden bis zur Kerndämmung.",
     image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80",
     icon: "building",
-    tags: ["WDVS", "VHF", "Kerndämmung", "Fassadenreparatur"],
+    tags: ["WDVS", "VHF", "Kerndämmung", "Innendämmung", "Fassadenbegrünung", "Balkon"],
     features: [
       { title: "WDVS", description: "Wärmedämmverbundsystem für maximale Energieeinsparung und moderne Optik Ihrer Fassade." },
-      { title: "Vorgehängte hinterlüftete Fassade", description: "Hochwertige VHF-Systeme mit Schiefer, Faserzement oder Metallverkleidung." },
-      { title: "Kerndämmung", description: "Nachträgliche Dämmung des Mauerwerk-Hohlraums — schnell, sauber, effektiv." },
-      { title: "Fassadenreparatur", description: "Ausbesserung von Rissen, Putzschäden und Farbabplatzungen." },
+      { title: "Vorgehängte hinterlüftete Fassade", description: "Hochwertige VHF-Systeme mit Holz, Schiefer, Stein, Glas oder Kunststoff." },
+      { title: "Kerndämmung", description: "Nachträgliche Dämmung des Mauerwerk-Hohlraums mit Granulat, Perlite oder Polystyrol-Perlen — schnell, sauber, effektiv." },
+      { title: "Innendämmung", description: "Wenn Außendämmung nicht möglich ist — diffusionsoffene Systeme von innen, inkl. Feuchtemanagement." },
+      { title: "Fassadenbegrünung", description: "Bodengebundene oder wandgebundene Begrünung — förderfähig über GründachPLUS Berlin (50 % Zuschuss)." },
+      { title: "Balkonsanierung", description: "Abdichtung, Belag, Geländer und energetische Aufwertung Ihres Balkons aus einer Hand." },
+      { title: "Putz- & Streicharbeiten", description: "Neuanstrich, Putzausbesserung und komplette Fassadenreparatur — silikat, silikon oder dispersionsbasiert." },
     ],
     process: [
       { step: 1, title: "Fassadenanalyse", description: "Bestandsaufnahme, Wärmebildaufnahme und Beratung zum optimalen System." },
@@ -119,11 +124,14 @@ export const services: ServiceDetail[] = [
       "Metalldächer und Titanzink-Verkleidungen stehen für Langlebigkeit, Ästhetik und Nachhaltigkeit. Wir verarbeiten Titanzink, Kupfer und Aluminium in Stehfalz-, Winkelfalz- und Doppelstehfalztechnik.",
     image: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=1200&q=80",
     icon: "square",
-    tags: ["Titanzink", "Stehfalz", "Kupfer", "Aluminium"],
+    tags: ["Titanzink", "Stehfalz", "Aluminium", "Trapezblech", "Dachschindeln"],
     features: [
       { title: "Stehfalzdeckung", description: "Klassische Stehfalztechnik für Dach und Fassade — elegant und absolut dicht." },
       { title: "Titanzink-Verkleidung", description: "Hochwertige Zinkverkleidungen für Gauben, Kamine und Fassadenelemente." },
-      { title: "Dachentwässerung", description: "Rinnen, Fallrohre und Einläufe aus Titanzink oder Kupfer." },
+      { title: "Aluminiumbedachung", description: "Leicht, langlebig, wartungsarm — auch mit Metalldachplatten im klassischen Ziegeldesign." },
+      { title: "Stahltrapezblech", description: "Wirtschaftliche Lösung für Gewerbe- und Hallendächer mit hoher Spannweite." },
+      { title: "Metalldachschindeln", description: "Optik traditioneller Schindeln kombiniert mit Langlebigkeit und Leichtbau von Metall." },
+      { title: "Dachentwässerung", description: "Rinnen, Fallrohre und Einläufe aus Titanzink, Kupfer oder Aluminium." },
     ],
     process: [
       { step: 1, title: "Planung", description: "Detailplanung und Materialauswahl." },
@@ -139,30 +147,40 @@ export const services: ServiceDetail[] = [
     description:
       "Mehr Licht, mehr Luft, mehr Wohnraum — Dachfenster vom Fachmann, als offizieller VELUX-Partner.",
     longDescription:
-      "Ein Dachfenster verändert einen Raum komplett. Es bringt Tageslicht in dunkle Dachgeschosse, sorgt für frische Luft und schafft Wohngefühl, wo vorher nur Abstellkammer war. Wir sind offizieller VELUX-Partner und tauschen alte Fenster genauso fachgerecht aus, wie wir neue Öffnungen im Dach setzen — inklusive Anschlussblech, Innenfutter und aller Details, die entscheiden, ob ein Dachfenster dicht bleibt oder später Probleme macht. Wir kennen das Dach. Und wir wissen, wie ein Dachfenster sauber hineingehört.",
+      "Egal ob Sie ein Dachfenster austauschen oder einen kompletten Neueinbau inklusive Dachöffnung wünschen — wir stehen Ihnen zur Seite. Gern beraten wir Sie umfassend zu den unterschiedlichen Möglichkeiten. Wir arbeiten eng mit VELUX zusammen, um Ihren Belichtungstraum Wirklichkeit werden zu lassen: sei es ein normales Dachfenster, eine Fenster-Kombination, ein Ausstiegsfenster oder ein Fenster mit speziellen Anforderungen wie Rauchabzug. Wir bringen Licht in Ihr Leben.",
     image: "https://images.unsplash.com/photo-1513584684374-8bab748fbf90?w=1200&q=80",
     icon: "window",
-    tags: ["VELUX Partner", "Neueinbau", "Austausch", "Energetisch"],
+    tags: ["VELUX Partner", "Gauben", "Oberlichter", "Lichtbänder", "Rauchabzug"],
     features: [
       {
         title: "VELUX-Partnerschaft",
         description:
-          "Wir sind offizieller VELUX-Fachpartner — mit Zugriff auf das komplette Sortiment, vom Standardfenster bis zur kompletten Panorama-Lösung.",
+          "Offizieller VELUX-Fachpartner mit Zugriff auf das komplette Sortiment — Standardfenster, Fenster-Kombinationen, Studio und Cabrio.",
       },
       {
-        title: "Neueinbau",
+        title: "Neueinbau & Austausch",
         description:
-          "Saubere Öffnung, passgenaue Einbindung in die Eindeckung, fachgerechte Anschlüsse — so wie ein Dachfenster eingesetzt gehört.",
+          "Saubere Öffnung, passgenaue Einbindung in die Eindeckung, oder Tausch am selben Tag — je nach Projekt.",
       },
       {
-        title: "Austausch alter Fenster",
+        title: "Gauben",
         description:
-          "Ein moderner Austausch erhöht den Wohnkomfort, spart Heizkosten und reduziert Geräusche — oft in nur einem Tag erledigt.",
+          "Schlepp-, Giebel-, Flach- oder Fledermausgauben — mehr Wohnraum und Stehhöhe unterm Dach.",
       },
       {
-        title: "Rollläden & Zubehör",
+        title: "Flachdachfenster",
         description:
-          "VELUX-Rollläden, Verdunkelung, Insektenschutz und smarte Steuerung — wir planen das Gesamtpaket mit.",
+          "Flache VELUX-Lichtkuppeln für Wohn- und Gewerbeflachdächer — mit elektrischer Öffnung auf Wunsch.",
+      },
+      {
+        title: "Oberlichter & Lichtbänder",
+        description:
+          "Natürliches Tageslicht für Hallen, Treppenhäuser und Wohngebäude — auch als zusammenhängende Lichtbänder über mehrere Meter.",
+      },
+      {
+        title: "Spezialausführungen",
+        description:
+          "Ausstiegsfenster, Rauchabzugsfenster (RWA), Sonnenschutz und smarte Steuerung — auch baurechtlich anspruchsvolle Anforderungen.",
       },
     ],
     materials: [

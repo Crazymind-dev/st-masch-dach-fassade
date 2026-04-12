@@ -16,22 +16,22 @@ export const solarTopics: SolarTopic[] = [
     description:
       "Photovoltaik vom Meisterbetrieb — individuell geplant, fachgerecht installiert und für Jahrzehnte gebaut.",
     longDescription:
-      "Eine PV-Anlage ist nur so gut wie das Dach, auf dem sie sitzt. Wer zuerst das Dach versteht, baut eine Solaranlage, die auch nach zwanzig Jahren noch dicht, sturmfest und effizient ist. Genau das ist unser Ansatz: Wir kommen vom Handwerk — nicht vom Vertrieb. Als Dachdecker-Meisterbetrieb und zertifizierter Enphase Solar Partner planen wir Ihre Anlage individuell, abgestimmt auf Eindeckung, Statik, Ausrichtung und Stromverbrauch. Module, Mikrowechselrichter und Montagesystem sind erstklassig — aber der eigentliche Unterschied liegt darunter.",
+      "Eine PV-Anlage ist nur so gut wie das Dach, auf dem sie sitzt. Wer zuerst das Dach versteht, baut eine Solaranlage, die auch nach zwanzig Jahren noch dicht, sturmfest und effizient ist. Genau das ist unser Ansatz: Wir kommen vom Handwerk — nicht vom Vertrieb. Als Dachdecker-Meisterbetrieb und zertifizierter Enphase Solar Partner planen wir Ihre Anlage individuell — klassisch als Aufdach-Montage oder als elegante Indach-Photovoltaik, bei der die Module direkt in die Dacheindeckung integriert werden. Für Indach-PV sind wir besonders spezialisiert: ein Handwerk, das wirklich nur Dachdecker sauber hinbekommen, weil Dacheindeckung und PV bündig und regendicht ineinandergreifen müssen.",
     features: [
+      {
+        title: "Indach-Photovoltaik",
+        description:
+          "Module werden direkt in die Eindeckung integriert — kein Aufbau, sondern Teil des Dachs. Elegant, strömungsarm und regendicht. Unsere Spezialität.",
+      },
+      {
+        title: "Aufdach-Photovoltaik",
+        description:
+          "Klassische Variante auf Montagesystem — wirtschaftlich, schnell zu installieren, ideal für Bestandsdächer.",
+      },
       {
         title: "Individuelle Auslegung",
         description:
-          "Wir analysieren Ihr Dach mit 3D-Simulation und berechnen Ertrag, Wirtschaftlichkeit und Amortisation transparent.",
-      },
-      {
-        title: "Hochwertige Module",
-        description:
-          "Nur Module führender Hersteller mit 25+ Jahren Leistungsgarantie und höchstem Wirkungsgrad.",
-      },
-      {
-        title: "Fachgerechte Montage",
-        description:
-          "Unser Dachdecker-Meisterbetrieb garantiert, dass Ihre Anlage dicht, sicher und sturmfest bleibt — auch nach Jahren.",
+          "3D-Dachsimulation, Ertrags- und Wirtschaftlichkeitsberechnung — transparent und auf Ihr Verbrauchsprofil zugeschnitten.",
       },
       {
         title: "Komplett aus einer Hand",
@@ -40,8 +40,8 @@ export const solarTopics: SolarTopic[] = [
       },
     ],
     highlights: [
+      "Spezialist für Indach-PV",
       "Enphase Mikrowechselrichter",
-      "Modulweise Optimierung",
       "25 Jahre Produktgarantie",
       "Anmeldung beim Netzbetreiber inklusive",
     ],
