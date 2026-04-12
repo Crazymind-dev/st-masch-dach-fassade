@@ -9,7 +9,7 @@ import CTABanner from "@/components/ui/CTABanner"
 import { getServiceBySlug, services } from "@/lib/services"
 import { notFound } from "next/navigation"
 import JsonLd from "@/components/seo/JsonLd"
-import { serviceSchema, breadcrumbSchema, faqSchema } from "@/lib/seo"
+import { serviceSchema, breadcrumbSchema, faqSchema, articleSchema } from "@/lib/seo"
 import { site } from "@/lib/config"
 import Image from "next/image"
 import { useState } from "react"
@@ -228,7 +228,17 @@ export default function ServiceDetailPage() {
       </section>
 
       {service.guide && (
-        <section className="bg-white py-20">
+        <>
+        <JsonLd
+          data={articleSchema({
+            headline: service.guide.title,
+            description: service.guide.intro,
+            url: `${pageUrl}#ratgeber`,
+            datePublished: "2026-04-12",
+            sections: service.guide.sections,
+          })}
+        />
+        <section id="ratgeber" className="bg-white py-20">
           <div className="max-w-3xl mx-auto px-6 md:px-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -282,6 +292,7 @@ export default function ServiceDetailPage() {
             </div>
           </div>
         </section>
+        </>
       )}
 
       {service.faqs && service.faqs.length > 0 && (

@@ -79,6 +79,87 @@ export function faqSchema(faqs: { question: string; answer: string }[]) {
   }
 }
 
+export function personSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: company.owner,
+    jobTitle: company.ownerTitle,
+    worksFor: {
+      "@type": "RoofingContractor",
+      name: company.name,
+      url: site.baseUrl,
+    },
+    knowsAbout: [
+      "Dachdeckerhandwerk",
+      "Photovoltaik",
+      "Energetische Gebäudesanierung",
+      "BAFA-Förderung",
+      "Individueller Sanierungsfahrplan (iSFP)",
+      "Enphase Solar",
+      "Fassadendämmung",
+      "Dachfenster (VELUX)",
+    ],
+    hasCredential: [
+      {
+        "@type": "EducationalOccupationalCredential",
+        credentialCategory: "Dachdeckermeister",
+        recognizedBy: { "@type": "Organization", name: "Handwerkskammer Berlin" },
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        credentialCategory: "BAFA-anerkannter Energieberater",
+        recognizedBy: {
+          "@type": "Organization",
+          name: "Bundesamt für Wirtschaft und Ausfuhrkontrolle (BAFA)",
+          url: "https://www.energie-effizienz-experten.de",
+        },
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        credentialCategory: "Enphase Solar Partner",
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        credentialCategory: "TRGS 519 — Sachkunde Asbest",
+      },
+    ],
+  }
+}
+
+export function articleSchema(args: {
+  headline: string
+  description: string
+  url: string
+  datePublished: string
+  sections?: { title: string; body: string }[]
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: args.headline,
+    description: args.description,
+    url: args.url,
+    datePublished: args.datePublished,
+    dateModified: args.datePublished,
+    author: {
+      "@type": "Person",
+      name: company.owner,
+      jobTitle: company.ownerTitle,
+      url: `${site.baseUrl}/ueber-uns`,
+    },
+    publisher: {
+      "@type": "RoofingContractor",
+      name: company.name,
+      url: site.baseUrl,
+    },
+    mainEntityOfPage: args.url,
+    ...(args.sections && {
+      articleSection: args.sections.map((s) => s.title),
+    }),
+  }
+}
+
 export function breadcrumbSchema(items: { name: string; url: string }[]) {
   return {
     "@context": "https://schema.org",

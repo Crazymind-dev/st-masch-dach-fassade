@@ -16,6 +16,8 @@ import {
 import PageHero from "@/components/ui/PageHero"
 import CTABanner from "@/components/ui/CTABanner"
 import { company } from "@/lib/config"
+import JsonLd from "@/components/seo/JsonLd"
+import { personSchema } from "@/lib/seo"
 import Image from "next/image"
 
 const fadeUp = {
@@ -145,6 +147,7 @@ const milestones = [
 export default function UeberUnsPage() {
   return (
     <>
+      <JsonLd data={personSchema()} />
       {/* Hero */}
       <PageHero
         title="Über"
