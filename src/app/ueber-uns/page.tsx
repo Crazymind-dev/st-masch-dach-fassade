@@ -15,6 +15,7 @@ import {
 } from "lucide-react"
 import PageHero from "@/components/ui/PageHero"
 import CTABanner from "@/components/ui/CTABanner"
+import { company } from "@/lib/config"
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -58,7 +59,17 @@ const zertifikate = [
   {
     title: "Meisterbrief Dachdecker",
     description:
-      "Qualifizierter Dachdeckermeisterbetrieb mit umfassender Fachkompetenz in allen Bereichen der Dach- und Fassadentechnik.",
+      "Qualifizierter Dachdeckermeisterbetrieb mit umfassender Fachkompetenz in allen Bereichen der Dach- und Fassadentechnik. Eingetragen bei der Handwerkskammer Berlin.",
+  },
+  {
+    title: "BAFA-Energieberater",
+    description:
+      "Steve Masch ist in der Energieeffizienz-Expertenliste des Bundes gelistet. Er erstellt individuelle Sanierungsfahrpläne (iSFP) und Fachunternehmer-Erklärungen — alles aus einer Hand, ohne externen Berater.",
+  },
+  {
+    title: "Enphase Solar Partner",
+    description:
+      "Zertifizierter Installateur für Mikrowechselrichter-Systeme. Enphase ist Weltmarktführer für moduloptimierte PV-Technik — maximale Sicherheit und Ertrag, Modul für Modul.",
   },
   {
     title: "TRGS 519 (Asbest)",
@@ -66,21 +77,16 @@ const zertifikate = [
       "Sachkundig für den Umgang mit Asbest nach TRGS 519. Sichere und fachgerechte Sanierung asbesthaltiger Materialien.",
   },
   {
-    title: "PV-Basiswissen",
-    description:
-      "Zertifizierte Fachkenntnisse in Photovoltaik-Technik. Planung, Installation und Wartung von Solaranlagen.",
-  },
-  {
     title: "Sachkunde Mineralfasern",
     description:
-      "Qualifiziert für den sicheren Umgang mit kunstlichen Mineralfasern (KMF) bei Dammarbeiten und Sanierungen.",
+      "Qualifiziert für den sicheren Umgang mit künstlichen Mineralfasern (KMF) bei Dämmarbeiten und Sanierungen.",
   },
 ]
 
 const team = [
   {
-    name: "Stephan Büchner",
-    role: "Geschäftsführer & Dachdeckermeister",
+    name: "Steve Masch",
+    role: "Inhaber, Dachdeckermeister & Energieberater",
     image: "/team-1.jpg",
   },
   {
@@ -198,13 +204,16 @@ export default function UeberUnsPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                <p className="font-display text-xl md:text-2xl font-bold text-brand-dark italic">
-                  &ldquo;Kundenzufriedenheit ist OUT,
+                <p className="font-display text-xl md:text-2xl font-bold text-brand-dark italic leading-snug">
+                  &ldquo;Ein gutes Dach merkt man daran,
                   <br />
                   <span className="text-brand-orange">
-                    Kundenbegeisterung ist IN!&rdquo;
+                    dass man nie an es denken muss.&rdquo;
                   </span>
                 </p>
+                <cite className="block mt-3 font-heading text-xs text-brand-dark/55 not-italic">
+                  — Steve Masch
+                </cite>
               </motion.blockquote>
             </motion.div>
 
@@ -226,7 +235,7 @@ export default function UeberUnsPage() {
               {/* Experience badge */}
               <div className="absolute -bottom-6 -right-6 bg-brand-orange rounded-2xl p-6 shadow-xl text-center">
                 <p className="font-display text-3xl font-black text-white">
-                  10+
+                  {company.yearsExperience}+
                 </p>
                 <p className="font-body text-sm text-white/80">
                   Jahre Erfahrung

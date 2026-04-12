@@ -59,15 +59,8 @@ const projects: Project[] = [
     year: "2023",
     tall: true,
   },
-  {
-    id: 8,
-    title: "Solar Carport Anlage",
-    location: "Brandenburg an der Havel",
-    category: "Solar",
-    image: "/referenz-pv-dach.jpg",
-    description: "Solarcarport mit 8 kWp für eine Wohnanlage mit E-Ladeinfrastruktur.",
-    year: "2024",
-  },
+  // TODO: Eigenes Foto für Solar Carport benötigt — vorher: nutzte
+  // dasselbe Bild wie 'Photovoltaik Einfamilienhaus', deswegen entfernt.
 ]
 
 const filters: Category[] = ["Alle", "Steildach", "Flachdach", "Fassade", "Solar", "Dachfenster"]

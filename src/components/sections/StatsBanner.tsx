@@ -1,11 +1,12 @@
 "use client"
 
 import { useRef, useEffect, useState } from "react"
-import { motion, useInView, useSpring, useMotionValue } from "framer-motion"
+import { motion, useInView, animate } from "framer-motion"
 import { GradientBackground } from "@/components/ui/paper-design-shader-background"
+import { company } from "@/lib/config"
 
 const stats = [
-  { value: 15, suffix: "+", label: "Jahre Erfahrung" },
+  { value: company.yearsExperience, suffix: "+", label: "Jahre Erfahrung" },
   { value: 500, suffix: "+", label: "Projekte" },
   { value: 100, suffix: "%", label: "Meisterqualität" },
   { value: 24, suffix: "h", label: "Notdienst" },
@@ -20,22 +21,17 @@ function AnimatedNumber({
   suffix: string
   inView: boolean
 }) {
-  const motionValue = useMotionValue(0)
-  const spring = useSpring(motionValue, { damping: 40, stiffness: 80 })
-  const [display, setDisplay] = useState("0")
+  const [display, setDisplay] = useState(inView ? value : 0)
 
   useEffect(() => {
-    if (inView) {
-      motionValue.set(value)
-    }
-  }, [inView, value, motionValue])
-
-  useEffect(() => {
-    const unsubscribe = spring.on("change", (v) => {
-      setDisplay(Math.round(v).toString())
+    if (!inView) return
+    const controls = animate(0, value, {
+      duration: 1.6,
+      ease: [0.22, 1, 0.36, 1],
+      onUpdate: (v) => setDisplay(Math.round(v)),
     })
-    return unsubscribe
-  }, [spring])
+    return controls.stop
+  }, [inView, value])
 
   return (
     <span>
@@ -46,8 +42,8 @@ function AnimatedNumber({
 }
 
 export default function StatsBanner() {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: "-50px" })
+  const ref = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref, { once: true, amount: 0.3 })
 
   return (
     <section className="relative py-14 sm:py-20 md:py-24 overflow-hidden">

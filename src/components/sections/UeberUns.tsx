@@ -11,6 +11,7 @@ import {
   Wrench,
   ArrowRight,
 } from "lucide-react"
+import { company } from "@/lib/config"
 
 const leftServices = [
   {
@@ -134,7 +135,7 @@ export default function UeberUns() {
               {/* Experience badge */}
               <div className="absolute bottom-4 sm:bottom-5 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-sm rounded-xl px-5 sm:px-6 py-3 sm:py-4 shadow-lg text-center">
                 <div className="font-display text-2xl sm:text-3xl font-black text-brand-orange leading-none">
-                  15+
+                  {company.yearsExperience}+
                 </div>
                 <div className="font-heading text-[10px] sm:text-xs font-bold text-brand-dark uppercase tracking-wider mt-1">
                   Jahre Erfahrung
@@ -182,13 +183,11 @@ export default function UeberUns() {
           transition={{ duration: 0.6, delay: 0.6 }}
         >
           <p className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-brand-dark italic leading-snug">
-            &ldquo;Kundenzufriedenheit ist{" "}
-            <span className="text-gray-400 line-through">OUT</span>,
-            Kundenbegeisterung ist{" "}
-            <span className="text-brand-orange">IN!</span>&rdquo;
+            &ldquo;Ein gutes Dach merkt man daran, dass man nie an es{" "}
+            <span className="text-brand-orange">denken muss</span>.&rdquo;
           </p>
           <cite className="font-heading text-sm text-gray-500 not-italic mt-3 block">
-            — St. Masch Dach, Fassade & Solar
+            — Steve Masch, Dachdeckermeister
           </cite>
         </motion.blockquote>
 

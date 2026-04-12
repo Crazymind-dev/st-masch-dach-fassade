@@ -1,9 +1,10 @@
 import type { Metadata } from "next"
 import PageHero from "@/components/ui/PageHero"
+import { company } from "@/lib/config"
 
 export const metadata: Metadata = {
-  title: "Datenschutzerklärung",
-  description: "Datenschutzerklärung von St. Masch Dach, Fassade & Solar.",
+  title: "Datenschutz",
+  description: `Datenschutzerklärung von ${company.name} — Informationen zur Verarbeitung Ihrer Daten gemäß DSGVO.`,
 }
 
 export default function DatenschutzPage() {
@@ -25,14 +26,17 @@ export default function DatenschutzPage() {
               1. Verantwortlicher
             </h2>
             <p className="leading-relaxed">
-              St. Masch Dach &amp; Fassade, Ruppiner Chaussee 221, 13503 Berlin
+              {company.name}, {company.address.street},{" "}
+              {company.address.zip} {company.address.city}
+              <br />
+              Inhaber: {company.owner}
               <br />
               E-Mail:{" "}
               <a
-                href="mailto:kontakt@die-dachdecker.berlin"
+                href={company.email.href}
                 className="text-brand-orange hover:underline"
               >
-                kontakt@die-dachdecker.berlin
+                {company.email.display}
               </a>
             </p>
           </div>
@@ -42,13 +46,13 @@ export default function DatenschutzPage() {
               2. Allgemeines zur Datenverarbeitung
             </h2>
             <p className="leading-relaxed">
-              Wir verarbeiten personenbezogene Daten unserer Nutzer grundsätzlich nur,
-              soweit dies zur Bereitstellung einer funktionsfähigen Website sowie
-              unserer Inhalte und Leistungen erforderlich ist. Die Verarbeitung
-              erfolgt regelmäßig nur nach Einwilligung des Nutzers oder in den Fällen,
-              in denen eine vorherige Einholung einer Einwilligung aus tatsächlichen
-              Gründen nicht möglich ist und die Verarbeitung der Daten durch
-              gesetzliche Vorschriften gestattet ist.
+              Wir verarbeiten personenbezogene Daten unserer Nutzer grundsätzlich
+              nur, soweit dies zur Bereitstellung einer funktionsfähigen Website
+              sowie unserer Inhalte und Leistungen erforderlich ist. Die
+              Verarbeitung erfolgt regelmäßig nur nach Einwilligung der Nutzer
+              oder in den Fällen, in denen eine vorherige Einholung einer
+              Einwilligung aus tatsächlichen Gründen nicht möglich ist und die
+              Verarbeitung der Daten durch gesetzliche Vorschriften gestattet ist.
             </p>
           </div>
 
@@ -66,37 +70,78 @@ export default function DatenschutzPage() {
           </div>
 
           <div>
-            <h2 className="font-heading text-xl font-bold mb-3">
-              4. Hosting
-            </h2>
+            <h2 className="font-heading text-xl font-bold mb-3">4. Hosting</h2>
             <p className="leading-relaxed">
-              Diese Website wird bei Vercel Inc. gehostet. Beim Aufruf werden
-              technisch notwendige Server-Logdaten verarbeitet (IP-Adresse,
-              Zeitstempel, aufgerufene URL, Referrer). Die Verarbeitung erfolgt
-              auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse
-              am stabilen Betrieb).
+              Diese Website wird bei Vercel Inc. (340 S Lemon Ave #4133, Walnut,
+              CA 91789, USA) gehostet. Beim Aufruf werden technisch notwendige
+              Server-Logdaten verarbeitet (IP-Adresse, Zeitstempel, aufgerufene
+              URL, Referrer, User-Agent). Die Verarbeitung erfolgt auf Grundlage
+              von Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse am stabilen
+              Betrieb). Mit Vercel besteht ein Auftragsverarbeitungsvertrag gemäß
+              Art. 28 DSGVO.
             </p>
           </div>
 
           <div>
             <h2 className="font-heading text-xl font-bold mb-3">
-              5. Ihre Rechte
+              5. Google Maps
+            </h2>
+            <p className="leading-relaxed">
+              Auf unserer Kontakt-Section ist eine interaktive Karte von Google
+              Maps (Google Ireland Limited, Gordon House, 4 Barrow St, Dublin 4,
+              Irland) eingebettet. Beim Aufruf der Seite wird automatisch eine
+              Verbindung zu Google-Servern hergestellt, wobei Ihre IP-Adresse und
+              weitere technische Informationen übertragen werden. Rechtsgrundlage
+              ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer
+              informativen Standortdarstellung). Details siehe Google-Datenschutz­
+              erklärung unter{" "}
+              <a
+                href="https://policies.google.com/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-brand-orange hover:underline"
+              >
+                policies.google.com/privacy
+              </a>
+              .
+            </p>
+          </div>
+
+          <div>
+            <h2 className="font-heading text-xl font-bold mb-3">
+              6. Google Fonts
+            </h2>
+            <p className="leading-relaxed">
+              Zur Darstellung unserer Schriften binden wir Google Fonts ein. Beim
+              Laden wird Ihre IP-Adresse kurzzeitig an Google übermittelt. Die
+              Integration erfolgt lokal über die Next.js Font-Optimierung,
+              wodurch der direkte Kontakt zu Google-Servern beim Seitenaufruf
+              minimiert wird. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="font-heading text-xl font-bold mb-3">
+              7. Ihre Rechte
             </h2>
             <p className="leading-relaxed">
               Sie haben das Recht auf Auskunft (Art. 15 DSGVO), Berichtigung
               (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung
-              (Art. 18), Datenübertragbarkeit (Art. 20) sowie Widerspruch
-              (Art. 21). Zudem können Sie sich bei einer Aufsichtsbehörde
-              beschweren (Art. 77 DSGVO).
+              (Art. 18), Datenübertragbarkeit (Art. 20) sowie Widerspruch (Art.
+              21). Zudem können Sie sich bei einer Aufsichtsbehörde beschweren
+              (Art. 77 DSGVO). Zuständig für unseren Sitz ist die Berliner
+              Beauftragte für Datenschutz und Informationsfreiheit.
             </p>
           </div>
 
-          <div className="pt-6 border-t border-gray-200">
-            <p className="text-xs text-gray-500">
-              Hinweis: Diese Datenschutzerklärung ist eine Vorlage. Lassen Sie sie
-              vor dem Live-Betrieb durch juristischen Beistand auf Vollständigkeit
-              prüfen — insbesondere wenn Formular-Backend, Analytics oder Cookies
-              hinzukommen.
+          <div>
+            <h2 className="font-heading text-xl font-bold mb-3">
+              8. Speicherdauer
+            </h2>
+            <p className="leading-relaxed">
+              Personenbezogene Daten werden nur so lange gespeichert, wie es für
+              die Zweckerreichung erforderlich ist oder gesetzliche
+              Aufbewahrungs­fristen (insb. HGB, AO) dies vorsehen.
             </p>
           </div>
         </div>
