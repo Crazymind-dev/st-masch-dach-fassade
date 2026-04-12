@@ -48,15 +48,14 @@ type NavEntry = SimpleLink | DropdownLink
 const navEntries: NavEntry[] = [
   {
     kind: "dropdown",
-    label: "Leistungen",
+    label: "Dach",
     items: [
       { href: "/leistungen/steildach", label: "Steildach", description: "Neueindeckung, Sanierung und Reparatur.", icon: Home },
       { href: "/leistungen/flachdach", label: "Flachdach", description: "Abdichtung und Dämmung nach neuestem Stand.", icon: Layers },
       { href: "/leistungen/gruendach", label: "Gründach", description: "Extensive und intensive Begrünung.", icon: Leaf },
-      { href: "/leistungen/fassade", label: "Fassade", description: "WDVS, Klinker und Naturstein-Verkleidungen.", icon: Building2 },
       { href: "/leistungen/metalldach", label: "Metalldach", description: "Zink, Kupfer und Titanzink in Meisterhand.", icon: Shield },
       { href: "/leistungen/dachservice", label: "Dachservice", description: "Inspektion, Wartung und Notfall-Reparatur.", icon: Wrench },
-      { href: "/leistungen", label: "Alle Leistungen", description: "Übersicht aller Angebote im Detail.", icon: LayoutGrid },
+      { href: "/leistungen", label: "Alle Dacharbeiten", description: "Übersicht aller Dach-Leistungen im Detail.", icon: LayoutGrid },
     ],
   },
   {
@@ -69,6 +68,7 @@ const navEntries: NavEntry[] = [
       { href: "/solar", label: "Home Energy", description: "Wallbox, Wärmepumpe und Speicher zentral.", icon: HousePlug },
     ],
   },
+  { kind: "link", href: "/leistungen/fassade", label: "Fassade" },
   { kind: "link", href: "/ueber-uns", label: "Über uns" },
   { kind: "link", href: "/referenzen", label: "Referenzen" },
   { kind: "link", href: "/kontakt", label: "Kontakt" },
