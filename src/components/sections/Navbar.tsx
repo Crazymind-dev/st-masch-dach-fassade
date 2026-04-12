@@ -65,10 +65,10 @@ const navEntries: NavEntry[] = [
     kind: "dropdown",
     label: "Solar",
     items: [
-      { href: "/solar", label: "PV-Anlagen", description: "Maßgeschneiderte Photovoltaik für Ihr Dach.", icon: Sun },
-      { href: "/solar", label: "Stromspeicher", description: "Enphase IQ — Eigenverbrauch maximieren.", icon: BatteryCharging },
-      { href: "/solar", label: "Monitoring & Wartung", description: "Echtzeit-Überwachung via Enphase App.", icon: Activity },
-      { href: "/solar", label: "Home Energy", description: "Wallbox, Wärmepumpe und Speicher zentral.", icon: HousePlug },
+      { href: "/solar/pv-anlagen", label: "PV-Anlagen", description: "Maßgeschneiderte Photovoltaik für Ihr Dach.", icon: Sun },
+      { href: "/solar/stromspeicher", label: "Stromspeicher", description: "Enphase IQ — Eigenverbrauch maximieren.", icon: BatteryCharging },
+      { href: "/solar/monitoring", label: "Monitoring & Wartung", description: "Echtzeit-Überwachung via Enphase App.", icon: Activity },
+      { href: "/solar/home-energy", label: "Home Energy", description: "Wallbox, Wärmepumpe und Speicher zentral.", icon: HousePlug },
     ],
   },
   {
