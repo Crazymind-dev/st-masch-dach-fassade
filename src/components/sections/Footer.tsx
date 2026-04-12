@@ -1,32 +1,80 @@
 "use client"
 
+import { motion } from "framer-motion"
 import { Phone, Mail, MapPin } from "lucide-react"
 
-const leistungen = ["Steildach", "Flachdach", "Gründach", "Fassade", "Photovoltaik"]
-const unternehmen = ["Über uns", "Referenzen", "Karriere", "Partner"]
+const leistungenLinks = [
+  { label: "Steildach", href: "#leistungen" },
+  { label: "Flachdach", href: "#leistungen" },
+  { label: "Gründach", href: "#leistungen" },
+  { label: "Fassade & WDVS", href: "#leistungen" },
+  { label: "Photovoltaik", href: "#solar" },
+  { label: "Dachservice", href: "#leistungen" },
+]
+
+const unternehmenLinks = [
+  { label: "Über uns", href: "#ueber-uns" },
+  { label: "Referenzen", href: "#referenzen" },
+  { label: "FAQ", href: "#faq" },
+  { label: "Karriere", href: "#" },
+  { label: "Partner", href: "#" },
+]
 
 export default function Footer() {
   return (
-    <footer className="bg-[#111] px-8 md:px-20 pt-16 pb-8">
-      <div className="max-w-[1200px] mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+    <footer className="bg-[#111] pt-16 pb-6">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+        >
           {/* Brand */}
           <div>
-            <a href="#" className="font-heading font-extrabold text-xl text-white no-underline flex items-center gap-2 mb-4">
-              ST. MASCH <span className="text-brand-orange">|</span> Dach & Fassade
+            <a
+              href="#"
+              className="font-heading font-extrabold text-xl text-white no-underline flex items-center gap-2 mb-4"
+            >
+              ST. MASCH <span className="text-brand-orange">|</span> Dach &
+              Fassade
             </a>
-            <p className="font-body text-sm font-light text-white/40 leading-relaxed max-w-[320px]">
-              Ihr Dachdecker-Meisterbetrieb in Berlin. Von der Dachsanierung bis zur Photovoltaikanlage — Qualität, Zuverlässigkeit und nachhaltige Lösungen.
+            <p className="font-body text-sm text-gray-500 font-light leading-relaxed mb-6">
+              Ihr zertifizierter Meisterbetrieb für Dach, Fassade und
+              Solarenergie in Berlin und Brandenburg. Qualität und
+              Zuverlässigkeit seit über 15 Jahren.
             </p>
+            <div className="flex gap-3">
+              {["facebook", "instagram", "linkedin"].map((social) => (
+                <a
+                  key={social}
+                  href="#"
+                  className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-500 hover:bg-brand-orange hover:border-brand-orange hover:text-white transition-all no-underline"
+                  aria-label={social}
+                >
+                  <span className="font-heading text-xs font-bold uppercase">
+                    {social[0]}
+                  </span>
+                </a>
+              ))}
+            </div>
           </div>
 
           {/* Leistungen */}
           <div>
-            <h5 className="font-heading text-sm font-bold text-white uppercase tracking-[2px] mb-5">Leistungen</h5>
-            <ul className="list-none flex flex-col gap-2.5">
-              {leistungen.map((l) => (
-                <li key={l}>
-                  <a href="#leistungen" className="font-body text-sm text-white/40 no-underline hover:text-brand-orange transition-colors">{l}</a>
+            <h4 className="font-heading text-sm font-bold text-white uppercase tracking-wider mb-5">
+              Leistungen
+            </h4>
+            <ul className="space-y-3 list-none p-0 m-0">
+              {leistungenLinks.map((link) => (
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    className="font-body text-sm text-gray-500 no-underline hover:text-brand-orange transition-colors"
+                  >
+                    {link.label}
+                  </a>
                 </li>
               ))}
             </ul>
@@ -34,11 +82,18 @@ export default function Footer() {
 
           {/* Unternehmen */}
           <div>
-            <h5 className="font-heading text-sm font-bold text-white uppercase tracking-[2px] mb-5">Unternehmen</h5>
-            <ul className="list-none flex flex-col gap-2.5">
-              {unternehmen.map((u) => (
-                <li key={u}>
-                  <a href="#" className="font-body text-sm text-white/40 no-underline hover:text-brand-orange transition-colors">{u}</a>
+            <h4 className="font-heading text-sm font-bold text-white uppercase tracking-wider mb-5">
+              Unternehmen
+            </h4>
+            <ul className="space-y-3 list-none p-0 m-0">
+              {unternehmenLinks.map((link) => (
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    className="font-body text-sm text-gray-500 no-underline hover:text-brand-orange transition-colors"
+                  >
+                    {link.label}
+                  </a>
                 </li>
               ))}
             </ul>
@@ -46,30 +101,57 @@ export default function Footer() {
 
           {/* Kontakt */}
           <div>
-            <h5 className="font-heading text-sm font-bold text-white uppercase tracking-[2px] mb-5">Kontakt</h5>
-            <ul className="list-none flex flex-col gap-3">
-              <li className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-brand-orange flex-shrink-0" />
-                <a href="tel:+493084417068" className="font-body text-sm text-white/40 no-underline hover:text-brand-orange transition-colors">030 - 844 17 068</a>
-              </li>
-              <li className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-brand-orange flex-shrink-0" />
-                <a href="mailto:kontakt@die-dachdecker.berlin" className="font-body text-sm text-white/40 no-underline hover:text-brand-orange transition-colors">kontakt@die-dachdecker.berlin</a>
-              </li>
-              <li className="flex items-start gap-2">
+            <h4 className="font-heading text-sm font-bold text-white uppercase tracking-wider mb-5">
+              Kontakt
+            </h4>
+            <ul className="space-y-4 list-none p-0 m-0">
+              <li className="flex gap-3 items-start">
                 <MapPin className="w-4 h-4 text-brand-orange flex-shrink-0 mt-0.5" />
-                <span className="font-body text-sm text-white/40">Ruppiner Chaussee 221<br />13503 Berlin</span>
+                <span className="font-body text-sm text-gray-500">
+                  Ruppiner Chaussee 221, 13503 Berlin
+                </span>
+              </li>
+              <li className="flex gap-3 items-center">
+                <Phone className="w-4 h-4 text-brand-orange flex-shrink-0" />
+                <a
+                  href="tel:+493084417068"
+                  className="font-body text-sm text-gray-500 no-underline hover:text-brand-orange transition-colors"
+                >
+                  030 - 844 17 068
+                </a>
+              </li>
+              <li className="flex gap-3 items-center">
+                <Mail className="w-4 h-4 text-brand-orange flex-shrink-0" />
+                <a
+                  href="mailto:kontakt@die-dachdecker.berlin"
+                  className="font-body text-sm text-gray-500 no-underline hover:text-brand-orange transition-colors"
+                >
+                  kontakt@die-dachdecker.berlin
+                </a>
               </li>
             </ul>
           </div>
-        </div>
+        </motion.div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/[0.08] pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="font-body text-[13px] text-white/30">&copy; 2026 St. Masch Dach & Fassade. Alle Rechte vorbehalten.</p>
+        <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="font-body text-xs text-gray-600">
+            &copy; {new Date().getFullYear()} St. Masch Dach & Fassade. Alle
+            Rechte vorbehalten.
+          </p>
           <div className="flex gap-6">
-            <a href="#" className="font-body text-[13px] text-white/30 no-underline hover:text-brand-orange transition-colors">Impressum</a>
-            <a href="#" className="font-body text-[13px] text-white/30 no-underline hover:text-brand-orange transition-colors">Datenschutz</a>
+            <a
+              href="#"
+              className="font-body text-xs text-gray-600 no-underline hover:text-brand-orange transition-colors"
+            >
+              Impressum
+            </a>
+            <a
+              href="#"
+              className="font-body text-xs text-gray-600 no-underline hover:text-brand-orange transition-colors"
+            >
+              Datenschutz
+            </a>
           </div>
         </div>
       </div>

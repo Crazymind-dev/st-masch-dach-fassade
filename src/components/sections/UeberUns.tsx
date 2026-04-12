@@ -16,17 +16,17 @@ const leftServices = [
   {
     icon: <Home className="w-6 h-6" />,
     title: "Steildach",
-    description: "Neubau, Sanierung und Reparatur von Steildächern jeder Art.",
+    description: "Neueindeckung & Sanierung mit erstklassigen Materialien.",
   },
   {
     icon: <Layers className="w-6 h-6" />,
     title: "Flachdach",
-    description: "Professionelle Abdichtung mit Bitumen, EPDM oder PVC.",
+    description: "Professionelle Abdichtung & Instandsetzung.",
   },
   {
     icon: <Leaf className="w-6 h-6" />,
     title: "Gründach",
-    description: "Dachbegrünung für nachhaltiges und ökologisches Bauen.",
+    description: "Nachhaltige Dachbegrünung für Ihr Gebäude.",
   },
 ]
 
@@ -34,17 +34,17 @@ const rightServices = [
   {
     icon: <Building2 className="w-6 h-6" />,
     title: "Fassade",
-    description: "WDVS und vorgehängte Fassaden für energieeffiziente Gebäude.",
+    description: "WDVS & vorgehängte Fassadensysteme.",
   },
   {
     icon: <Sun className="w-6 h-6" />,
     title: "Photovoltaik",
-    description: "PV-Anlagen und Speicher als zertifizierter Enphase Partner.",
+    description: "Solaranlagen vom zertifizierten Partner.",
   },
   {
     icon: <Wrench className="w-6 h-6" />,
     title: "Dachservice",
-    description: "Wartung, Inspektion und 24h Notdienst für Ihr Dach.",
+    description: "Wartung, Reparatur & 24h Notdienst.",
   },
 ]
 
@@ -53,34 +53,34 @@ function ServiceItem({
   title,
   description,
   index,
-  isInView,
-  fromLeft,
+  inView,
+  side,
 }: {
   icon: React.ReactNode
   title: string
   description: string
   index: number
-  isInView: boolean
-  fromLeft: boolean
+  inView: boolean
+  side: "left" | "right"
 }) {
   return (
     <motion.div
-      className="group flex gap-4 items-start cursor-pointer"
-      initial={{ opacity: 0, x: fromLeft ? -30 : 30 }}
-      animate={isInView ? { opacity: 1, x: 0 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.15 }}
+      className="group flex gap-4 p-4 rounded-xl cursor-pointer hover:bg-brand-beige transition-colors"
+      initial={{ opacity: 0, x: side === "left" ? -30 : 30 }}
+      animate={inView ? { opacity: 1, x: 0 } : {}}
+      transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
     >
-      <div className="w-12 h-12 rounded-xl bg-brand-orange/10 flex items-center justify-center text-brand-orange flex-shrink-0 group-hover:bg-brand-orange group-hover:text-white transition-colors duration-300">
+      <div className="w-12 h-12 rounded-xl bg-brand-orange/10 flex items-center justify-center text-brand-orange flex-shrink-0 group-hover:bg-brand-orange group-hover:text-white transition-all duration-300">
         {icon}
       </div>
       <div>
-        <h4 className="font-heading text-base font-bold text-brand-dark mb-1 group-hover:text-brand-orange transition-colors">
+        <h4 className="font-heading text-base font-bold text-brand-dark mb-1">
           {title}
         </h4>
         <p className="font-body text-sm text-gray-500 font-light leading-relaxed">
           {description}
         </p>
-        <span className="inline-flex items-center gap-1 text-brand-orange font-heading text-xs font-semibold mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <span className="inline-flex items-center gap-1 font-heading text-xs font-semibold text-brand-orange mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
           Mehr erfahren <ArrowRight className="w-3 h-3" />
         </span>
       </div>
@@ -90,16 +90,16 @@ function ServiceItem({
 
 export default function UeberUns() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const inView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
-    <section id="ueber-uns" className="py-24 md:py-32 bg-brand-beige overflow-hidden">
+    <section id="ueber-uns" className="py-24 md:py-32 bg-brand-beige">
       <div className="max-w-7xl mx-auto px-6 md:px-12" ref={ref}>
         {/* Header */}
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
           <div className="flex items-center justify-center gap-3 mb-4">
@@ -109,15 +109,15 @@ export default function UeberUns() {
             </span>
             <div className="w-10 h-[2px] bg-brand-orange" />
           </div>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-black text-brand-dark leading-tight">
+          <h2 className="font-display text-3xl md:text-5xl font-black text-brand-dark leading-tight">
             Ihr <span className="text-brand-orange">Meisterbetrieb</span> in Berlin
           </h2>
         </motion.div>
 
         {/* Three-column layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-8 items-center mb-20">
-          {/* Left Services */}
-          <div className="space-y-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center mb-16">
+          {/* Left services */}
+          <div className="space-y-2">
             {leftServices.map((s, i) => (
               <ServiceItem
                 key={s.title}
@@ -125,42 +125,45 @@ export default function UeberUns() {
                 title={s.title}
                 description={s.description}
                 index={i}
-                isInView={isInView}
-                fromLeft
+                inView={inView}
+                side="left"
               />
             ))}
           </div>
 
-          {/* Center Image */}
+          {/* Center image */}
           <motion.div
             className="relative flex items-center justify-center"
             initial={{ opacity: 0, scale: 0.9 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            animate={inView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.7, delay: 0.3 }}
           >
             {/* Decorative circles */}
-            <div className="absolute -top-6 -left-6 w-28 h-28 rounded-full border-2 border-brand-orange/20 animate-float-up" />
-            <div className="absolute -bottom-4 -right-4 w-20 h-20 rounded-full bg-brand-orange/10 animate-float-down" />
-            <div className="absolute top-1/2 -right-8 w-4 h-4 rounded-full bg-brand-orange animate-pulse-dot" />
+            <div className="absolute -top-6 -left-6 w-24 h-24 rounded-full border-2 border-brand-orange/20 animate-float-up" />
+            <div className="absolute -bottom-4 -right-4 w-16 h-16 rounded-full border-2 border-brand-orange/15 animate-float-down" />
+            <div className="absolute top-1/2 -right-8 w-4 h-4 rounded-full bg-brand-orange/30 animate-pulse-dot" />
 
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl w-full max-w-[340px] aspect-[3/4]">
+            <div className="relative w-full max-w-[360px] aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl">
               <img
                 src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80"
-                alt="Dachdecker Team"
+                alt="Dachdecker-Team bei der Arbeit"
                 className="w-full h-full object-cover"
               />
+
               {/* Experience badge */}
-              <div className="absolute bottom-4 left-4 bg-brand-orange text-white rounded-xl px-5 py-3 shadow-lg">
-                <div className="font-display text-2xl font-black leading-none">15+</div>
-                <div className="font-heading text-xs font-semibold uppercase tracking-wider mt-0.5">
+              <div className="absolute bottom-5 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-sm rounded-xl px-6 py-4 shadow-lg text-center">
+                <div className="font-display text-3xl font-black text-brand-orange leading-none">
+                  15+
+                </div>
+                <div className="font-heading text-xs font-bold text-brand-dark uppercase tracking-wider mt-1">
                   Jahre Erfahrung
                 </div>
               </div>
             </div>
           </motion.div>
 
-          {/* Right Services */}
-          <div className="space-y-8">
+          {/* Right services */}
+          <div className="space-y-2">
             {rightServices.map((s, i) => (
               <ServiceItem
                 key={s.title}
@@ -168,8 +171,8 @@ export default function UeberUns() {
                 title={s.title}
                 description={s.description}
                 index={i}
-                isInView={isInView}
-                fromLeft={false}
+                inView={inView}
+                side="right"
               />
             ))}
           </div>
@@ -179,8 +182,8 @@ export default function UeberUns() {
         <motion.blockquote
           className="text-center max-w-3xl mx-auto mb-12"
           initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.5 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.6 }}
         >
           <p className="font-display text-2xl md:text-3xl font-bold text-brand-dark italic leading-snug">
             &ldquo;Kundenzufriedenheit ist{" "}
@@ -195,24 +198,24 @@ export default function UeberUns() {
 
         {/* CTA Bar */}
         <motion.div
-          className="bg-brand-dark rounded-2xl px-8 md:px-12 py-8 flex flex-col md:flex-row items-center justify-between gap-6"
+          className="bg-brand-dark rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6"
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.6 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.7 }}
         >
           <div>
-            <h3 className="font-heading text-xl font-bold text-white mb-1">
-              Bereit für Ihr Projekt?
+            <h3 className="font-heading text-xl md:text-2xl font-bold text-white mb-2">
+              Bereit für Ihr nächstes Projekt?
             </h3>
             <p className="font-body text-gray-400 text-sm font-light">
-              Kontaktieren Sie uns für eine kostenlose Erstberatung.
+              Kontaktieren Sie uns für eine kostenlose Beratung und ein unverbindliches Angebot.
             </p>
           </div>
           <a
             href="#kontakt"
             className="inline-flex items-center gap-2 px-8 py-4 bg-brand-orange text-white rounded-full font-heading text-sm font-bold uppercase tracking-wider no-underline shadow-[0_4px_24px_rgba(255,91,1,0.3)] hover:bg-brand-orange-dark hover:-translate-y-0.5 transition-all flex-shrink-0"
           >
-            Jetzt anfragen
+            Kontakt aufnehmen
             <ArrowRight className="w-4 h-4" />
           </a>
         </motion.div>

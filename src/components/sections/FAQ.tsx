@@ -8,22 +8,22 @@ const faqs = [
   {
     question: "Wie läuft eine Dachsanierung ab?",
     answer:
-      "Eine Dachsanierung beginnt mit einer kostenlosen Vor-Ort-Begehung und Bestandsaufnahme. Darauf folgt ein detailliertes Angebot inklusive Materialempfehlung. Nach Auftragserteilung koordinieren wir alle Gewerke, führen die Sanierung fachgerecht durch und dokumentieren alle Arbeitsschritte. Die gesamte Abwicklung erfolgt aus einer Hand.",
+      "Nach einer kostenlosen Erstberatung und Dachinspektion erstellen wir ein detailliertes Angebot. Nach Auftragserteilung beginnen wir mit dem Gerüstaufbau, entfernen die alte Eindeckung, prüfen und reparieren die Unterkonstruktion, bringen Dämmung und neue Eindeckung auf. Je nach Umfang dauert eine Sanierung 1–3 Wochen.",
   },
   {
-    question: "Was kostet eine Photovoltaikanlage?",
+    question: "Lohnt sich eine Photovoltaikanlage auf meinem Dach?",
     answer:
-      "Die Kosten einer PV-Anlage hängen von Dachfläche, Modultyp und Speicherlösung ab. Eine typische Anlage für ein Einfamilienhaus (8-12 kWp) liegt zwischen 15.000 und 25.000 Euro. Durch staatliche Förderungen und die Einspeisevergütung amortisiert sich die Investition in der Regel nach 8-12 Jahren. Wir erstellen Ihnen gerne ein individuelles Angebot.",
+      "In den meisten Fällen ja! Wir analysieren Ihre Dachfläche, Ausrichtung und Verschattung kostenlos. Moderne PV-Anlagen amortisieren sich in der Regel nach 8–12 Jahren. Mit einem Stromspeicher können Sie bis zu 80% Ihres Stroms selbst erzeugen. Als Enphase-Partner bieten wir besonders effiziente Mikrowechselrichter-Systeme.",
   },
   {
     question: "Welche Fördermittel gibt es für Dach und Solar?",
     answer:
-      "Es gibt zahlreiche Fördermöglichkeiten: KfW-Kredite für energetische Sanierung, BAFA-Zuschüsse für Einzelmaßnahmen, regionale Förderprogramme des Landes Berlin sowie die EEG-Einspeisevergütung für Solarstrom. Wir beraten Sie umfassend zu allen verfügbaren Fördermitteln und unterstützen Sie bei der Antragstellung.",
+      "Es gibt zahlreiche Förderprogramme: KfW-Förderung für energetische Sanierung, BAFA-Zuschüsse für Wärmedämmung, sowie EEG-Einspeisevergütung für Solarstrom. Auch das Land Berlin bietet eigene Programme an. Wir beraten Sie umfassend zu allen aktuellen Fördermöglichkeiten und unterstützen Sie bei der Antragstellung.",
   },
   {
-    question: "Bieten Sie einen Dach-Notdienst an?",
+    question: "Bieten Sie einen Notdienst für Sturmschäden an?",
     answer:
-      "Ja, wir bieten einen 24-Stunden-Notdienst für akute Dachschäden an — ob Sturmschaden, Wassereintritt oder lose Dachteile. Unser Notfall-Team ist schnell vor Ort, sichert Ihr Dach provisorisch und plant die dauerhafte Reparatur. Rufen Sie uns im Notfall direkt an unter 030 - 844 17 068.",
+      "Ja, wir bieten einen 24-Stunden-Notdienst für akute Dachschäden an. Bei Sturmschäden, Wassereintritt oder anderen Notfällen sind wir schnell vor Ort, um Sofortmaßnahmen einzuleiten und Ihr Gebäude zu sichern. Rufen Sie uns an unter 030 - 844 17 068.",
   },
 ]
 
@@ -33,29 +33,29 @@ function AccordionItem({
   isOpen,
   onClick,
   index,
-  isInView,
+  inView,
 }: {
   question: string
   answer: string
   isOpen: boolean
   onClick: () => void
   index: number
-  isInView: boolean
+  inView: boolean
 }) {
   return (
     <motion.div
       className="border-b border-gray-200 last:border-b-0"
       initial={{ opacity: 0, y: 20 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
     >
       <button
         onClick={onClick}
-        className="w-full flex items-center justify-between py-6 text-left cursor-pointer bg-transparent border-none"
+        className="w-full flex items-center justify-between py-5 text-left cursor-pointer bg-transparent border-none"
       >
-        <h4 className="font-heading text-base md:text-lg font-bold text-brand-dark pr-4">
+        <span className="font-heading text-base md:text-lg font-bold text-brand-dark pr-4">
           {question}
-        </h4>
+        </span>
         <motion.div
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3 }}
@@ -70,10 +70,10 @@ function AccordionItem({
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            transition={{ duration: 0.3, ease: [0.42, 0, 0.58, 1] as [number, number, number, number] }}
             className="overflow-hidden"
           >
-            <p className="font-body text-gray-500 text-[15px] font-light leading-relaxed pb-6">
+            <p className="font-body text-sm text-gray-500 font-light leading-relaxed pb-5">
               {answer}
             </p>
           </motion.div>
@@ -85,17 +85,17 @@ function AccordionItem({
 
 export default function FAQ() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
-  const [openIndex, setOpenIndex] = useState(0)
+  const inView = useInView(ref, { once: true, margin: "-100px" })
+  const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   return (
     <section id="faq" className="py-24 md:py-32 bg-brand-beige">
-      <div className="max-w-7xl mx-auto px-6 md:px-12" ref={ref}>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+      <div className="max-w-6xl mx-auto px-6 md:px-12" ref={ref}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Left: Title */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            initial={{ opacity: 0, x: -30 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
             <div className="flex items-center gap-3 mb-4">
@@ -104,26 +104,27 @@ export default function FAQ() {
                 FAQ
               </span>
             </div>
-            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-black text-brand-dark leading-tight mb-6">
+            <h2 className="font-display text-3xl md:text-4xl font-black text-brand-dark leading-tight mb-6">
               Häufig gestellte <span className="text-brand-orange">Fragen</span>
             </h2>
-            <p className="font-body text-gray-500 text-lg font-light leading-relaxed max-w-md">
-              Finden Sie Antworten auf die wichtigsten Fragen rund um
-              Dachsanierung, Photovoltaik und unsere Leistungen.
+            <p className="font-body text-gray-500 text-lg font-light leading-relaxed">
+              Hier finden Sie Antworten auf die häufigsten Fragen rund um
+              Dachsanierung, Photovoltaik und unsere Leistungen. Für weitere
+              Informationen stehen wir Ihnen gerne persönlich zur Verfügung.
             </p>
           </motion.div>
 
           {/* Right: Accordion */}
-          <div>
+          <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm">
             {faqs.map((faq, i) => (
               <AccordionItem
-                key={faq.question}
+                key={i}
                 question={faq.question}
                 answer={faq.answer}
                 isOpen={openIndex === i}
-                onClick={() => setOpenIndex(openIndex === i ? -1 : i)}
+                onClick={() => setOpenIndex(openIndex === i ? null : i)}
                 index={i}
-                isInView={isInView}
+                inView={inView}
               />
             ))}
           </div>

@@ -1,18 +1,21 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { usePathname } from "next/navigation"
+import Link from "next/link"
 import { Phone } from "lucide-react"
 
 const navLinks = [
-  { href: "#leistungen", label: "Leistungen" },
-  { href: "#solar", label: "Solar" },
-  { href: "#ueber-uns", label: "Über uns" },
-  { href: "#referenzen", label: "Referenzen" },
-  { href: "#kontakt", label: "Kontakt" },
+  { href: "/leistungen", label: "Leistungen" },
+  { href: "/solar", label: "Solar" },
+  { href: "/ueber-uns", label: "Über uns" },
+  { href: "/referenzen", label: "Referenzen" },
+  { href: "/kontakt", label: "Kontakt" },
 ]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50)
@@ -26,19 +29,21 @@ export default function Navbar() {
         scrolled ? "py-3 shadow-md bg-brand-beige/95" : "py-5 bg-brand-beige/90"
       }`}
     >
-      <a href="#" className="font-heading font-extrabold text-xl text-brand-dark no-underline flex items-center gap-2">
+      <Link href="/" className="font-heading font-extrabold text-xl text-brand-dark no-underline flex items-center gap-2">
         ST. MASCH <span className="text-brand-orange">|</span> Dach & Fassade
-      </a>
+      </Link>
 
       <ul className="hidden md:flex items-center gap-8 list-none">
         {navLinks.map((link) => (
           <li key={link.href}>
-            <a
+            <Link
               href={link.href}
-              className="text-gray-600 no-underline font-heading text-sm font-medium tracking-wide hover:text-brand-orange transition-colors"
+              className={`no-underline font-heading text-sm font-medium tracking-wide transition-colors ${
+                pathname === link.href ? "text-brand-orange" : "text-gray-600 hover:text-brand-orange"
+              }`}
             >
               {link.label}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
