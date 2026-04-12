@@ -106,7 +106,7 @@ export default function UeberUns() {
             Über uns
           </span>
           <h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-black text-brand-dark leading-tight">
-            Ihr <span className="text-brand-orange">Meisterbetrieb</span> in Berlin
+            Ihr <span className="text-brand-orange">Meisterbetrieb</span> für Dach, Fassade &amp; Solar
           </h2>
         </motion.div>
 
@@ -188,7 +188,7 @@ export default function UeberUns() {
             <span className="text-brand-orange">IN!</span>&rdquo;
           </p>
           <cite className="font-heading text-sm text-gray-500 not-italic mt-3 block">
-            — St. Masch Dach & Fassade
+            — St. Masch Dach, Fassade & Solar
           </cite>
         </motion.blockquote>
 
