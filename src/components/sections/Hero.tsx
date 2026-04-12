@@ -1,6 +1,7 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { useRef } from "react"
+import { motion, useScroll, useTransform } from "framer-motion"
 import { Home, Building2, Sun, ArrowRight } from "lucide-react"
 import { GradientBackground } from "@/components/ui/paper-design-shader-background"
 
@@ -26,17 +27,38 @@ const glassCards = [
 ]
 
 export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  })
+  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"])
+
   return (
-    <section id="start" className="min-h-screen grid grid-cols-1 lg:grid-cols-2 relative overflow-hidden">
-      {/* Left: Content */}
-      <div className="flex flex-col justify-center px-8 md:px-16 lg:px-20 pt-32 pb-16 lg:py-0 relative z-[2]">
+    <section id="start" ref={sectionRef} className="min-h-screen grid grid-cols-1 lg:grid-cols-2 relative overflow-hidden">
+      {/* Left: Content + Shader Background */}
+      <div className="relative flex flex-col justify-center px-8 md:px-16 lg:px-20 pt-32 pb-16 lg:py-0 z-[2] overflow-hidden">
+        {/* Shader Gradient Background */}
+        <div className="absolute inset-0 z-0">
+          <GradientBackground
+            colors={["hsl(14, 100%, 50%)", "hsl(30, 100%, 48%)", "hsl(350, 80%, 45%)"]}
+            colorBack="hsl(20, 10%, 8%)"
+            softness={0.85}
+            intensity={0.5}
+            speed={0.5}
+          />
+        </div>
+
+        {/* Subtle grain overlay */}
+        <div className="grain-overlay absolute inset-0 z-[1]" />
+
         {/* Watermark */}
-        <div className="absolute bottom-[-40px] left-[-20px] font-heading font-black text-[160px] xl:text-[220px] text-black/[0.04] leading-[0.85] pointer-events-none select-none z-0">
+        <div className="absolute bottom-[-40px] left-[-20px] font-heading font-black text-[160px] xl:text-[220px] text-white/[0.04] leading-[0.85] pointer-events-none select-none z-[1]">
           Dach<br />werk
         </div>
 
         <motion.div
-          className="flex items-center gap-3 mb-8 relative z-[1]"
+          className="flex items-center gap-3 mb-8 relative z-[2]"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -48,19 +70,19 @@ export default function Hero() {
         </motion.div>
 
         <motion.h1
-          className="font-display text-4xl md:text-5xl xl:text-[54px] font-black text-brand-dark leading-[1.15] mb-6 relative z-[1]"
+          className="font-display text-4xl md:text-5xl xl:text-[54px] font-black text-white leading-[1.15] mb-6 relative z-[2]"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <span className="text-brand-orange">Dach & Fassade</span> trifft Solarenergie
-          <span className="block font-heading font-light text-2xl md:text-4xl text-gray-500 mt-2">
+          <span className="block font-heading font-light text-2xl md:text-4xl text-white/60 mt-2">
             Alles aus einer Hand.
           </span>
         </motion.h1>
 
         <motion.p
-          className="font-body text-[17px] font-light leading-[1.8] text-gray-500 max-w-[460px] mb-10 relative z-[1]"
+          className="font-body text-[17px] font-light leading-[1.8] text-white/70 max-w-[460px] mb-10 relative z-[2]"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
@@ -70,20 +92,20 @@ export default function Hero() {
         </motion.p>
 
         <motion.div
-          className="flex gap-4 items-center mb-16 relative z-[1] flex-wrap"
+          className="flex gap-4 items-center mb-16 relative z-[2] flex-wrap"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
         >
           <a
             href="/kontakt"
-            className="inline-flex items-center gap-2 px-9 py-4 bg-brand-orange text-white rounded-full font-heading text-sm font-bold uppercase tracking-wider no-underline shadow-[0_4px_24px_rgba(255,91,1,0.3)] hover:bg-brand-orange-dark hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(255,91,1,0.4)] transition-all"
+            className="inline-flex items-center gap-2 px-9 py-4 bg-brand-orange text-white rounded-full font-heading text-sm font-bold uppercase tracking-wider no-underline shadow-[0_4px_24px_rgba(255,91,1,0.4)] hover:bg-brand-orange-dark hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(255,91,1,0.5)] transition-all"
           >
             Angebot anfragen
           </a>
           <a
             href="/leistungen"
-            className="inline-flex items-center gap-2 px-7 py-4 bg-transparent text-brand-dark border-2 border-gray-300 rounded-full font-heading text-sm font-semibold no-underline hover:border-brand-orange hover:text-brand-orange transition-all"
+            className="inline-flex items-center gap-2 px-7 py-4 bg-white/10 text-white border-2 border-white/20 rounded-full font-heading text-sm font-semibold no-underline hover:border-brand-orange hover:text-brand-orange backdrop-blur-sm transition-all"
           >
             Unsere Leistungen
           </a>
@@ -91,7 +113,7 @@ export default function Hero() {
 
         {/* Trust strip */}
         <motion.div
-          className="flex gap-6 lg:gap-9 flex-wrap relative z-[1]"
+          className="flex gap-6 lg:gap-9 flex-wrap relative z-[2]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.7 }}
@@ -102,13 +124,13 @@ export default function Hero() {
             { label: "Solar Partner", sub: "Enphase zertifiziert" },
           ].map((t) => (
             <div key={t.label} className="flex items-center gap-3">
-              <div className="w-[42px] h-[42px] rounded-full bg-white border border-black/[0.08] flex items-center justify-center shadow-sm">
+              <div className="w-[42px] h-[42px] rounded-full bg-white/10 border border-white/15 flex items-center justify-center backdrop-blur-sm">
                 <svg viewBox="0 0 24 24" className="w-[18px] h-[18px] fill-brand-orange">
                   <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
                 </svg>
               </div>
-              <div className="font-heading text-[13px] text-gray-400 font-medium">
-                <strong className="block text-brand-dark font-bold text-sm">{t.label}</strong>
+              <div className="font-heading text-[13px] text-white/50 font-medium">
+                <strong className="block text-white font-bold text-sm">{t.label}</strong>
                 {t.sub}
               </div>
             </div>
@@ -116,34 +138,17 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Right: Image + Shader Background */}
+      {/* Right: Pure Photo with Parallax */}
       <div className="relative overflow-hidden">
-        {/* Animated Shader Background — sits behind the image */}
-        <div className="absolute inset-0 z-0">
-          <GradientBackground
-            colors={["hsl(14, 100%, 50%)", "hsl(30, 100%, 48%)", "hsl(350, 80%, 45%)"]}
-            colorBack="hsl(0, 0%, 8%)"
-            softness={0.8}
-            intensity={0.55}
-            speed={0.6}
-          />
-        </div>
-
-        {/* Photo with blend mode — shader bleeds through */}
-        <img
+        <motion.img
           src="https://images.unsplash.com/photo-1632759145351-1d592919f522?w=1200&q=80"
           alt="Dachdecker bei der Arbeit"
-          className="relative z-[1] w-full h-full object-cover block min-h-[50vh] lg:min-h-screen mix-blend-luminosity opacity-60"
+          className="w-full h-[120%] object-cover block min-h-[50vh] lg:min-h-screen absolute inset-0"
+          style={{ y: imageY }}
         />
 
-        {/* Gradient overlay for text readability on glass cards */}
-        <div className="absolute inset-0 z-[1] bg-gradient-to-l from-black/30 via-transparent to-transparent" />
-
-        {/* Fade edge to beige */}
-        <div className="absolute top-0 left-0 w-[120px] h-full bg-gradient-to-r from-brand-beige to-transparent z-[2] hidden lg:block" />
-
         {/* Orange accent bar */}
-        <div className="absolute top-0 right-0 w-[6px] h-full bg-gradient-to-b from-brand-orange via-brand-orange-dark to-transparent z-[5]" />
+        <div className="absolute top-0 right-0 w-[6px] h-full bg-gradient-to-b from-brand-orange via-brand-orange-dark to-transparent z-[3]" />
 
         {/* Stats */}
         <div className="absolute bottom-10 left-10 z-[3] flex gap-6">
@@ -153,7 +158,7 @@ export default function Hero() {
           ].map((s) => (
             <motion.div
               key={s.label}
-              className="bg-white/90 backdrop-blur-md rounded-2xl px-6 py-5 min-w-[140px] shadow-[0_8px_32px_rgba(0,0,0,0.15)]"
+              className="bg-white/95 backdrop-blur-sm rounded-2xl px-6 py-5 min-w-[140px] shadow-[0_8px_32px_rgba(0,0,0,0.1)]"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
@@ -170,7 +175,7 @@ export default function Hero() {
             <motion.a
               key={card.title}
               href={card.href}
-              className="block w-[240px] bg-white/[0.1] backdrop-blur-[20px] rounded-2xl p-[22px_24px] shadow-[0_8px_32px_rgba(0,0,0,0.2)] border border-white/20 no-underline hover:bg-brand-orange/[0.15] hover:border-brand-orange/40 hover:-translate-x-2 transition-all duration-400"
+              className="block w-[240px] bg-white/[0.12] backdrop-blur-[20px] rounded-2xl p-[22px_24px] shadow-[0_8px_32px_rgba(0,0,0,0.15)] border border-white/25 no-underline hover:bg-brand-orange/[0.15] hover:border-brand-orange/40 hover:-translate-x-2 transition-all duration-400"
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.6 + i * 0.15 }}
