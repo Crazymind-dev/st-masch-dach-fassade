@@ -159,7 +159,7 @@ export default function UeberUns() {
           </div>
 
           {/* Right services */}
-          <div className="space-y-1 sm:space-y-2 order-3 lg:order-none lg:col-start-3">
+          <div className="space-y-1 sm:space-y-2 order-3 lg:order-none lg:col-start-3 -mt-5 sm:-mt-4 lg:mt-0">
             {rightServices.map((s, i) => (
               <ServiceItem
                 key={s.title}
