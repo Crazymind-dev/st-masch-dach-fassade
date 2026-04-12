@@ -20,8 +20,8 @@ const glassCards = [
   },
   {
     icon: <Sun className="w-[22px] h-[22px] text-brand-orange" />,
-    title: "Photovoltaik",
-    desc: "PV-Anlagen, Speicher & Monitoring — Enphase Partner",
+    title: "Energiesysteme",
+    desc: "Photovoltaik, Speicher & Monitoring — Enphase Partner",
     href: "/solar",
   },
 ]

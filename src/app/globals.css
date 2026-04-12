@@ -35,6 +35,32 @@ body {
   background-size: 200px 200px;
 }
 
+/* Animated card glow aura */
+@property --card-glow-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes card-glow-spin {
+  to { --card-glow-angle: 360deg; }
+}
+
+.card-glow-aura {
+  border-radius: 0.75rem;
+  background: conic-gradient(
+    from var(--card-glow-angle),
+    #ff5b01,
+    #ff8c42,
+    #ffb347,
+    #ff5b01,
+    #c44200,
+    #ff5b01
+  );
+  filter: blur(12px);
+  animation: card-glow-spin 8s linear infinite;
+}
+
 /* Accessibility: Font size */
 html.font-large { font-size: 118.75%; }
 html.font-xlarge { font-size: 137.5%; }

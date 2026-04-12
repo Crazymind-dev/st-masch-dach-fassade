@@ -20,8 +20,8 @@ const contactInfo = [
   {
     icon: <Mail className="w-5 h-5" />,
     label: "E-Mail",
-    value: "info@st-masch.de",
-    href: "mailto:info@st-masch.de",
+    value: "kontakt@die-dachdecker.berlin",
+    href: "mailto:kontakt@die-dachdecker.berlin",
   },
   {
     icon: <Clock className="w-5 h-5" />,

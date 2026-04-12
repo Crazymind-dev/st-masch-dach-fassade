@@ -3,15 +3,17 @@ import { cn } from "@/lib/utils"
 
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export function AnimatedCard({ className, ...props }: CardProps) {
+export function AnimatedCard({ className, children, ...props }: CardProps) {
   return (
-    <div
-      className={cn(
-        "group/animated-card relative w-full overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm",
-        className
-      )}
-      {...props}
-    />
+    <div className={cn("relative group/glow", className)} {...props}>
+      <div
+        aria-hidden
+        className="card-glow-aura pointer-events-none absolute -inset-[2px] opacity-20 group-hover/glow:opacity-80 transition-opacity duration-500"
+      />
+      <div className="group/animated-card relative h-full w-full overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
+        {children}
+      </div>
+    </div>
   )
 }
 
