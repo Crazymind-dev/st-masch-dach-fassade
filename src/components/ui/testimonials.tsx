@@ -1,8 +1,7 @@
 "use client"
 
-import type React from "react"
-import { useState, useCallback, useRef } from "react"
-import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion"
+import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 
 const testimonials = [
   {
@@ -67,25 +66,6 @@ function SplitText({ text }: { text: string }) {
 
 export function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0)
-  const [isHovered, setIsHovered] = useState(false)
-  const containerRef = useRef<HTMLDivElement>(null)
-
-  const mouseX = useMotionValue(0)
-  const mouseY = useMotionValue(0)
-  const springConfig = { damping: 25, stiffness: 150 }
-  const cursorX = useSpring(mouseX, springConfig)
-  const cursorY = useSpring(mouseY, springConfig)
-
-  const handleMouseMove = useCallback(
-    (e: React.MouseEvent) => {
-      if (!containerRef.current) return
-      const rect = containerRef.current.getBoundingClientRect()
-      mouseX.set(e.clientX - rect.left)
-      mouseY.set(e.clientY - rect.top)
-    },
-    [mouseX, mouseY]
-  )
-
   const handleNext = () => {
     setActiveIndex((prev) => (prev + 1) % testimonials.length)
   }
@@ -117,42 +97,9 @@ export function Testimonials() {
 
         {/* Testimonial Card */}
         <div
-          ref={containerRef}
-          className="relative w-full max-w-2xl mx-auto py-10 sm:py-16 px-4 sm:px-8 md:px-12 cursor-pointer md:cursor-none"
-          onMouseMove={handleMouseMove}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
+          className="relative w-full max-w-2xl mx-auto py-10 sm:py-16 px-4 sm:px-8 md:px-12 cursor-pointer"
           onClick={handleNext}
         >
-          {/* Custom cursor - hidden on touch/mobile devices */}
-          <motion.div
-            className="pointer-events-none absolute z-50 mix-blend-difference hidden md:block"
-            style={{
-              x: cursorX,
-              y: cursorY,
-              translateX: "-50%",
-              translateY: "-50%",
-            }}
-          >
-            <motion.div
-              className="rounded-full bg-brand-orange flex items-center justify-center shadow-[0_8px_32px_rgba(255,91,1,0.4)]"
-              animate={{
-                width: isHovered ? 80 : 0,
-                height: isHovered ? 80 : 0,
-                opacity: isHovered ? 1 : 0,
-              }}
-              transition={{ type: "spring", damping: 20, stiffness: 200 }}
-            >
-              <motion.span
-                className="text-white text-xs font-heading font-medium tracking-wider uppercase"
-                animate={{ opacity: isHovered ? 1 : 0 }}
-                transition={{ delay: 0.1 }}
-              >
-                Weiter
-              </motion.span>
-            </motion.div>
-          </motion.div>
-
           {/* Index indicator */}
           <motion.div
             className="absolute top-2 sm:top-4 right-4 sm:right-8 flex items-baseline gap-1 font-body text-xs"
@@ -292,7 +239,7 @@ export function Testimonials() {
           <motion.div
             className="absolute bottom-4 left-8 items-center gap-2 hidden md:flex"
             initial={{ opacity: 0 }}
-            animate={{ opacity: isHovered ? 1 : 0.8 }}
+            animate={{ opacity: 0.9 }}
             transition={{ duration: 0.3 }}
           >
             <span className="text-[10px] text-brand-orange uppercase tracking-widest font-body font-bold">Klicken zum Weiterblättern</span>
