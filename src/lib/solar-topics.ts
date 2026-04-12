@@ -16,7 +16,7 @@ export const solarTopics: SolarTopic[] = [
     description:
       "Photovoltaik vom Meisterbetrieb — individuell geplant, fachgerecht installiert und für Jahrzehnte gebaut.",
     longDescription:
-      "Eine Photovoltaik-Anlage ist mehr als Module auf dem Dach. Sie ist eine langfristige Investition in Unabhängigkeit, Werterhalt und Klimaschutz. Wir planen Ihre Anlage individuell — abgestimmt auf Ihr Dach, Ihren Stromverbrauch und Ihre Ziele. Als zertifizierter Enphase Solar Partner kombinieren wir hochwertige Module mit moderner Mikrowechselrichter-Technologie, damit Sie über Jahrzehnte den maximalen Ertrag erhalten.",
+      "Eine PV-Anlage ist nur so gut wie das Dach, auf dem sie sitzt. Wer zuerst das Dach versteht, baut eine Solaranlage, die auch nach zwanzig Jahren noch dicht, sturmfest und effizient ist. Genau das ist unser Ansatz: Wir kommen vom Handwerk — nicht vom Vertrieb. Als Dachdecker-Meisterbetrieb und zertifizierter Enphase Solar Partner planen wir Ihre Anlage individuell, abgestimmt auf Eindeckung, Statik, Ausrichtung und Stromverbrauch. Module, Mikrowechselrichter und Montagesystem sind erstklassig — aber der eigentliche Unterschied liegt darunter.",
     features: [
       {
         title: "Individuelle Auslegung",

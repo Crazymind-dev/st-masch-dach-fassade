@@ -173,7 +173,7 @@ export default function SolarPage() {
       <PageHero
         title="Photovoltaik &"
         highlight="Solarenergie"
-        subtitle="Nachhaltige Energie vom eigenen Dach. Als zertifizierter Enphase Solar Partner planen, installieren und warten wir Ihre Photovoltaik-Anlage - kompetent, zuverlassig und aus einer Hand."
+        subtitle="Solar beginnt für uns nicht beim Modul — sondern beim Dach darunter. Als Dachdecker-Meisterbetrieb und zertifizierter Enphase Solar Partner planen, montieren und warten wir Ihre PV-Anlage so, dass sie sitzt. Jahrzehntelang."
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Solar", href: "/solar" },

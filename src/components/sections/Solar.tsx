@@ -54,8 +54,9 @@ export default function Solar() {
             </h2>
 
             <p className="font-body text-gray-400 text-base md:text-lg font-light leading-relaxed mb-8 md:mb-10">
-              Als zertifizierter Enphase-Partner verbinden wir Dachhandwerk mit modernster Solartechnik.
-              Ihre PV-Anlage — perfekt integriert, effizient und zukunftssicher.
+              Eine PV-Anlage ist nur so gut wie das Dach, auf dem sie sitzt.
+              Wir sind erst Dachdecker-Meisterbetrieb, dann Solar-Partner —
+              deshalb halten unsere Anlagen nicht nur Strom, sondern auch dicht.
             </p>
 
             <div className="space-y-5 md:space-y-6 mb-8 md:mb-10">
