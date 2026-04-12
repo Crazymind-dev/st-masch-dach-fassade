@@ -31,15 +31,6 @@ const projects: Project[] = [
     tall: true,
   },
   {
-    id: 2,
-    title: "Flachdachabdichtung Gewerbe",
-    location: "Berlin-Spandau",
-    category: "Flachdach",
-    image: "/referenz-pv-dach.jpg",
-    description: "Abdichtung einer 1.200 m² Gewerbehalle mit Bitumenbahnen und Lichtkuppeln.",
-    year: "2024",
-  },
-  {
     id: 3,
     title: "WDVS Fassadendämmung",
     location: "Berlin-Reinickendorf",
