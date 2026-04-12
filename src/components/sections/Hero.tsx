@@ -55,7 +55,7 @@ export default function Hero() {
               transition={{ duration: 0.6 }}
             >
               <div className="w-8 md:w-10 h-[2px] bg-brand-orange" />
-              <span className="font-heading text-[10px] md:text-xs font-bold uppercase tracking-[2px] md:tracking-[3px] text-brand-orange">
+              <span className="font-heading text-[10px] md:text-xs font-bold uppercase tracking-widest text-brand-orange">
                 Meisterbetrieb Berlin
               </span>
             </motion.div>
@@ -184,7 +184,7 @@ export default function Hero() {
         animate={{ opacity: 0.4 }}
         transition={{ delay: 1.5 }}
       >
-        <span className="font-body text-[10px] text-white/50 uppercase tracking-[3px]">Mehr erfahren</span>
+        <span className="font-body text-[10px] text-white/50 uppercase tracking-widest">Mehr erfahren</span>
         <div className="w-[1px] h-8 bg-gradient-to-b from-brand-orange/80 to-transparent animate-pulse" />
       </motion.div>
     </section>

@@ -78,13 +78,9 @@ export default function Leistungen() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="w-8 md:w-10 h-[2px] bg-brand-orange" />
-            <span className="font-heading text-xs font-bold uppercase tracking-[3px] text-brand-orange">
-              Unsere Leistungen
-            </span>
-            <div className="w-8 md:w-10 h-[2px] bg-brand-orange" />
-          </div>
+          <span className="font-heading text-xs font-bold uppercase tracking-widest text-brand-orange mb-4 block">
+            Unsere Leistungen
+          </span>
           <h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-black text-brand-dark leading-tight">
             Von der Planung bis zum <span className="text-brand-orange">letzten Detail</span>
           </h2>

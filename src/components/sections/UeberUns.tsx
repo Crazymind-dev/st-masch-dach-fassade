@@ -102,13 +102,9 @@ export default function UeberUns() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="w-8 md:w-10 h-[2px] bg-brand-orange" />
-            <span className="font-heading text-xs font-bold uppercase tracking-[3px] text-brand-orange">
-              Über uns
-            </span>
-            <div className="w-8 md:w-10 h-[2px] bg-brand-orange" />
-          </div>
+          <span className="font-heading text-xs font-bold uppercase tracking-widest text-brand-orange mb-4 block">
+            Über uns
+          </span>
           <h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-black text-brand-dark leading-tight">
             Ihr <span className="text-brand-orange">Meisterbetrieb</span> in Berlin
           </h2>

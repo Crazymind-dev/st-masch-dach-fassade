@@ -52,7 +52,7 @@ export default function Referenzen() {
           <div>
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 md:w-10 h-[2px] bg-brand-orange" />
-              <span className="font-heading text-xs font-bold uppercase tracking-[3px] text-brand-orange">
+              <span className="font-heading text-xs font-bold uppercase tracking-widest text-brand-orange">
                 Referenzen
               </span>
             </div>
