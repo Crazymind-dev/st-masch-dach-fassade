@@ -9,8 +9,10 @@ import CTABanner from "@/components/ui/CTABanner"
 import { getServiceBySlug, services } from "@/lib/services"
 import { notFound } from "next/navigation"
 import JsonLd from "@/components/seo/JsonLd"
-import { serviceSchema, breadcrumbSchema } from "@/lib/seo"
+import { serviceSchema, breadcrumbSchema, faqSchema } from "@/lib/seo"
 import { site } from "@/lib/config"
+import { useState } from "react"
+import { ChevronDown } from "lucide-react"
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -224,6 +226,70 @@ export default function ServiceDetailPage() {
         </div>
       </section>
 
+      {service.guide && (
+        <section className="bg-white py-20">
+          <div className="max-w-3xl mx-auto px-6 md:px-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <span className="font-heading text-sm font-bold uppercase tracking-widest text-brand-orange mb-3 block">
+                {service.guide.eyebrow}
+              </span>
+              <h2 className="font-display text-3xl md:text-4xl font-black text-brand-dark mb-5">
+                {service.guide.title}
+              </h2>
+              <p className="font-body text-base md:text-lg text-brand-dark/70 leading-relaxed mb-10">
+                {service.guide.intro}
+              </p>
+            </motion.div>
+
+            <motion.div
+              className="space-y-6"
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-80px" }}
+            >
+              {service.guide.sections.map((g) => (
+                <motion.div
+                  key={g.title}
+                  variants={fadeUp}
+                  className="bg-brand-beige rounded-2xl p-6 md:p-7"
+                >
+                  <h3 className="font-display text-lg md:text-xl font-bold text-brand-dark mb-2">
+                    {g.title}
+                  </h3>
+                  <p className="font-body text-sm md:text-base text-brand-dark/70 leading-relaxed">
+                    {g.body}
+                  </p>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            <div className="mt-10 p-6 rounded-2xl bg-brand-orange/10 border border-brand-orange/25">
+              <p className="font-body text-sm md:text-base text-brand-dark/80 leading-relaxed">
+                <strong className="text-brand-dark">Förderfähig?</strong>{" "}
+                Viele dieser Maßnahmen sind über BAFA, KfW oder Berlin-eigene
+                Programme förderfähig — oft zwischen 15 und 45 %.{" "}
+                <Link href="/foerderung" className="text-brand-orange hover:underline font-semibold">
+                  Details auf der Förderungsseite →
+                </Link>
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {service.faqs && service.faqs.length > 0 && (
+        <>
+          <JsonLd data={faqSchema(service.faqs)} />
+          <ServiceFaqSection faqs={service.faqs} />
+        </>
+      )}
+
       {/* Other Services */}
       <section className="bg-brand-beige py-20">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -283,5 +349,61 @@ export default function ServiceDetailPage() {
         </div>
       </section>
     </>
+  )
+}
+
+function ServiceFaqSection({
+  faqs,
+}: {
+  faqs: { question: string; answer: string }[]
+}) {
+  const [openIndex, setOpenIndex] = useState<number | null>(0)
+  return (
+    <section className="bg-brand-beige py-20">
+      <div className="max-w-3xl mx-auto px-6 md:px-12">
+        <div className="mb-10">
+          <span className="font-heading text-sm font-bold uppercase tracking-widest text-brand-orange mb-3 block">
+            FAQ
+          </span>
+          <h2 className="font-display text-3xl md:text-4xl font-black text-brand-dark">
+            Häufig gestellte{" "}
+            <span className="text-brand-orange">Fragen</span>
+          </h2>
+        </div>
+        <div className="space-y-3">
+          {faqs.map((faq, i) => {
+            const open = openIndex === i
+            return (
+              <div
+                key={faq.question}
+                className="bg-white rounded-2xl border border-black/5 overflow-hidden"
+              >
+                <button
+                  onClick={() => setOpenIndex(open ? null : i)}
+                  className="w-full flex items-center justify-between gap-4 p-5 text-left bg-transparent border-none cursor-pointer"
+                  aria-expanded={open}
+                >
+                  <span className="font-heading text-base md:text-lg font-bold text-brand-dark">
+                    {faq.question}
+                  </span>
+                  <ChevronDown
+                    className={`w-5 h-5 text-brand-orange flex-shrink-0 transition-transform duration-300 ${
+                      open ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+                {open && (
+                  <div className="px-5 pb-5">
+                    <p className="font-body text-sm md:text-base text-brand-dark/70 leading-relaxed">
+                      {faq.answer}
+                    </p>
+                  </div>
+                )}
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    </section>
   )
 }
