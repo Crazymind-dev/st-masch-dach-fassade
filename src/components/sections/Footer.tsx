@@ -46,7 +46,7 @@ export default function Footer() {
                 Dach · Fassade · Solar
               </span>
             </Link>
-            <p className="font-body text-sm text-gray-500 font-light leading-relaxed">
+            <p className="font-body text-sm text-gray-300 font-light leading-relaxed">
               Zertifizierter Meisterbetrieb für Dach, Fassade und Solarenergie
               in Berlin und Brandenburg. Seit über 15 Jahren.
             </p>
@@ -62,7 +62,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="font-body text-sm text-gray-500 no-underline hover:text-brand-orange transition-colors min-h-[44px] inline-flex items-center"
+                    className="font-body text-sm text-gray-300 no-underline hover:text-brand-orange transition-colors min-h-[44px] inline-flex items-center"
                   >
                     {link.label}
                   </Link>
@@ -81,7 +81,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="font-body text-sm text-gray-500 no-underline hover:text-brand-orange transition-colors min-h-[44px] inline-flex items-center"
+                    className="font-body text-sm text-gray-300 no-underline hover:text-brand-orange transition-colors min-h-[44px] inline-flex items-center"
                   >
                     {link.label}
                   </Link>
@@ -101,7 +101,7 @@ export default function Footer() {
                   href={MAPS_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex gap-3 items-start font-body text-sm text-gray-500 no-underline hover:text-brand-orange transition-colors"
+                  className="flex gap-3 items-start font-body text-sm text-gray-300 no-underline hover:text-brand-orange transition-colors"
                 >
                   <MapPin className="w-4 h-4 text-brand-orange flex-shrink-0 mt-0.5" />
                   <span>Ruppiner Chaussee 221, 13503 Berlin</span>
@@ -111,7 +111,7 @@ export default function Footer() {
                 <Phone className="w-4 h-4 text-brand-orange flex-shrink-0" />
                 <a
                   href="tel:+493084417068"
-                  className="font-body text-sm text-gray-500 no-underline hover:text-brand-orange transition-colors min-h-[44px] inline-flex items-center"
+                  className="font-body text-sm text-gray-300 no-underline hover:text-brand-orange transition-colors min-h-[44px] inline-flex items-center"
                 >
                   030 - 844 17 068
                 </a>
@@ -120,7 +120,7 @@ export default function Footer() {
                 <Mail className="w-4 h-4 text-brand-orange flex-shrink-0" />
                 <a
                   href="mailto:kontakt@die-dachdecker.berlin"
-                  className="font-body text-sm text-gray-500 no-underline hover:text-brand-orange transition-colors min-h-[44px] inline-flex items-center break-all"
+                  className="font-body text-sm text-gray-300 no-underline hover:text-brand-orange transition-colors min-h-[44px] inline-flex items-center break-all"
                 >
                   kontakt@die-dachdecker.berlin
                 </a>
@@ -131,20 +131,20 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="font-body text-xs text-gray-600 text-center md:text-left">
+          <p className="font-body text-xs text-gray-400 text-center md:text-left">
             &copy; {new Date().getFullYear()} St. Masch Dach & Fassade. Alle
             Rechte vorbehalten.
           </p>
           <div className="flex gap-6">
             <Link
               href="/impressum"
-              className="font-body text-xs text-gray-600 no-underline hover:text-brand-orange transition-colors min-h-[44px] inline-flex items-center"
+              className="font-body text-xs text-gray-400 no-underline hover:text-brand-orange transition-colors min-h-[44px] inline-flex items-center"
             >
               Impressum
             </Link>
             <Link
               href="/datenschutz"
-              className="font-body text-xs text-gray-600 no-underline hover:text-brand-orange transition-colors min-h-[44px] inline-flex items-center"
+              className="font-body text-xs text-gray-400 no-underline hover:text-brand-orange transition-colors min-h-[44px] inline-flex items-center"
             >
               Datenschutz
             </Link>
