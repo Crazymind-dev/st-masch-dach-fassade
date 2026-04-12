@@ -6,31 +6,27 @@ import { ArrowRight } from "lucide-react"
 
 const projects = [
   {
-    image:
-      "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80",
-    title: "Dachsanierung Charlottenburg",
-    type: "Steildach & Dämmung",
+    image: "/referenz-weisses-haus.jpg",
+    title: "Einfamilienhaus Zehlendorf",
+    type: "Steildach, Fassade & PV",
     span: "md:col-span-2",
   },
   {
-    image:
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
-    title: "Bürogebäude Mitte",
-    type: "Flachdach & WDVS",
+    image: "/referenz-pv-dach.jpg",
+    title: "PV-Anlage Spandau",
+    type: "All-black-Module",
     span: "",
   },
   {
-    image:
-      "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=800&q=80",
-    title: "Wohnanlage Prenzlauer Berg",
-    type: "Fassadensanierung",
+    image: "/referenz-dachfenster.jpg",
+    title: "Dachfenster Charlottenburg",
+    type: "VELUX-Austausch",
     span: "",
   },
   {
-    image:
-      "https://images.unsplash.com/photo-1508450859948-4e04fabaa4ea?w=800&q=80",
-    title: "Solaranlage Spandau",
-    type: "Photovoltaik & Gründach",
+    image: "/referenz-dachausbau.jpg",
+    title: "Dachausbau Pankow",
+    type: "VELUX & Dämmung",
     span: "md:col-span-2",
   },
 ]
