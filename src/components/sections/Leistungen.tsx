@@ -12,6 +12,12 @@ import {
   Wrench,
   ArrowRight,
 } from "lucide-react"
+import {
+  AnimatedCard,
+  CardBody,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/animated-card"
 
 const services = [
   {
@@ -87,7 +93,7 @@ export default function Leistungen() {
           </p>
         </motion.div>
 
-        {/* Grid */}
+        {/* Grid with AnimatedCard design */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {services.map((service, i) => (
             <motion.div
@@ -96,43 +102,42 @@ export default function Leistungen() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
-              <Link href={service.href} className="block no-underline group">
-                <div className="relative bg-white border border-gray-200 rounded-xl p-7 cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] hover:border-brand-orange/20 overflow-hidden h-full">
-                  {/* Top accent line */}
-                  <div className="absolute top-0 left-0 w-0 h-[2px] bg-brand-orange group-hover:w-full transition-all duration-500" />
-
-                  {/* Icon + Title row */}
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-brand-orange/[0.08] flex items-center justify-center text-brand-orange group-hover:bg-brand-orange group-hover:text-white transition-all duration-300 flex-shrink-0">
-                      {service.icon}
+              <Link href={service.href} className="block no-underline">
+                <AnimatedCard className="h-full hover:-translate-y-2 transition-transform duration-300">
+                  <CardBody className="p-7">
+                    {/* Icon + Title */}
+                    <div className="flex items-center gap-4 mb-3">
+                      <div className="w-12 h-12 rounded-xl bg-brand-orange/[0.08] flex items-center justify-center text-brand-orange group-hover/animated-card:bg-brand-orange group-hover/animated-card:text-white transition-all duration-300 flex-shrink-0">
+                        {service.icon}
+                      </div>
+                      <CardTitle className="group-hover/animated-card:text-brand-orange transition-colors">
+                        {service.title}
+                      </CardTitle>
                     </div>
-                    <h3 className="font-heading text-lg font-bold text-brand-dark group-hover:text-brand-orange transition-colors">
-                      {service.title}
-                    </h3>
-                  </div>
 
-                  {/* Description */}
-                  <p className="font-body text-gray-500 text-sm leading-relaxed mb-5">
-                    {service.description}
-                  </p>
+                    {/* Description */}
+                    <CardDescription className="mb-5">
+                      {service.description}
+                    </CardDescription>
 
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-1.5 mb-4">
-                    {service.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2.5 py-1 bg-gray-50 border border-gray-100 text-gray-600 font-heading text-[10px] font-semibold rounded-lg uppercase tracking-wide"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      {service.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2.5 py-1 bg-gray-50 border border-gray-100 text-gray-500 font-heading text-[10px] font-semibold rounded-lg uppercase tracking-wide"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
 
-                  {/* More link */}
-                  <div className="flex items-center gap-1.5 text-brand-orange font-heading text-xs font-bold uppercase tracking-wide opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                    Mehr erfahren <ArrowRight className="w-3.5 h-3.5" />
-                  </div>
-                </div>
+                    {/* Hover link */}
+                    <div className="flex items-center gap-1.5 text-brand-orange font-heading text-xs font-bold uppercase tracking-wide opacity-0 group-hover/animated-card:opacity-100 translate-y-2 group-hover/animated-card:translate-y-0 transition-all duration-300">
+                      Mehr erfahren <ArrowRight className="w-3.5 h-3.5" />
+                    </div>
+                  </CardBody>
+                </AnimatedCard>
               </Link>
             </motion.div>
           ))}
