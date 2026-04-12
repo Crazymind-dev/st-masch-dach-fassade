@@ -10,6 +10,10 @@ import {
   Calculator,
   CheckCircle2,
   AlertTriangle,
+  Gift,
+  Percent,
+  Landmark,
+  GraduationCap,
 } from "lucide-react"
 import PageHero from "@/components/ui/PageHero"
 import CTABanner from "@/components/ui/CTABanner"
@@ -139,16 +143,16 @@ export default function FoerderungPage() {
   return (
     <>
       <PageHero
-        title="Förderung in"
-        highlight="Berlin & Brandenburg"
-        subtitle="Dach, Dämmung, Solar und Gründach — fast jedes Projekt lässt sich mit öffentlichen Mitteln schlauer finanzieren. Wir kennen die Töpfe, die Fristen und die Reihenfolge. Und wir stellen die Fachunternehmer-Nachweise, die Sie dafür brauchen."
+        title="Förderung —"
+        highlight="einfach erklärt"
+        subtitle="Dach, Dämmung, Solar oder Gründach: Der Staat gibt viel Geld dazu — wenn man weiß, wie. Als Meisterbetrieb mit eigener Energieberatung im Haus machen wir das jeden Tag. Hier erklären wir, was es gibt, wie viel, und wer was bekommt — ohne Amtsdeutsch."
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Förderung", href: "/foerderung" },
         ]}
       />
 
-      {/* Intro */}
+      {/* Intro + Energieberatung USP */}
       <section className="bg-brand-beige py-16 md:py-20">
         <div className="max-w-4xl mx-auto px-6 md:px-12">
           <motion.div
@@ -158,22 +162,165 @@ export default function FoerderungPage() {
             transition={{ duration: 0.5 }}
           >
             <span className="font-heading text-sm font-bold uppercase tracking-widest text-brand-orange mb-3 block">
-              Warum Förderung
+              Warum das wichtig ist
             </span>
             <h2 className="font-display text-3xl md:text-4xl font-black text-brand-dark mb-6">
               Ein gutes Angebot ist nur die{" "}
               <span className="text-brand-orange">halbe Rechnung</span>
             </h2>
-            <p className="font-body text-base md:text-lg text-brand-dark/70 leading-relaxed">
+            <p className="font-body text-base md:text-lg text-brand-dark/70 leading-relaxed mb-6">
               Wer ein Dach saniert, eine Fassade dämmt oder eine PV-Anlage baut,
               investiert schnell einen fünf- bis sechsstelligen Betrag. Dass davon
               bei kluger Planung 15 bis 40 Prozent aus öffentlichen Mitteln
-              zurückfließen, wissen die wenigsten. Wir schon. Weil wir dieselben
-              Anträge gemeinsam mit unseren Kunden schon hundertfach gestellt
-              haben — und als Meisterbetrieb die Fachunternehmer-Erklärungen
-              liefern, ohne die kein Euro Förderung fließt.
+              zurückfließen, wissen die wenigsten. Wir schon.
+            </p>
+            <p className="font-body text-base md:text-lg text-brand-dark/70 leading-relaxed">
+              Der Unterschied zu vielen anderen Handwerksbetrieben: Bei uns sitzt
+              die Energieberatung im selben Haus. Wir sind{" "}
+              <strong className="text-brand-dark">
+                Dachdecker-Meisterbetrieb
+              </strong>{" "}
+              <em>und</em>{" "}
+              <strong className="text-brand-dark">
+                zertifizierte Energieberater
+              </strong>{" "}
+              — das heißt: Sie brauchen niemanden dazuzukaufen. Die
+              Energieberatung, den individuellen Sanierungsfahrplan (iSFP) und
+              die Fachunternehmer-Erklärung bekommen Sie aus einer Hand.
             </p>
           </motion.div>
+
+          <motion.div
+            className="mt-10 flex items-start gap-4 p-6 rounded-2xl bg-white border border-brand-orange/20"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <div className="w-12 h-12 rounded-xl bg-brand-orange/15 flex items-center justify-center flex-shrink-0">
+              <GraduationCap className="w-6 h-6 text-brand-orange" />
+            </div>
+            <div>
+              <h3 className="font-display text-lg font-bold text-brand-dark mb-2">
+                Energieberater im Haus
+              </h3>
+              <p className="font-body text-sm md:text-base text-brand-dark/70 leading-relaxed">
+                Ein vom BAFA anerkannter Energieberater darf den{" "}
+                <strong>individuellen Sanierungsfahrplan (iSFP)</strong>{" "}
+                erstellen — das Dokument, das Ihnen alleine für die Beratung
+                bis zu 650 € Zuschuss und dauerhaft 5 % Bonus auf jede künftige
+                Maßnahme bringt. Wir dürfen das. Sie müssen deshalb nicht erst
+                einen externen Berater suchen.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Die 3 Förderungsarten — Einsteiger-Erklärer */}
+      <section className="bg-white py-16 md:py-20">
+        <div className="max-w-6xl mx-auto px-6 md:px-12">
+          <motion.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <span className="font-heading text-sm font-bold uppercase tracking-widest text-brand-orange mb-3 block">
+              Grundlagen
+            </span>
+            <h2 className="font-display text-3xl md:text-4xl font-black text-brand-dark mb-4">
+              Drei Arten, wie der Staat{" "}
+              <span className="text-brand-orange">dazugibt</span>
+            </h2>
+            <p className="font-body text-base text-brand-dark/60 max-w-2xl mx-auto leading-relaxed">
+              Fast jede Förderung fällt in eine dieser drei Schubladen. Wenn Sie
+              das verstanden haben, wissen Sie schon 80 % über Fördermittel.
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="grid md:grid-cols-3 gap-5"
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+          >
+            <motion.div
+              variants={fadeUp}
+              className="rounded-2xl p-6 bg-brand-beige"
+            >
+              <div className="w-12 h-12 rounded-xl bg-brand-orange/15 flex items-center justify-center mb-4">
+                <Gift className="w-6 h-6 text-brand-orange" />
+              </div>
+              <h3 className="font-display text-xl font-bold text-brand-dark mb-2">
+                Zuschuss
+              </h3>
+              <p className="font-body text-sm text-brand-dark/70 leading-relaxed mb-3">
+                Geld, das Sie <strong>nie zurückzahlen</strong> müssen. Kommt
+                meist als Überweisung nach Abschluss der Arbeiten.
+              </p>
+              <p className="font-body text-xs text-brand-dark/55 leading-relaxed">
+                <strong>Beispiele:</strong> BAFA (Dämmung), SolarPLUS Berlin,
+                GründachPLUS Berlin, KfW 458 (Heizung).
+              </p>
+            </motion.div>
+
+            <motion.div
+              variants={fadeUp}
+              className="rounded-2xl p-6 bg-brand-beige"
+            >
+              <div className="w-12 h-12 rounded-xl bg-brand-orange/15 flex items-center justify-center mb-4">
+                <Landmark className="w-6 h-6 text-brand-orange" />
+              </div>
+              <h3 className="font-display text-xl font-bold text-brand-dark mb-2">
+                Günstiger Kredit
+              </h3>
+              <p className="font-body text-sm text-brand-dark/70 leading-relaxed mb-3">
+                Ein Darlehen zu <strong>besseren Zinsen</strong> als bei der
+                Hausbank — oft mit Tilgungszuschuss obendrauf.
+              </p>
+              <p className="font-body text-xs text-brand-dark/55 leading-relaxed">
+                <strong>Beispiele:</strong> KfW 261 (Sanierung), KfW 270 (PV
+                & Speicher), ILB Brandenburg-Kredit.
+              </p>
+            </motion.div>
+
+            <motion.div
+              variants={fadeUp}
+              className="rounded-2xl p-6 bg-brand-beige"
+            >
+              <div className="w-12 h-12 rounded-xl bg-brand-orange/15 flex items-center justify-center mb-4">
+                <Percent className="w-6 h-6 text-brand-orange" />
+              </div>
+              <h3 className="font-display text-xl font-bold text-brand-dark mb-2">
+                Steuervorteil
+              </h3>
+              <p className="font-body text-sm text-brand-dark/70 leading-relaxed mb-3">
+                Sie bezahlen die Rechnung voll — bekommen aber{" "}
+                <strong>über die Steuererklärung</strong> einen Teil zurück.
+              </p>
+              <p className="font-body text-xs text-brand-dark/55 leading-relaxed">
+                <strong>Beispiele:</strong> § 35c EStG (20 % der
+                Sanierungskosten), 0 % MwSt. auf PV-Anlagen.
+              </p>
+            </motion.div>
+          </motion.div>
+
+          <motion.p
+            className="font-body text-sm md:text-base text-brand-dark/70 text-center mt-8 max-w-3xl mx-auto leading-relaxed"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            Gut zu wissen: Diese drei Arten lassen sich oft{" "}
+            <strong>kombinieren</strong> — zum Beispiel BAFA-Zuschuss + KfW-Kredit
+            für dasselbe Projekt. Nicht kombinierbar sind meist BAFA und
+            Steuerbonus für dieselbe Maßnahme. Welche Kombi für Sie die beste
+            ist, rechnen wir gemeinsam durch.
+          </motion.p>
         </div>
       </section>
 
@@ -305,9 +452,9 @@ export default function FoerderungPage() {
             viewport={{ once: true }}
           >
             {[
-              "Einschätzung, welche Fördertöpfe für Ihr Projekt passen",
-              "Koordination mit Energieberater für iSFP, wenn sinnvoll",
-              "Fachunternehmer-Erklärung (BAFA-Pflicht) von uns als Meisterbetrieb",
+              "Einschätzung, welche Fördertöpfe für Ihr Projekt passen — kostenlos im Erstgespräch",
+              "Individueller Sanierungsfahrplan (iSFP) von unserem eigenen Energieberater",
+              "Fachunternehmer-Erklärung (BAFA-Pflicht) direkt vom Meisterbetrieb",
               "Abstimmung der Reihenfolge: Antrag → Auftrag → Umsetzung",
               "Alle Nachweise (Rechnungen, Datenblätter, U-Werte) projektfertig",
               "Transparente Kalkulation: Netto vs. Netto-nach-Förderung",
