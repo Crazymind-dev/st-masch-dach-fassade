@@ -375,13 +375,20 @@ export default function Navbar() {
                             href={entry.href}
                             onClick={() => setMobileOpen(false)}
                             className={cn(
-                              "block py-3 px-4 rounded-xl font-heading text-base font-semibold no-underline transition-colors min-h-[44px] flex items-center",
+                              "block py-3 px-4 rounded-xl font-heading text-base font-semibold no-underline transition-colors min-h-[44px] flex items-center gap-2",
                               isActive(entry.href)
                                 ? "text-brand-orange bg-white/5"
-                                : "text-white hover:text-brand-orange hover:bg-white/5"
+                                : entry.highlight
+                                  ? "text-brand-orange bg-brand-orange/10"
+                                  : "text-white hover:text-brand-orange hover:bg-white/5"
                             )}
                           >
                             {entry.label}
+                            {entry.highlight && !isActive(entry.href) && (
+                              <span className="text-[9px] font-bold uppercase tracking-wider bg-brand-orange text-white px-1.5 py-0.5 rounded-full leading-none">
+                                Neu
+                              </span>
+                            )}
                           </Link>
                         </motion.li>
                       )
