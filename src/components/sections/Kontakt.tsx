@@ -137,10 +137,15 @@ export default function Kontakt() {
               ))}
             </div>
 
-            <div className="rounded-2xl overflow-hidden h-[180px] sm:h-[200px] bg-white/5 border border-white/10 flex items-center justify-center">
-              <span className="font-heading text-sm text-gray-500">
-                Berlin & Brandenburg
-              </span>
+            <div className="rounded-2xl overflow-hidden h-[200px] sm:h-[240px] bg-white/5 border border-white/10">
+              <iframe
+                title="Standort St. Masch Dach, Fassade & Solar auf Google Maps"
+                src="https://maps.google.com/maps?q=Ruppiner+Chaussee+221,+13503+Berlin&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-full border-0 grayscale contrast-[1.1] opacity-90"
+                allowFullScreen
+              />
             </div>
           </motion.div>
 
