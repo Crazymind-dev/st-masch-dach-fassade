@@ -135,7 +135,7 @@ export function Testimonials() {
             }}
           >
             <motion.div
-              className="rounded-full bg-brand-dark flex items-center justify-center"
+              className="rounded-full bg-brand-orange flex items-center justify-center shadow-[0_8px_32px_rgba(255,91,1,0.4)]"
               animate={{
                 width: isHovered ? 80 : 0,
                 height: isHovered ? 80 : 0,
@@ -283,19 +283,19 @@ export function Testimonials() {
           <motion.div
             className="absolute bottom-2 sm:bottom-4 left-4 sm:left-8 flex items-center gap-2 md:hidden"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 0.4 }}
+            animate={{ opacity: 1 }}
           >
-            <span className="text-[10px] text-gray-500 uppercase tracking-widest font-body">Tippen zum Weiterblättern</span>
+            <span className="text-[10px] text-brand-orange uppercase tracking-widest font-body font-bold">Tippen zum Weiterblättern</span>
           </motion.div>
 
           {/* Desktop hint */}
           <motion.div
             className="absolute bottom-4 left-8 items-center gap-2 hidden md:flex"
             initial={{ opacity: 0 }}
-            animate={{ opacity: isHovered ? 0.4 : 0.2 }}
+            animate={{ opacity: isHovered ? 1 : 0.8 }}
             transition={{ duration: 0.3 }}
           >
-            <span className="text-[10px] text-gray-500 uppercase tracking-widest font-body">Klicken zum Weiterblättern</span>
+            <span className="text-[10px] text-brand-orange uppercase tracking-widest font-body font-bold">Klicken zum Weiterblättern</span>
           </motion.div>
         </div>
       </div>
