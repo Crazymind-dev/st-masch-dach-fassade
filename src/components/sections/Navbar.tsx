@@ -20,6 +20,9 @@ import {
   BatteryCharging,
   Activity,
   HousePlug,
+  Thermometer,
+  PanelsTopLeft,
+  Paintbrush,
 } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
@@ -68,7 +71,16 @@ const navEntries: NavEntry[] = [
       { href: "/solar", label: "Home Energy", description: "Wallbox, Wärmepumpe und Speicher zentral.", icon: HousePlug },
     ],
   },
-  { kind: "link", href: "/leistungen/fassade", label: "Fassade" },
+  {
+    kind: "dropdown",
+    label: "Fassade",
+    items: [
+      { href: "/leistungen/fassade", label: "WDVS-Dämmung", description: "Wärmedämmverbundsysteme für bessere Energiebilanz.", icon: Thermometer },
+      { href: "/leistungen/fassade", label: "Vorgehängte Fassade", description: "VHF-Systeme mit Hinterlüftung und Dämmung.", icon: PanelsTopLeft },
+      { href: "/leistungen/fassade", label: "Klinker & Naturstein", description: "Hochwertige Verkleidungen mit Charakter.", icon: Building2 },
+      { href: "/leistungen/fassade", label: "Fassadensanierung", description: "Reinigung, Putz und Neuanstrich vom Profi.", icon: Paintbrush },
+    ],
+  },
   { kind: "link", href: "/ueber-uns", label: "Über uns" },
   { kind: "link", href: "/referenzen", label: "Referenzen" },
   { kind: "link", href: "/kontakt", label: "Kontakt" },
