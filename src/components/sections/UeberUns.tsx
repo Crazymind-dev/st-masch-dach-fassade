@@ -11,6 +11,7 @@ import {
   Wrench,
   ArrowRight,
 } from "lucide-react"
+import Image from "next/image"
 import { company } from "@/lib/config"
 
 const leftServices = [
@@ -126,10 +127,12 @@ export default function UeberUns() {
             <div className="absolute top-1/2 -right-8 w-4 h-4 rounded-full bg-brand-orange/30 animate-pulse-dot hidden lg:block" />
 
             <div className="relative w-full max-w-[300px] sm:max-w-[360px] aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl mx-auto">
-              <img
+              <Image
                 src="/dachdecker-meister.jpg"
-                alt="Dachdeckermeister im Sonnenuntergang auf einem neu errichteten Dachstuhl über Berlin"
-                className="w-full h-full object-cover"
+                alt="Dachdeckermeister Steve Masch auf einem neu errichteten Dachstuhl über Berlin — Meisterbetrieb für Dach, Fassade und Solar"
+                fill
+                sizes="(max-width: 640px) 300px, 360px"
+                className="object-cover"
               />
 
               {/* Experience badge */}

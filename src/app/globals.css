@@ -1,5 +1,8 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Raleway:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500&display=swap');
+
+/* Fonts are loaded via next/font in src/app/layout.tsx (CSS variables:
+   --font-display, --font-heading, --font-body). External Google Fonts
+   @import was removed to prevent render-blocking. */
 
 @theme inline {
   --color-brand-orange: #ff5b01;
@@ -9,9 +12,9 @@
   --color-brand-beige-light: #f8f6f2;
   --color-brand-dark: #1a1a1a;
   --color-brand-black: #111111;
-  --font-display: 'Playfair Display', serif;
-  --font-heading: 'Raleway', sans-serif;
-  --font-body: 'Roboto', sans-serif;
+  --font-display: var(--font-playfair), serif;
+  --font-heading: var(--font-raleway), sans-serif;
+  --font-body: var(--font-roboto), sans-serif;
 }
 
 html {

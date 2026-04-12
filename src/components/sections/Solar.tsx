@@ -2,6 +2,7 @@
 
 import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
+import Image from "next/image"
 import { Sun, Battery, Activity, ArrowRight } from "lucide-react"
 
 const features = [
@@ -99,11 +100,13 @@ export default function Solar() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="relative rounded-2xl overflow-hidden">
-              <img
+            <div className="relative rounded-2xl overflow-hidden w-full h-[300px] sm:h-[400px] md:h-[500px]">
+              <Image
                 src="/solar-haus.jpg"
-                alt="Familie im Garten eines Einfamilienhauses mit Photovoltaikanlage im Abendlicht"
-                className="w-full h-[300px] sm:h-[400px] md:h-[500px] object-cover"
+                alt="Familie im Garten eines Einfamilienhauses mit Photovoltaikanlage — Dachdecker-Meisterbetrieb in Berlin und Brandenburg"
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px"
+                className="object-cover"
               />
 
               {/* Enphase Badge */}

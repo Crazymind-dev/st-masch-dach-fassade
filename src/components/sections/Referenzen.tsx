@@ -1,6 +1,7 @@
 "use client"
 
 import { useRef } from "react"
+import Image from "next/image"
 import { motion, useInView } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 
@@ -75,11 +76,15 @@ export default function Referenzen() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.12 }}
             >
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-[240px] sm:h-[300px] md:h-[360px] object-cover transition-transform duration-700 group-hover:scale-105"
-              />
+              <div className="relative w-full h-[240px] sm:h-[300px] md:h-[360px] overflow-hidden">
+                <Image
+                  src={project.image}
+                  alt={`${project.title} — ${project.type} Referenzprojekt in Berlin`}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
 
               {/* Hover overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-end p-4 sm:p-6">
