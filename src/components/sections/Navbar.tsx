@@ -164,10 +164,14 @@ export default function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            className="font-heading font-extrabold text-lg sm:text-xl text-brand-dark no-underline flex items-center gap-2 min-h-[44px] flex-shrink-0"
+            className="no-underline flex flex-col leading-none min-h-[44px] justify-center flex-shrink-0"
           >
-            ST. MASCH <span className="text-brand-orange">|</span>
-            <span className="hidden sm:inline">Dach, Fassade & Solar</span>
+            <span className="font-heading font-extrabold text-base sm:text-xl text-brand-dark">
+              ST. MASCH
+            </span>
+            <span className="font-heading text-[9px] sm:text-[10px] font-bold uppercase tracking-[2px] sm:tracking-[3px] text-brand-orange mt-0.5 sm:mt-1">
+              Dach · Fassade · Solar
+            </span>
           </Link>
 
           {/* Desktop Nav */}
