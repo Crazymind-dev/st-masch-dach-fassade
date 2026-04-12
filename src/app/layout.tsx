@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/sections/Navbar";
 import Footer from "@/components/sections/Footer";
+import AccessibilityWidget from "@/components/ui/accessibility-widget";
+import FloatingPhone from "@/components/ui/floating-phone";
 
 export const metadata: Metadata = {
   title: {
@@ -24,6 +26,8 @@ export default function RootLayout({
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
+        <AccessibilityWidget />
+        <FloatingPhone />
       </body>
     </html>
   );

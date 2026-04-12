@@ -71,7 +71,7 @@ export default function Hero() {
             </motion.h1>
 
             <motion.p
-              className="font-heading font-light text-xl md:text-2xl text-white/50 mb-8"
+              className="font-heading font-light text-xl md:text-2xl text-white/70 mb-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
@@ -80,7 +80,7 @@ export default function Hero() {
             </motion.p>
 
             <motion.p
-              className="font-body text-[17px] font-light leading-[1.8] text-white/60 max-w-[500px] mb-10"
+              className="font-body text-[17px] font-light leading-[1.8] text-white/75 max-w-[500px] mb-10"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
@@ -104,7 +104,7 @@ export default function Hero() {
               </a>
               <a
                 href="tel:+493084417068"
-                className="inline-flex items-center gap-2 px-7 py-4 bg-white/10 text-white border border-white/20 rounded-full font-heading text-sm font-semibold no-underline hover:border-brand-orange hover:text-brand-orange backdrop-blur-sm transition-all"
+                className="inline-flex items-center gap-2 px-7 py-4 bg-white/10 text-white border border-white/30 rounded-full font-heading text-sm font-semibold no-underline hover:border-brand-orange hover:text-brand-orange backdrop-blur-sm transition-all"
               >
                 <Phone className="w-4 h-4" />
                 030 - 844 17 068
@@ -124,12 +124,12 @@ export default function Hero() {
                 { label: "Solar Partner", sub: "Enphase zertifiziert" },
               ].map((t) => (
                 <div key={t.label} className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-white/10 border border-white/15 flex items-center justify-center backdrop-blur-sm">
+                  <div className="w-10 h-10 rounded-full bg-white/15 border border-white/15 flex items-center justify-center backdrop-blur-sm">
                     <svg viewBox="0 0 24 24" className="w-[16px] h-[16px] fill-brand-orange">
                       <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
                     </svg>
                   </div>
-                  <div className="font-heading text-[12px] text-white/40 font-medium">
+                  <div className="font-heading text-[12px] text-white/60 font-medium">
                     <strong className="block text-white font-bold text-[13px]">{t.label}</strong>
                     {t.sub}
                   </div>
@@ -160,7 +160,7 @@ export default function Hero() {
                 </div>
                 <div className="flex-1">
                   <h4 className="font-heading text-[16px] font-bold text-white mb-1">{card.title}</h4>
-                  <p className="font-body text-sm text-white/50 font-light leading-snug">{card.desc}</p>
+                  <p className="font-body text-sm text-white/65 font-light leading-snug">{card.desc}</p>
                 </div>
                 <ArrowRight className="w-5 h-5 text-white/20 group-hover:text-brand-orange transition-colors flex-shrink-0" />
               </motion.a>
@@ -181,7 +181,7 @@ export default function Hero() {
                   transition={{ duration: 0.5, delay: 1 + i * 0.1 }}
                 >
                   <div className="font-display text-2xl font-black text-brand-orange leading-none">{s.num}</div>
-                  <div className="font-body text-[10px] text-white/40 mt-1 uppercase tracking-wider">{s.label}</div>
+                  <div className="font-body text-[10px] text-white/60 mt-1 uppercase tracking-wider">{s.label}</div>
                 </motion.div>
               ))}
             </div>
