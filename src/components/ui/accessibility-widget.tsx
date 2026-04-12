@@ -83,7 +83,7 @@ export default function AccessibilityWidget() {
       {/* Trigger button - positioned above floating phone on mobile, distinct position to avoid overlap */}
       <motion.button
         onClick={() => setOpen(!open)}
-        className="fixed bottom-20 md:bottom-24 left-4 sm:left-5 z-50 w-11 h-11 md:w-14 md:h-14 rounded-full bg-brand-dark border border-white/20 text-white flex items-center justify-center shadow-lg hover:bg-brand-dark/90 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2"
+        className="fixed bottom-5 left-5 z-50 w-12 h-12 md:w-14 md:h-14 rounded-full bg-brand-dark border border-white/20 text-white flex items-center justify-center shadow-lg hover:bg-brand-dark/90 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         aria-label="Barrierefreiheit-Einstellungen öffnen"
@@ -107,7 +107,7 @@ export default function AccessibilityWidget() {
 
             {/* Panel - responsive width and position */}
             <motion.div
-              className="fixed bottom-20 md:bottom-24 left-4 sm:left-5 z-50 w-[calc(100vw-2rem)] sm:w-[320px] max-h-[70vh] sm:max-h-[80vh] overflow-y-auto rounded-2xl bg-brand-dark border border-white/15 shadow-2xl"
+              className="fixed bottom-24 left-5 z-50 w-[calc(100vw-2.5rem)] sm:w-[320px] max-h-[70vh] sm:max-h-[80vh] overflow-y-auto rounded-2xl bg-brand-dark border border-white/15 shadow-2xl"
               initial={{ opacity: 0, y: 20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 20, scale: 0.95 }}
