@@ -34,7 +34,7 @@ const contactInfo = [
 const leistungenGruppen = [
   {
     label: "Dach",
-    items: ["Steildach", "Flachdach", "Gründach", "Metalldach", "Dachservice"],
+    items: ["Steildach", "Flachdach", "Gründach", "Metalldach", "Dachfenster", "Dachservice"],
   },
   {
     label: "Solar",

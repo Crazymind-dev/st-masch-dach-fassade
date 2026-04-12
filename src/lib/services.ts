@@ -133,6 +133,52 @@ export const services: ServiceDetail[] = [
     ],
   },
   {
+    slug: "dachfenster",
+    title: "Dachfenster",
+    shortTitle: "Dachfenster",
+    description:
+      "Mehr Licht, mehr Luft, mehr Wohnraum — Dachfenster vom Fachmann, als offizieller VELUX-Partner.",
+    longDescription:
+      "Ein Dachfenster verändert einen Raum komplett. Es bringt Tageslicht in dunkle Dachgeschosse, sorgt für frische Luft und schafft Wohngefühl, wo vorher nur Abstellkammer war. Wir sind offizieller VELUX-Partner und tauschen alte Fenster genauso fachgerecht aus, wie wir neue Öffnungen im Dach setzen — inklusive Anschlussblech, Innenfutter und aller Details, die entscheiden, ob ein Dachfenster dicht bleibt oder später Probleme macht. Wir kennen das Dach. Und wir wissen, wie ein Dachfenster sauber hineingehört.",
+    image: "https://images.unsplash.com/photo-1513584684374-8bab748fbf90?w=1200&q=80",
+    icon: "window",
+    tags: ["VELUX Partner", "Neueinbau", "Austausch", "Energetisch"],
+    features: [
+      {
+        title: "VELUX-Partnerschaft",
+        description:
+          "Wir sind offizieller VELUX-Fachpartner — mit Zugriff auf das komplette Sortiment, vom Standardfenster bis zur kompletten Panorama-Lösung.",
+      },
+      {
+        title: "Neueinbau",
+        description:
+          "Saubere Öffnung, passgenaue Einbindung in die Eindeckung, fachgerechte Anschlüsse — so wie ein Dachfenster eingesetzt gehört.",
+      },
+      {
+        title: "Austausch alter Fenster",
+        description:
+          "Ein moderner Austausch erhöht den Wohnkomfort, spart Heizkosten und reduziert Geräusche — oft in nur einem Tag erledigt.",
+      },
+      {
+        title: "Rollläden & Zubehör",
+        description:
+          "VELUX-Rollläden, Verdunkelung, Insektenschutz und smarte Steuerung — wir planen das Gesamtpaket mit.",
+      },
+    ],
+    materials: [
+      "VELUX Standardfenster",
+      "VELUX Kunststoff",
+      "VELUX Studio (Dreifach-Element)",
+      "VELUX Cabrio & Panorama",
+    ],
+    process: [
+      { step: 1, title: "Beratung", description: "Aufmaß, Lichtplanung und Auswahl der passenden VELUX-Variante." },
+      { step: 2, title: "Angebot", description: "Transparentes Komplettangebot inkl. Rahmen, Eindeckrahmen, Zubehör." },
+      { step: 3, title: "Einbau", description: "Präzise Öffnung des Dachs, wasserdichte Einbindung, saubere Innenverkleidung." },
+      { step: 4, title: "Abnahme", description: "Funktionstest, Einweisung, Dokumentation — fertig in 1–2 Tagen pro Fenster." },
+    ],
+  },
+  {
     slug: "dachservice",
     title: "Dachservice & Wartung",
     shortTitle: "Dachservice",

@@ -169,6 +169,7 @@ export default function Kontakt() {
                       <option value="flachdach" className="bg-brand-dark">Flachdach</option>
                       <option value="gruendach" className="bg-brand-dark">Gründach</option>
                       <option value="metalldach" className="bg-brand-dark">Metalldach</option>
+                      <option value="dachfenster" className="bg-brand-dark">Dachfenster (VELUX)</option>
                       <option value="dachservice" className="bg-brand-dark">Dachservice</option>
                     </optgroup>
                     <optgroup label="Solar" className="bg-brand-dark">

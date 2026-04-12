@@ -10,6 +10,7 @@ const leistungenLinks = [
   { label: "Gründach", href: "/leistungen/gruendach" },
   { label: "Fassade & WDVS", href: "/leistungen/fassade" },
   { label: "Metalldach", href: "/leistungen/metalldach" },
+  { label: "Dachfenster", href: "/leistungen/dachfenster" },
   { label: "Dachservice", href: "/leistungen/dachservice" },
   { label: "Photovoltaik", href: "/solar" },
 ]
