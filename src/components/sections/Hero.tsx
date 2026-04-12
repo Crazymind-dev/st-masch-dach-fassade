@@ -137,7 +137,7 @@ export default function Hero() {
               <motion.a
                 key={card.title}
                 href={card.href}
-                className="flex items-center gap-4 sm:gap-5 bg-white/[0.07] backdrop-blur-[20px] rounded-2xl p-4 sm:p-6 shadow-[0_8px_32px_rgba(0,0,0,0.15)] border border-white/15 no-underline hover:bg-brand-orange/[0.12] hover:border-brand-orange/30 transition-all duration-300 group min-h-[44px]"
+                className="flex items-center gap-4 sm:gap-5 bg-white/[0.07] backdrop-blur-[20px] rounded-2xl p-4 sm:p-5 md:p-6 shadow-[0_8px_32px_rgba(0,0,0,0.15)] border border-white/15 no-underline hover:bg-brand-orange/[0.12] hover:border-brand-orange/30 transition-all duration-300 group min-h-[44px]"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.6 + i * 0.15 }}

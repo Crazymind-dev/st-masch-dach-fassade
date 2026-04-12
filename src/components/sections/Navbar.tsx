@@ -237,7 +237,7 @@ export default function Navbar() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 8 }}
                         transition={{ duration: 0.18, ease: "easeOut" }}
-                        className="absolute left-0 top-full pt-2 min-w-[520px]"
+                        className="absolute left-0 top-full pt-2 w-max max-w-[min(520px,calc(100vw-2rem))]"
                       >
                         <div className="bg-white rounded-2xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.18)] border border-black/5 p-2 grid grid-cols-2 gap-1">
                           {entry.items.map((item) => {

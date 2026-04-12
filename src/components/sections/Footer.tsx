@@ -27,7 +27,7 @@ export default function Footer() {
     <footer className="bg-[#111] pt-12 md:pt-16 pb-6">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 mb-12"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 sm:gap-10 mb-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}

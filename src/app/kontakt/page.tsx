@@ -228,7 +228,7 @@ export default function KontaktPage() {
                       Ihre Anfrage ist bei uns angekommen. Wir melden uns
                       innerhalb von 24 Stunden bei Ihnen.
                     </p>
-                    <p className="font-body text-sm text-brand-dark/50 mb-4">
+                    <p className="font-body text-base sm:text-sm text-brand-dark/50 mb-4">
                       Es ist dringend? Rufen Sie uns direkt an:
                     </p>
                     <a
@@ -244,7 +244,7 @@ export default function KontaktPage() {
                     <h3 className="font-display text-2xl font-bold text-brand-dark mb-2">
                       Schreiben Sie uns
                     </h3>
-                    <p className="font-body text-sm text-brand-dark/60 mb-8">
+                    <p className="font-body text-base sm:text-sm text-brand-dark/60 mb-8">
                       Füllen Sie das Formular aus und wir melden uns innerhalb
                       von 24 Stunden.
                     </p>
@@ -303,7 +303,7 @@ export default function KontaktPage() {
                           name="name"
                           required
                           placeholder="Max Mustermann"
-                          className="w-full px-4 py-3 rounded-xl border border-brand-dark/15 bg-brand-beige/50 font-body text-sm text-brand-dark placeholder:text-brand-dark/30 focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange transition-all min-h-[44px]"
+                          className="w-full px-4 py-3 rounded-xl border border-brand-dark/15 bg-brand-beige/50 font-body text-base sm:text-sm text-brand-dark placeholder:text-brand-dark/30 focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange transition-all min-h-[44px]"
                         />
                       </div>
 
@@ -318,7 +318,7 @@ export default function KontaktPage() {
                             inputMode="email"
                             required
                             placeholder="max@email.de"
-                            className="w-full px-4 py-3 rounded-xl border border-brand-dark/15 bg-brand-beige/50 font-body text-sm text-brand-dark placeholder:text-brand-dark/30 focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange transition-all min-h-[44px]"
+                            className="w-full px-4 py-3 rounded-xl border border-brand-dark/15 bg-brand-beige/50 font-body text-base sm:text-sm text-brand-dark placeholder:text-brand-dark/30 focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange transition-all min-h-[44px]"
                           />
                         </div>
                         <div>
@@ -330,7 +330,7 @@ export default function KontaktPage() {
                             name="phone"
                             inputMode="tel"
                             placeholder="030 123 456 78"
-                            className="w-full px-4 py-3 rounded-xl border border-brand-dark/15 bg-brand-beige/50 font-body text-sm text-brand-dark placeholder:text-brand-dark/30 focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange transition-all min-h-[44px]"
+                            className="w-full px-4 py-3 rounded-xl border border-brand-dark/15 bg-brand-beige/50 font-body text-base sm:text-sm text-brand-dark placeholder:text-brand-dark/30 focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange transition-all min-h-[44px]"
                           />
                         </div>
                       </div>
@@ -344,7 +344,7 @@ export default function KontaktPage() {
                           rows={5}
                           name="message"
                           placeholder="Beschreiben Sie kurz Ihr Anliegen..."
-                          className="w-full px-4 py-3 rounded-xl border border-brand-dark/15 bg-brand-beige/50 font-body text-sm text-brand-dark placeholder:text-brand-dark/30 focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange transition-all resize-none"
+                          className="w-full px-4 py-3 rounded-xl border border-brand-dark/15 bg-brand-beige/50 font-body text-base sm:text-sm text-brand-dark placeholder:text-brand-dark/30 focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange transition-all resize-none"
                         />
                       </div>
 
@@ -426,7 +426,7 @@ export default function KontaktPage() {
                     transition={{ duration: 0.3 }}
                     className="px-5 pb-5"
                   >
-                    <p className="font-body text-sm text-brand-dark/70 leading-relaxed m-0">
+                    <p className="font-body text-base sm:text-sm text-brand-dark/70 leading-relaxed m-0">
                       {faq.answer}
                     </p>
                   </motion.div>

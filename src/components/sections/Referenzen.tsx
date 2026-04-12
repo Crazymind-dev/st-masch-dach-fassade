@@ -9,7 +9,7 @@ const projects = [
     image: "/referenz-weisses-haus.jpg",
     title: "Einfamilienhaus Zehlendorf",
     type: "Steildach, Fassade & PV",
-    span: "md:col-span-2",
+    span: "lg:col-span-2",
   },
   {
     image: "/referenz-pv-dach.jpg",
@@ -27,7 +27,7 @@ const projects = [
     image: "/referenz-dachausbau.jpg",
     title: "Dachausbau Pankow",
     type: "VELUX & Dämmung",
-    span: "md:col-span-2",
+    span: "lg:col-span-2",
   },
 ]
 
@@ -66,7 +66,7 @@ export default function Referenzen() {
         </motion.div>
 
         {/* Grid: 1 col mobile, 3 col tablet+ */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {projects.map((project, i) => (
             <motion.div
               key={project.title}

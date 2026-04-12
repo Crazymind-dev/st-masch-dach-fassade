@@ -134,7 +134,7 @@ export function Testimonials() {
                   e.stopPropagation()
                   setActiveIndex(i)
                 }}
-                className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-heading text-[9px] sm:text-[10px] font-bold transition-all duration-300 flex-shrink-0 border-none cursor-pointer min-w-[28px] min-h-[28px] ${
+                className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-heading text-[10px] sm:text-[11px] font-bold transition-all duration-300 flex-shrink-0 border-none cursor-pointer min-w-[36px] min-h-[36px] ${
                   i === activeIndex
                     ? "bg-brand-orange text-white scale-110"
                     : "bg-gray-200 text-gray-400"

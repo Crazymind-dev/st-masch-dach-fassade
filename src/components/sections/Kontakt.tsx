@@ -245,7 +245,7 @@ export default function Kontakt() {
                       name="name"
                       required
                       placeholder="Ihr Name"
-                      className="w-full px-4 py-3 bg-white/5 border border-white/15 rounded-xl text-white font-body text-sm placeholder:text-gray-600 focus:outline-none focus:border-brand-orange transition-colors min-h-[44px]"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/15 rounded-xl text-white font-body text-base sm:text-sm placeholder:text-gray-600 focus:outline-none focus:border-brand-orange transition-colors min-h-[44px]"
                     />
                   </div>
                   <div>
@@ -258,7 +258,7 @@ export default function Kontakt() {
                       inputMode="email"
                       required
                       placeholder="Ihre E-Mail"
-                      className="w-full px-4 py-3 bg-white/5 border border-white/15 rounded-xl text-white font-body text-sm placeholder:text-gray-600 focus:outline-none focus:border-brand-orange transition-colors min-h-[44px]"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/15 rounded-xl text-white font-body text-base sm:text-sm placeholder:text-gray-600 focus:outline-none focus:border-brand-orange transition-colors min-h-[44px]"
                     />
                   </div>
                 </div>
@@ -272,7 +272,7 @@ export default function Kontakt() {
                     name="phone"
                     inputMode="tel"
                     placeholder="030 123 456"
-                    className="w-full px-4 py-3 bg-white/5 border border-white/15 rounded-xl text-white font-body text-sm placeholder:text-gray-600 focus:outline-none focus:border-brand-orange transition-colors min-h-[44px]"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/15 rounded-xl text-white font-body text-base sm:text-sm placeholder:text-gray-600 focus:outline-none focus:border-brand-orange transition-colors min-h-[44px]"
                   />
                 </div>
 
@@ -284,7 +284,7 @@ export default function Kontakt() {
                     rows={4}
                     name="message"
                     placeholder="Beschreiben Sie kurz Ihr Anliegen..."
-                    className="w-full px-4 py-3 bg-white/5 border border-white/15 rounded-xl text-white font-body text-sm placeholder:text-gray-600 focus:outline-none focus:border-brand-orange transition-colors resize-none"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/15 rounded-xl text-white font-body text-base sm:text-sm placeholder:text-gray-600 focus:outline-none focus:border-brand-orange transition-colors resize-none"
                   />
                 </div>
 
