@@ -61,33 +61,25 @@ export default function Hero() {
             </motion.div>
 
             <motion.h1
-              className="font-display text-3xl sm:text-4xl md:text-5xl xl:text-[62px] font-black text-white leading-[1.1] mb-4 md:mb-6"
+              className="font-display text-3xl sm:text-4xl md:text-5xl xl:text-[62px] font-black text-white leading-[1.1] mb-5 md:mb-7"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <span className="text-brand-orange">Dach, Fassade</span>
+              Weil <span className="text-brand-orange">Geborgenheit</span>
               <br />
-              <span className="text-brand-orange">&</span> Solarenergie
+              beim Dach beginnt
             </motion.h1>
 
             <motion.p
-              className="font-heading font-light text-lg md:text-2xl text-white/70 mb-6 md:mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              Alles aus einer Hand.
-            </motion.p>
-
-            <motion.p
-              className="font-body text-[15px] md:text-[17px] font-light leading-[1.8] text-white/75 max-w-[500px] mb-8 md:mb-10"
+              className="font-body text-[15px] md:text-[17px] font-light leading-[1.8] text-white/75 max-w-[520px] mb-8 md:mb-10"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              Von der Dachsanierung bis zur Photovoltaikanlage — Ihr zertifizierter Meisterbetrieb
-              für nachhaltige Gebäudelösungen in Berlin und Brandenburg.
+              Ein Dach ist mehr als Ziegel und Holz. Es ist das Versprechen, dass draußen draußen bleibt —
+              und drinnen ein Ort entsteht, an dem man sich fallen lassen kann. Dieses Versprechen nehmen wir ernst.
+              Jeden Tag, auf jedem Dach.
             </motion.p>
 
             {/* CTAs */}
