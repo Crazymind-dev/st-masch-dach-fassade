@@ -397,59 +397,61 @@ export default function SolarPage() {
         </div>
       </section>
 
-      {/* Section 3 - So funktioniert's (process timeline) */}
-      <section className="py-24 bg-brand-beige">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
+      {/* Section 3 - Projektablauf (vertical timeline — matches /leistungen/[slug]) */}
+      <section className="py-20 bg-white">
+        <div className="max-w-4xl mx-auto px-6 md:px-12">
           <motion.div
-            className="text-center mb-16"
-            initial="hidden"
-            whileInView="visible"
+            className="text-center mb-14"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            variants={fadeUp}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
           >
             <span className="font-heading text-sm font-bold uppercase tracking-widest text-brand-orange mb-3 block">
-              In 4 Schritten
+              Unser Ablauf
             </span>
             <h2 className="font-display text-3xl md:text-4xl font-black text-brand-dark">
-              So <span className="text-brand-orange">funktioniert&apos;s</span>
+              So läuft Ihr <span className="text-brand-orange">Solarprojekt ab</span>
             </h2>
           </motion.div>
 
-          <div className="relative">
+          <motion.div
+            className="relative"
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+          >
             {/* Connecting line */}
-            <div className="hidden md:block absolute top-16 left-0 right-0 h-0.5 bg-brand-orange/20" />
+            <div className="absolute left-6 top-0 bottom-0 w-px bg-brand-orange/20 hidden md:block" />
 
-            <motion.div
-              className="grid md:grid-cols-4 gap-8"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={stagger}
-            >
-              {steps.map((s, i) => (
+            <div className="space-y-8">
+              {steps.map((s) => (
                 <motion.div
                   key={s.number}
-                  className="relative text-center"
                   variants={fadeUp}
-                  transition={{ duration: 0.5 }}
+                  className="relative flex items-start gap-6"
                 >
-                  {/* Number circle */}
-                  <div className="relative z-10 w-16 h-16 rounded-full bg-brand-orange text-white flex items-center justify-center mx-auto mb-6 shadow-lg shadow-brand-orange/30">
-                    <span className="font-heading text-lg font-bold">
+                  {/* Step number */}
+                  <div className="relative z-10 flex-shrink-0 w-12 h-12 rounded-full bg-brand-orange flex items-center justify-center shadow-lg shadow-brand-orange/20">
+                    <span className="font-heading text-sm font-bold text-white">
                       {s.number}
                     </span>
                   </div>
-                  <h3 className="font-heading text-lg font-bold text-brand-dark mb-2">
-                    {s.title}
-                  </h3>
-                  <p className="font-body text-sm text-brand-dark/60 leading-relaxed">
-                    {s.description}
-                  </p>
+
+                  {/* Step content */}
+                  <div className="bg-brand-beige rounded-2xl p-6 flex-1">
+                    <h3 className="font-display text-lg font-bold text-brand-dark mb-1">
+                      {s.title}
+                    </h3>
+                    <p className="font-body text-sm text-brand-dark/60 leading-relaxed">
+                      {s.description}
+                    </p>
+                  </div>
                 </motion.div>
               ))}
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
