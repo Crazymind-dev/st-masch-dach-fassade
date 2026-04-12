@@ -55,19 +55,19 @@ const leistungen = [
     icon: Sun,
     title: "PV-Anlagen",
     description:
-      "Massgeschneiderte Photovoltaik-Anlagen für Ihr Dach - ob Einfamilienhaus, Mehrfamilienhaus oder Gewerbeimmobilie. Wir planen und installieren Anlagen jeder Grosse mit hochwertigen Modulen fuehrender Hersteller.",
+      "Maßgeschneiderte Photovoltaik-Anlagen für Ihr Dach — ob Einfamilienhaus, Mehrfamilienhaus oder Gewerbeimmobilie. Wir planen und installieren Anlagen jeder Größe mit hochwertigen Modulen führender Hersteller.",
   },
   {
     icon: BatteryCharging,
     title: "Stromspeicher (Enphase IQ)",
     description:
-      "Mit dem Enphase IQ Batteriespeicher maximieren Sie Ihren Eigenverbrauch. Speichern Sie uberschussigen Solarstrom und nutzen Sie ihn, wenn Sie ihn brauchen - auch nachts und bei schlechtem Wetter.",
+      "Mit dem Enphase IQ Batteriespeicher maximieren Sie Ihren Eigenverbrauch. Speichern Sie überschüssigen Solarstrom und nutzen Sie ihn, wenn Sie ihn brauchen — auch nachts und bei schlechtem Wetter.",
   },
   {
     icon: Monitor,
     title: "Monitoring & Wartung",
     description:
-      "Behalten Sie Ihre Anlage jederzeit im Blick. Mit der Enphase App uberwachen Sie Produktion und Verbrauch in Echtzeit. Unser Wartungsservice stellt den optimalen Betrieb sicher.",
+      "Behalten Sie Ihre Anlage jederzeit im Blick. Mit der Enphase App überwachen Sie Produktion und Verbrauch in Echtzeit. Unser Wartungsservice stellt den optimalen Betrieb sicher.",
   },
   {
     icon: Home,
@@ -82,7 +82,7 @@ const steps = [
     number: "01",
     title: "Beratung",
     description:
-      "Kostenlose Erstberatung bei Ihnen vor Ort. Wir analysieren Ihr Dach, Ihren Stromverbrauch und Ihre Wunsche.",
+      "Kostenlose Erstberatung bei Ihnen vor Ort. Wir analysieren Ihr Dach, Ihren Stromverbrauch und Ihre Wünsche.",
   },
   {
     number: "02",
@@ -100,7 +100,7 @@ const steps = [
     number: "04",
     title: "Inbetriebnahme",
     description:
-      "Anmeldung beim Netzbetreiber, Einrichtung des Monitorings und ausfuhrliche Einweisung in Ihre neue Anlage.",
+      "Anmeldung beim Netzbetreiber, Einrichtung des Monitorings und ausführliche Einweisung in Ihre neue Anlage.",
   },
 ]
 
@@ -108,22 +108,22 @@ const faqs = [
   {
     question: "Lohnt sich eine PV-Anlage für mich?",
     answer:
-      "In den allermeisten Fallen ja! Dank gesunkener Modulpreise und steigender Stromkosten amortisiert sich eine PV-Anlage heute in 8-12 Jahren. Danach produzieren Sie quasi kostenlosen Strom - und das für mindestens 25-30 Jahre. Wir berechnen Ihnen die Wirtschaftlichkeit individuell.",
+      "In den allermeisten Fällen ja. Dank gesunkener Modulpreise und steigender Stromkosten amortisiert sich eine PV-Anlage heute in 8–12 Jahren. Danach produzieren Sie quasi kostenlosen Strom — und das für mindestens 25–30 Jahre. Wir berechnen Ihnen die Wirtschaftlichkeit individuell.",
   },
   {
     question: "Welche Förderungen gibt es für Solaranlagen?",
     answer:
-      "Seit 2023 entfallt die Mehrwertsteuer auf PV-Anlagen bis 30 kWp. Zusatzlich erhalten Sie eine Einspeisevergutung für uberschussigen Strom. Die KfW bietet gunstige Kredite, und einige Bundeslander haben eigene Forderprogramme. Wir beraten Sie umfassend zu allen Fördermöglichkeiten.",
+      "Seit 2023 entfällt die Mehrwertsteuer auf PV-Anlagen bis 30 kWp. Zusätzlich erhalten Sie eine Einspeisevergütung für überschüssigen Strom. Die KfW bietet günstige Kredite, und einige Bundesländer haben eigene Förderprogramme. Wir beraten Sie umfassend zu allen Fördermöglichkeiten.",
   },
   {
     question: "Wie lange dauert die Installation?",
     answer:
-      "Die reine Montage einer Aufdach-Anlage für ein Einfamilienhaus dauert in der Regel 1-2 Tage. Die gesamte Projektdauer von der Beratung bis zur Inbetriebnahme betragt typischerweise 4-8 Wochen, abhangig von Genehmigungen und Netzanschluss.",
+      "Die reine Montage einer Aufdach-Anlage für ein Einfamilienhaus dauert in der Regel 1–2 Tage. Die gesamte Projektdauer von der Beratung bis zur Inbetriebnahme beträgt typischerweise 4–8 Wochen, abhängig von Genehmigungen und Netzanschluss.",
   },
   {
     question: "Was kostet eine Solaranlage?",
     answer:
-      "Die Kosten hangen von Grosse und Ausstattung ab. Eine typische Anlage für ein Einfamilienhaus (8-12 kWp) kostet inklusive Montage ca. 12.000-18.000 EUR netto. Mit Speicher kommen ca. 5.000-10.000 EUR hinzu. Durch den Wegfall der MwSt. zahlen Sie den Nettopreis. Gerne erstellen wir Ihnen ein individuelles Angebot.",
+      "Die Kosten hängen von Größe und Ausstattung ab. Eine typische Anlage für ein Einfamilienhaus (8–12 kWp) kostet inklusive Montage ca. 12.000–18.000 EUR netto. Mit Speicher kommen ca. 5.000–10.000 EUR hinzu. Durch den Wegfall der MwSt. zahlen Sie den Nettopreis. Gerne erstellen wir Ihnen ein individuelles Angebot.",
   },
 ]
 
@@ -489,13 +489,13 @@ export default function SolarPage() {
                   Als offizieller Enphase Solar Partner setzen wir auf die
                   weltweit fuhrende Mikro-Wechselrichter-Technologie. Enphase
                   Systeme bieten maximale Sicherheit, höchste Ertrage und eine
-                  intelligente Uberwachung Ihrer gesamten Anlage - Modul fur
+                  intelligente Überwachung Ihrer gesamten Anlage — Modul für
                   Modul.
                 </p>
                 <ul className="space-y-2">
                   {[
                     "Mikro-Wechselrichter für maximale Sicherheit",
-                    "Modulweise Uberwachung und Optimierung",
+                    "Modulweise Überwachung und Optimierung",
                     "Enphase IQ Batteriespeicher",
                     "25 Jahre Produktgarantie",
                   ].map((item) => (

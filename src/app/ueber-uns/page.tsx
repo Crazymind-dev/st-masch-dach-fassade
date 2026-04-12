@@ -105,7 +105,7 @@ const milestones = [
     year: "2015",
     title: "Gründung",
     description:
-      "St. Masch Dach & Fassade wird als Meisterbetrieb in Berlin gegrundet.",
+      "St. Masch Dach & Fassade wird als Meisterbetrieb in Berlin gegründet.",
   },
   {
     year: "2017",
@@ -249,7 +249,7 @@ export default function UeberUnsPage() {
             transition={{ duration: 0.6 }}
           >
             <span className="font-heading text-sm font-bold uppercase tracking-widest text-brand-orange mb-3 block">
-              Wofur wir stehen
+              Wofür wir stehen
             </span>
             <h2 className="font-display text-3xl md:text-4xl font-black text-brand-dark">
               Unsere <span className="text-brand-orange">Werte</span>
