@@ -340,46 +340,84 @@ function ContentBlock({ block }: { block: RatgeberBlock }) {
   }
 
   if (block.kind === "table") {
+    // Column 0 is the criterion label, columns 1+ are the compared options.
+    const criterionLabel = block.columns[0]
+    const optionLabels = block.columns.slice(1)
+
     return (
-      <motion.div variants={fadeUp} className="mb-8 overflow-x-auto">
-        <table className="w-full border-collapse rounded-2xl overflow-hidden bg-brand-beige">
-          <thead>
-            <tr>
-              {block.columns.map((c, i) => (
-                <th
-                  key={i}
-                  className={cn(
-                    "font-heading text-xs font-bold uppercase tracking-wider text-brand-orange text-left p-3 md:p-4 bg-brand-dark/5",
-                    i === 0 && "rounded-tl-2xl",
-                    i === block.columns.length - 1 && "rounded-tr-2xl",
-                  )}
-                >
-                  {c}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {block.rows.map((row, ri) => (
-              <tr
+      <motion.div variants={fadeUp} className="mb-8">
+        {/* Mobile: stacked cards per row, no horizontal scroll. */}
+        <div className="md:hidden space-y-3">
+          {block.rows.map((row, ri) => {
+            const criterion = row[0]
+            const values = row.slice(1)
+            return (
+              <div
                 key={ri}
-                className={ri % 2 === 1 ? "bg-white/40" : "bg-transparent"}
+                className="rounded-2xl bg-brand-beige border border-brand-dark/5 overflow-hidden"
               >
-                {row.map((cell, ci) => (
-                  <td
-                    key={ci}
+                <div className="px-4 py-2.5 bg-brand-dark/5 font-heading text-[11px] font-bold uppercase tracking-widest text-brand-orange">
+                  {criterion}
+                </div>
+                <div className="divide-y divide-brand-dark/5">
+                  {values.map((val, vi) => (
+                    <div key={vi} className="flex items-start gap-3 px-4 py-3">
+                      <div className="w-[42%] flex-shrink-0 font-heading text-xs font-semibold text-brand-dark/60 leading-snug">
+                        {optionLabels[vi]}
+                      </div>
+                      <div className="flex-1 font-body text-sm text-brand-dark leading-snug">
+                        {val}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )
+          })}
+        </div>
+
+        {/* Desktop / tablet: classical table. */}
+        <div className="hidden md:block overflow-x-auto">
+          <table className="w-full border-collapse rounded-2xl overflow-hidden bg-brand-beige">
+            <thead>
+              <tr>
+                {block.columns.map((c, i) => (
+                  <th
+                    key={i}
                     className={cn(
-                      "p-3 md:p-4 font-body text-sm md:text-[15px] text-brand-dark/85 leading-snug align-top border-t border-brand-dark/5",
-                      ci === 0 && "font-heading font-semibold text-brand-dark",
+                      "font-heading text-xs font-bold uppercase tracking-wider text-brand-orange text-left p-4 bg-brand-dark/5",
+                      i === 0 && "rounded-tl-2xl",
+                      i === block.columns.length - 1 && "rounded-tr-2xl",
                     )}
                   >
-                    {cell}
-                  </td>
+                    {c}
+                  </th>
                 ))}
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {block.rows.map((row, ri) => (
+                <tr
+                  key={ri}
+                  className={ri % 2 === 1 ? "bg-white/40" : "bg-transparent"}
+                >
+                  {row.map((cell, ci) => (
+                    <td
+                      key={ci}
+                      className={cn(
+                        "p-4 font-body text-[15px] text-brand-dark/85 leading-snug align-top border-t border-brand-dark/5",
+                        ci === 0 && "font-heading font-semibold text-brand-dark",
+                      )}
+                    >
+                      {cell}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
         {block.caption && (
           <p className="text-xs text-brand-dark/50 mt-2 italic">{block.caption}</p>
         )}
