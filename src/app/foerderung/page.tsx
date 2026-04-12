@@ -205,12 +205,13 @@ export default function FoerderungPage() {
                 Energieberater im Haus
               </h3>
               <p className="font-body text-sm md:text-base text-brand-dark/70 leading-relaxed">
-                Ein vom BAFA anerkannter Energieberater darf den{" "}
-                <strong>individuellen Sanierungsfahrplan (iSFP)</strong>{" "}
-                erstellen — das Dokument, das Ihnen alleine für die Beratung
-                bis zu 650 € Zuschuss und dauerhaft 5 % Bonus auf jede künftige
-                Maßnahme bringt. Wir dürfen das. Sie müssen deshalb nicht erst
-                einen externen Berater suchen.
+                <strong>Steve Masch</strong> ist nicht nur Dachdeckermeister,
+                sondern auch vom BAFA anerkannter Energieberater. Das heißt:
+                Den <strong>individuellen Sanierungsfahrplan (iSFP)</strong> —
+                das Dokument, das Ihnen alleine für die Beratung bis zu 650 €
+                Zuschuss und dauerhaft 5 % Bonus auf jede künftige Maßnahme
+                bringt — erstellen wir selbst. Sie müssen keinen externen
+                Berater dazuholen.
               </p>
             </div>
           </motion.div>
