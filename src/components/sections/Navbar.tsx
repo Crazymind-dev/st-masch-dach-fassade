@@ -31,6 +31,7 @@ type SimpleLink = {
   kind: "link"
   href: string
   label: string
+  highlight?: boolean
 }
 
 type DropdownItem = {
@@ -82,7 +83,7 @@ const navEntries: NavEntry[] = [
       { href: "/leistungen/fassade/sanierung", label: "Fassadensanierung", description: "Reinigung, Putz und Neuanstrich vom Profi.", icon: Paintbrush },
     ],
   },
-  { kind: "link", href: "/foerderung", label: "Förderung" },
+  { kind: "link", href: "/foerderung", label: "Förderung", highlight: true },
   { kind: "link", href: "/ueber-uns", label: "Über uns" },
   { kind: "link", href: "/referenzen", label: "Referenzen" },
   { kind: "link", href: "/kontakt", label: "Kontakt" },
@@ -95,6 +96,18 @@ export default function Navbar() {
   const [mobileSubOpen, setMobileSubOpen] = useState<string | null>(null)
   const pathname = usePathname()
   const navRef = useRef<HTMLElement>(null)
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  const cancelClose = () => {
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current)
+      closeTimer.current = null
+    }
+  }
+  const scheduleClose = () => {
+    cancelClose()
+    closeTimer.current = setTimeout(() => setOpenMenu(null), 180)
+  }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50)
@@ -166,13 +179,20 @@ export default function Navbar() {
                     <Link
                       href={entry.href}
                       className={cn(
-                        "no-underline font-heading text-sm font-medium tracking-wide transition-colors min-h-[44px] flex items-center px-3 rounded-md",
+                        "no-underline font-heading text-sm font-medium tracking-wide transition-colors min-h-[44px] flex items-center gap-2 px-3 rounded-md",
                         isActive(entry.href)
                           ? "text-brand-orange"
-                          : "text-gray-700 hover:text-brand-orange hover:bg-black/[0.03]"
+                          : entry.highlight
+                            ? "text-brand-orange hover:bg-brand-orange/10"
+                            : "text-gray-700 hover:text-brand-orange hover:bg-black/[0.03]"
                       )}
                     >
                       {entry.label}
+                      {entry.highlight && !isActive(entry.href) && (
+                        <span className="text-[9px] font-bold uppercase tracking-wider bg-brand-orange text-white px-1.5 py-0.5 rounded-full leading-none">
+                          Neu
+                        </span>
+                      )}
                     </Link>
                   </li>
                 )
@@ -185,8 +205,11 @@ export default function Navbar() {
                 <li
                   key={entry.label}
                   className="relative"
-                  onMouseEnter={() => setOpenMenu(entry.label)}
-                  onMouseLeave={() => setOpenMenu(null)}
+                  onMouseEnter={() => {
+                    cancelClose()
+                    setOpenMenu(entry.label)
+                  }}
+                  onMouseLeave={scheduleClose}
                 >
                   <button
                     onClick={() => setOpenMenu(open ? null : entry.label)}

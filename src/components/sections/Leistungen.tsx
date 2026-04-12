@@ -24,42 +24,42 @@ const services = [
     icon: <ClipboardList className="w-6 h-6" />,
     title: "Planung",
     description:
-      "Jedes Projekt beginnt mit einem klaren Konzept. Wir analysieren die baulichen Gegebenheiten, beraten zu Materialien und entwickeln Lösungen, die technisch überzeugen und langfristig funktionieren. So entsteht eine Planung, die Sicherheit gibt — für Bauherren, Architekten und Eigentümer.",
+      "Ein klares Konzept, das zu Ihrem Haus und Ihrem Budget passt — bevor der erste Hammer fällt.",
     href: "/leistungen",
   },
   {
     icon: <Home className="w-6 h-6" />,
     title: "Dach",
     description:
-      "Das Dach schützt, was Ihnen wichtig ist. Es hält Wind und Wetter ab, bewahrt Wärme im Haus und sorgt für Sicherheit über viele Jahre. Wir planen und realisieren langlebige Dachlösungen — präzise, hochwertig und mit Blick für jedes Detail. Ob Neubau, Sanierung oder Erweiterung: Ihr Dach ist bei uns in besten Händen.",
+      "Neubau, Sanierung oder Reparatur — Ihr Dach hält, wenn es von Meistern kommt.",
     href: "/leistungen",
   },
   {
     icon: <Building2 className="w-6 h-6" />,
     title: "Fassade",
     description:
-      "Die Fassade prägt den Charakter eines Hauses und schützt gleichzeitig die gesamte Bausubstanz. Mit hochwertigen Materialien und handwerklicher Präzision sorgen wir dafür, dass Ihr Gebäude nicht nur gut aussieht, sondern auch langfristig geschützt ist. Ästhetik, Energieeffizienz und Werterhalt gehen bei uns Hand in Hand.",
+      "Schön, warm, werthaltig — mit WDVS, VHF oder Klinker aus einer Hand.",
     href: "/leistungen/fassade",
   },
   {
     icon: <Sun className="w-6 h-6" />,
     title: "Solar & Energie",
     description:
-      "Moderne Dachflächen können mehr als schützen — sie können Energie erzeugen. Mit durchdachten Solarlösungen machen wir Ihr Dach zu einer nachhaltigen Energiequelle. Wir beraten, planen und integrieren Photovoltaiksysteme so, dass Technik, Effizienz und Dacharchitektur optimal zusammenpassen.",
+      "PV, Speicher und Wärmepumpe — vom Dachprofi geplant, nicht vom Vertrieb verkauft.",
     href: "/solar",
   },
   {
     icon: <Hammer className="w-6 h-6" />,
     title: "Umsetzung",
     description:
-      "Unsere Erfahrung zeigt sich auf der Baustelle: präzise, zuverlässig und sauber umgesetzt. Von der ersten Dachlatte bis zum letzten Detail arbeiten wir mit höchstem Qualitätsanspruch. Termintreue, fachgerechte Ausführung und ein starkes Team sorgen dafür, dass Ihr Projekt sicher realisiert wird.",
+      "Termintreu, sauber, präzise. Eigenes Team, keine Subunternehmer.",
     href: "/kontakt",
   },
   {
     icon: <Wrench className="w-6 h-6" />,
     title: "Service",
     description:
-      "Wir übernehmen Wartung, Reparaturen und schnelle Hilfe bei Schäden. Mit regelmäßigen Kontrollen und fachgerechten Instandsetzungen sorgen wir dafür, dass Ihr Dach seine Aufgabe dauerhaft erfüllt — und Sie sich weiterhin sicher fühlen können.",
+      "Wartung, Reparatur, 24h-Notdienst — damit Ihr Dach auch nach Jahren hält.",
     href: "/kontakt",
   },
 ]

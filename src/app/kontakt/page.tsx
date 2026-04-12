@@ -1,8 +1,23 @@
 "use client"
 
-import { useState } from "react"
+import { useState, type FormEvent } from "react"
 import { motion } from "framer-motion"
-import { MapPin, Phone, Mail, Clock, Send, ChevronDown, ChevronUp } from "lucide-react"
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Clock,
+  Send,
+  ChevronDown,
+  ChevronUp,
+  Home,
+  Sun,
+  Building2,
+  MessageSquare,
+  Loader2,
+  CheckCircle2,
+} from "lucide-react"
+import { cn } from "@/lib/utils"
 import PageHero from "@/components/ui/PageHero"
 import CTABanner from "@/components/ui/CTABanner"
 
@@ -31,33 +46,11 @@ const contactInfo = [
   },
 ]
 
-const leistungenGruppen = [
-  {
-    label: "Dach",
-    items: ["Steildach", "Flachdach", "Gründach", "Metalldach", "Dachfenster", "Dachservice"],
-  },
-  {
-    label: "Solar",
-    items: [
-      "PV-Anlagen",
-      "Stromspeicher",
-      "Monitoring & Wartung",
-      "Home Energy Management",
-    ],
-  },
-  {
-    label: "Fassade",
-    items: [
-      "WDVS-Dämmung",
-      "Vorgehängte Fassade (VHF)",
-      "Klinker & Naturstein",
-      "Fassadensanierung",
-    ],
-  },
-  {
-    label: "Weiteres",
-    items: ["Reparatur / Notdienst", "Sonstiges"],
-  },
+const topicChoices = [
+  { value: "dach", label: "Dach", icon: Home },
+  { value: "solar", label: "Solar & Energie", icon: Sun },
+  { value: "fassade", label: "Fassade", icon: Building2 },
+  { value: "sonstiges", label: "Sonstiges", icon: MessageSquare },
 ]
 
 interface FAQItem {
@@ -95,6 +88,16 @@ const cardVariants = {
 
 export default function KontaktPage() {
   const [openFAQ, setOpenFAQ] = useState<number | null>(null)
+  const [topic, setTopic] = useState<string>("")
+  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle")
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (status === "sending") return
+    setStatus("sending")
+    await new Promise((r) => setTimeout(r, 900))
+    setStatus("sent")
+  }
 
   return (
     <>
@@ -203,101 +206,168 @@ export default function KontaktPage() {
               transition={{ duration: 0.6, delay: 0.1 }}
             >
               <div className="bg-white rounded-2xl p-8 md:p-10 shadow-lg">
-                <h3 className="font-display text-2xl font-bold text-brand-dark mb-2">
-                  Schreiben Sie uns
-                </h3>
-                <p className="font-body text-sm text-brand-dark/60 mb-8">
-                  Füllen Sie das Formular aus und wir melden uns innerhalb von 24 Stunden.
-                </p>
-
-                <form
-                  onSubmit={(e) => e.preventDefault()}
-                  className="space-y-5"
-                >
-                  {/* Name */}
-                  <div>
-                    <label className="block font-heading text-xs font-bold uppercase tracking-wide text-brand-dark/50 mb-1.5">
-                      Name *
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="Max Mustermann"
-                      className="w-full px-4 py-3 rounded-xl border border-brand-dark/15 bg-brand-beige/50 font-body text-sm text-brand-dark placeholder:text-brand-dark/30 focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange transition-all"
-                    />
-                  </div>
-
-                  {/* Email + Telefon */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div>
-                      <label className="block font-heading text-xs font-bold uppercase tracking-wide text-brand-dark/50 mb-1.5">
-                        E-Mail *
-                      </label>
-                      <input
-                        type="email"
-                        required
-                        placeholder="max@email.de"
-                        className="w-full px-4 py-3 rounded-xl border border-brand-dark/15 bg-brand-beige/50 font-body text-sm text-brand-dark placeholder:text-brand-dark/30 focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange transition-all"
-                      />
-                    </div>
-                    <div>
-                      <label className="block font-heading text-xs font-bold uppercase tracking-wide text-brand-dark/50 mb-1.5">
-                        Telefon
-                      </label>
-                      <input
-                        type="tel"
-                        placeholder="030 123 456 78"
-                        className="w-full px-4 py-3 rounded-xl border border-brand-dark/15 bg-brand-beige/50 font-body text-sm text-brand-dark placeholder:text-brand-dark/30 focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange transition-all"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Leistung Dropdown */}
-                  <div>
-                    <label className="block font-heading text-xs font-bold uppercase tracking-wide text-brand-dark/50 mb-1.5">
-                      Gewünschte Leistung
-                    </label>
-                    <select
-                      className="w-full px-4 py-3 rounded-xl border border-brand-dark/15 bg-brand-beige/50 font-body text-sm text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange transition-all appearance-none cursor-pointer"
-                      defaultValue=""
-                    >
-                      <option value="" disabled>
-                        Bitte wählen...
-                      </option>
-                      {leistungenGruppen.map((gruppe) => (
-                        <optgroup key={gruppe.label} label={gruppe.label}>
-                          {gruppe.items.map((l) => (
-                            <option key={l} value={l}>
-                              {l}
-                            </option>
-                          ))}
-                        </optgroup>
-                      ))}
-                    </select>
-                  </div>
-
-                  {/* Nachricht */}
-                  <div>
-                    <label className="block font-heading text-xs font-bold uppercase tracking-wide text-brand-dark/50 mb-1.5">
-                      Nachricht *
-                    </label>
-                    <textarea
-                      required
-                      rows={5}
-                      placeholder="Beschreiben Sie kurz Ihr Anliegen..."
-                      className="w-full px-4 py-3 rounded-xl border border-brand-dark/15 bg-brand-beige/50 font-body text-sm text-brand-dark placeholder:text-brand-dark/30 focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange transition-all resize-none"
-                    />
-                  </div>
-
-                  {/* Submit */}
-                  <button
-                    type="submit"
-                    className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-orange text-white rounded-xl font-heading text-sm font-bold uppercase tracking-wider shadow-lg hover:bg-brand-orange-dark hover:-translate-y-0.5 transition-all border-none cursor-pointer"
+                {status === "sent" ? (
+                  <motion.div
+                    className="text-center py-6"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.4 }}
                   >
-                    <Send className="w-4 h-4" />
-                    Nachricht senden
-                  </button>
-                </form>
+                    <motion.div
+                      className="w-16 h-16 rounded-full bg-brand-orange/15 border border-brand-orange/30 flex items-center justify-center mx-auto mb-5"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ type: "spring", damping: 15, delay: 0.1 }}
+                    >
+                      <CheckCircle2 className="w-8 h-8 text-brand-orange" />
+                    </motion.div>
+                    <h3 className="font-display text-2xl md:text-3xl font-black text-brand-dark mb-3">
+                      Vielen Dank!
+                    </h3>
+                    <p className="font-body text-base text-brand-dark/60 mb-6 max-w-sm mx-auto">
+                      Ihre Anfrage ist bei uns angekommen. Wir melden uns
+                      innerhalb von 24 Stunden bei Ihnen.
+                    </p>
+                    <p className="font-body text-sm text-brand-dark/50 mb-4">
+                      Es ist dringend? Rufen Sie uns direkt an:
+                    </p>
+                    <a
+                      href="tel:+493084417068"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-brand-orange text-white rounded-full font-heading text-sm font-bold no-underline shadow-[0_4px_24px_rgba(255,91,1,0.3)] hover:bg-brand-orange-dark transition-colors min-h-[48px]"
+                    >
+                      <Phone className="w-4 h-4" />
+                      030 - 844 17 068
+                    </a>
+                  </motion.div>
+                ) : (
+                  <>
+                    <h3 className="font-display text-2xl font-bold text-brand-dark mb-2">
+                      Schreiben Sie uns
+                    </h3>
+                    <p className="font-body text-sm text-brand-dark/60 mb-8">
+                      Füllen Sie das Formular aus und wir melden uns innerhalb
+                      von 24 Stunden.
+                    </p>
+
+                    <form onSubmit={handleSubmit} className="space-y-5">
+                      {/* Topic radio cards */}
+                      <div>
+                        <label className="block font-heading text-xs font-bold uppercase tracking-wide text-brand-dark/50 mb-3">
+                          Worum geht es?
+                        </label>
+                        <div className="grid grid-cols-2 gap-2">
+                          {topicChoices.map((choice) => {
+                            const Icon = choice.icon
+                            const selected = topic === choice.value
+                            return (
+                              <label
+                                key={choice.value}
+                                className={cn(
+                                  "flex items-center gap-2 p-3 rounded-xl border cursor-pointer transition-all min-h-[48px]",
+                                  selected
+                                    ? "bg-brand-orange/10 border-brand-orange text-brand-dark"
+                                    : "bg-brand-beige/50 border-brand-dark/15 text-brand-dark/70 hover:border-brand-dark/30"
+                                )}
+                              >
+                                <input
+                                  type="radio"
+                                  name="topic"
+                                  value={choice.value}
+                                  checked={selected}
+                                  onChange={(e) => setTopic(e.target.value)}
+                                  className="sr-only"
+                                />
+                                <Icon
+                                  className={cn(
+                                    "w-4 h-4 flex-shrink-0",
+                                    selected
+                                      ? "text-brand-orange"
+                                      : "text-brand-dark/40"
+                                  )}
+                                />
+                                <span className="font-heading text-xs sm:text-sm font-semibold">
+                                  {choice.label}
+                                </span>
+                              </label>
+                            )
+                          })}
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block font-heading text-xs font-bold uppercase tracking-wide text-brand-dark/50 mb-1.5">
+                          Name *
+                        </label>
+                        <input
+                          type="text"
+                          name="name"
+                          required
+                          placeholder="Max Mustermann"
+                          className="w-full px-4 py-3 rounded-xl border border-brand-dark/15 bg-brand-beige/50 font-body text-sm text-brand-dark placeholder:text-brand-dark/30 focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange transition-all min-h-[44px]"
+                        />
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div>
+                          <label className="block font-heading text-xs font-bold uppercase tracking-wide text-brand-dark/50 mb-1.5">
+                            E-Mail *
+                          </label>
+                          <input
+                            type="email"
+                            name="email"
+                            inputMode="email"
+                            required
+                            placeholder="max@email.de"
+                            className="w-full px-4 py-3 rounded-xl border border-brand-dark/15 bg-brand-beige/50 font-body text-sm text-brand-dark placeholder:text-brand-dark/30 focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange transition-all min-h-[44px]"
+                          />
+                        </div>
+                        <div>
+                          <label className="block font-heading text-xs font-bold uppercase tracking-wide text-brand-dark/50 mb-1.5">
+                            Telefon
+                          </label>
+                          <input
+                            type="tel"
+                            name="phone"
+                            inputMode="tel"
+                            placeholder="030 123 456 78"
+                            className="w-full px-4 py-3 rounded-xl border border-brand-dark/15 bg-brand-beige/50 font-body text-sm text-brand-dark placeholder:text-brand-dark/30 focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange transition-all min-h-[44px]"
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block font-heading text-xs font-bold uppercase tracking-wide text-brand-dark/50 mb-1.5">
+                          Nachricht *
+                        </label>
+                        <textarea
+                          required
+                          rows={5}
+                          name="message"
+                          placeholder="Beschreiben Sie kurz Ihr Anliegen..."
+                          className="w-full px-4 py-3 rounded-xl border border-brand-dark/15 bg-brand-beige/50 font-body text-sm text-brand-dark placeholder:text-brand-dark/30 focus:outline-none focus:ring-2 focus:ring-brand-orange/40 focus:border-brand-orange transition-all resize-none"
+                        />
+                      </div>
+
+                      <button
+                        type="submit"
+                        disabled={status === "sending"}
+                        className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-orange text-white rounded-xl font-heading text-sm font-bold uppercase tracking-wider shadow-lg hover:bg-brand-orange-dark hover:-translate-y-0.5 transition-all border-none cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed disabled:translate-y-0 min-h-[48px]"
+                      >
+                        {status === "sending" ? (
+                          <>
+                            <Loader2 className="w-4 h-4 animate-spin" />
+                            Wird gesendet…
+                          </>
+                        ) : (
+                          <>
+                            <Send className="w-4 h-4" />
+                            Nachricht senden
+                          </>
+                        )}
+                      </button>
+                    </form>
+                  </>
+                )}
               </div>
             </motion.div>
           </div>
