@@ -81,22 +81,22 @@ const team = [
   {
     name: "Stefan Masch",
     role: "Geschäftsführer & Dachdeckermeister",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&h=400&q=80",
+    image: "/team-1.jpg",
   },
   {
-    name: "Thomas Muller",
+    name: "Thomas Müller",
     role: "Projektleiter Dach & Fassade",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&h=400&q=80",
+    image: "/team-3.jpg",
   },
   {
     name: "Marco Schmidt",
     role: "Solar-Spezialist",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&h=400&q=80",
+    image: "/team-2.jpg",
   },
   {
-    name: "Andreas Weber",
-    role: "Dachdeckergeselle",
-    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&h=400&q=80",
+    name: "Sarah Becker",
+    role: "Dachdeckergesellin",
+    image: "/team-4.jpg",
   },
 ]
 
