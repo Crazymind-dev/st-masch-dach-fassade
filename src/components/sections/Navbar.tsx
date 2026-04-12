@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
-import { Phone, Menu, X } from "lucide-react"
+import { Phone, Mail, Menu, X } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 
 const navLinks = [
@@ -73,14 +73,23 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Desktop Phone */}
-        <a
-          href="tel:+493084417068"
-          className="hidden md:flex items-center gap-2 text-brand-dark no-underline font-heading font-bold text-[15px] hover:text-brand-orange transition-colors min-h-[44px]"
-        >
-          <Phone className="w-[18px] h-[18px] text-brand-orange" />
-          030 - 844 17 068
-        </a>
+        {/* Desktop Contact */}
+        <div className="hidden md:flex items-center gap-5">
+          <a
+            href="mailto:info@st-masch.de"
+            className="flex items-center gap-2 text-brand-dark no-underline font-heading font-bold text-[15px] hover:text-brand-orange transition-colors min-h-[44px]"
+          >
+            <Mail className="w-[18px] h-[18px] text-brand-orange" />
+            info@st-masch.de
+          </a>
+          <a
+            href="tel:+493084417068"
+            className="flex items-center gap-2 text-brand-dark no-underline font-heading font-bold text-[15px] hover:text-brand-orange transition-colors min-h-[44px]"
+          >
+            <Phone className="w-[18px] h-[18px] text-brand-orange" />
+            030 - 844 17 068
+          </a>
+        </div>
 
         {/* Mobile Hamburger Button */}
         <button
@@ -168,9 +177,9 @@ export default function Navbar() {
                 </ul>
               </nav>
 
-              {/* Phone CTA at bottom */}
+              {/* Contact CTAs at bottom */}
               <motion.div
-                className="px-6 pb-8 pt-4 border-t border-white/10"
+                className="px-6 pb-8 pt-4 border-t border-white/10 space-y-3"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.3 }}
@@ -181,6 +190,13 @@ export default function Navbar() {
                 >
                   <Phone className="w-5 h-5" />
                   030 - 844 17 068
+                </a>
+                <a
+                  href="mailto:info@st-masch.de"
+                  className="flex items-center justify-center gap-3 w-full py-4 bg-white/5 text-white rounded-full font-heading text-base font-bold no-underline border border-white/10 hover:bg-white/10 transition-colors min-h-[48px]"
+                >
+                  <Mail className="w-5 h-5 text-brand-orange" />
+                  info@st-masch.de
                 </a>
               </motion.div>
             </motion.div>
