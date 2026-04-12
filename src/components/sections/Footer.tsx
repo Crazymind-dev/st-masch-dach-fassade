@@ -5,19 +5,17 @@ import Link from "next/link"
 import { Phone, Mail, MapPin } from "lucide-react"
 
 const leistungenLinks = [
-  { label: "Steildach", href: "/leistungen/steildach" },
-  { label: "Flachdach", href: "/leistungen/flachdach" },
-  { label: "Gründach", href: "/leistungen/gruendach" },
-  { label: "Fassade & WDVS", href: "/leistungen/fassade" },
-  { label: "Metalldach", href: "/leistungen/metalldach" },
-  { label: "Dachfenster", href: "/leistungen/dachfenster" },
+  { label: "Dach", href: "/leistungen" },
+  { label: "Solar & Energie", href: "/solar" },
+  { label: "Fassade", href: "/leistungen/fassade" },
+  { label: "Dachfenster (VELUX)", href: "/leistungen/dachfenster" },
   { label: "Dachservice", href: "/leistungen/dachservice" },
-  { label: "Photovoltaik", href: "/solar" },
 ]
 
 const unternehmenLinks = [
   { label: "Über uns", href: "/ueber-uns" },
   { label: "Referenzen", href: "/referenzen" },
+  { label: "Förderung", href: "/foerderung" },
   { label: "Kontakt", href: "/kontakt" },
 ]
 
@@ -39,15 +37,18 @@ export default function Footer() {
           <div className="sm:col-span-2 lg:col-span-1">
             <Link
               href="/"
-              className="font-heading font-extrabold text-xl text-white no-underline flex items-center gap-2 mb-4"
+              className="block mb-4 no-underline"
             >
-              ST. MASCH <span className="text-brand-orange">|</span> Dach,
-              Fassade & Solar
+              <span className="font-heading font-extrabold text-xl text-white block leading-tight">
+                ST. MASCH
+              </span>
+              <span className="font-heading text-[11px] font-bold uppercase tracking-[3px] text-brand-orange mt-1 block">
+                Dach · Fassade · Solar
+              </span>
             </Link>
             <p className="font-body text-sm text-gray-500 font-light leading-relaxed">
-              Ihr zertifizierter Meisterbetrieb für Dach, Fassade und
-              Solarenergie in Berlin und Brandenburg. Qualität und
-              Zuverlässigkeit seit über 15 Jahren.
+              Zertifizierter Meisterbetrieb für Dach, Fassade und Solarenergie
+              in Berlin und Brandenburg. Seit über 15 Jahren.
             </p>
           </div>
 
