@@ -3,6 +3,8 @@
 import { useRef, useState } from "react"
 import { motion, useInView, AnimatePresence } from "framer-motion"
 import { ChevronDown } from "lucide-react"
+import JsonLd from "@/components/seo/JsonLd"
+import { faqSchema } from "@/lib/seo"
 
 const faqs = [
   {
@@ -89,6 +91,8 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   return (
+    <>
+    <JsonLd data={faqSchema(faqs)} />
     <section id="faq" className="py-16 md:py-32 bg-brand-beige">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-12" ref={ref}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
@@ -131,5 +135,6 @@ export default function FAQ() {
         </div>
       </div>
     </section>
+    </>
   )
 }
