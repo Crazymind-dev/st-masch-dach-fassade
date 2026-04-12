@@ -53,7 +53,7 @@ export default function Solar() {
               Solarenergie vom <span className="text-brand-orange">Dachprofi</span>
             </h2>
 
-            <p className="font-body text-gray-400 text-base md:text-lg font-light leading-relaxed mb-8 md:mb-10">
+            <p className="font-body text-white/80 text-base md:text-lg font-light leading-relaxed mb-8 md:mb-10">
               Eine PV-Anlage ist nur so gut wie das Dach, auf dem sie sitzt.
               Wir sind erst Dachdecker-Meisterbetrieb, dann Solar-Partner —
               deshalb halten unsere Anlagen nicht nur Strom, sondern auch dicht.
@@ -75,7 +75,7 @@ export default function Solar() {
                     <h4 className="font-heading text-base font-bold text-white mb-1">
                       {feature.title}
                     </h4>
-                    <p className="font-body text-sm text-gray-400 font-light leading-relaxed">
+                    <p className="font-body text-sm text-white/75 font-light leading-relaxed">
                       {feature.description}
                     </p>
                   </div>
