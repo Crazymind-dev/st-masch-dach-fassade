@@ -8,6 +8,9 @@ import PageHero from "@/components/ui/PageHero"
 import CTABanner from "@/components/ui/CTABanner"
 import { getServiceBySlug, services } from "@/lib/services"
 import { notFound } from "next/navigation"
+import JsonLd from "@/components/seo/JsonLd"
+import { serviceSchema, breadcrumbSchema } from "@/lib/seo"
+import { site } from "@/lib/config"
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -28,10 +31,27 @@ export default function ServiceDetailPage() {
     notFound()
   }
 
+  const pageUrl = `${site.baseUrl}/leistungen/${service.slug}`
+
   return (
     <>
+      <JsonLd
+        data={serviceSchema({
+          name: `${service.title} Berlin`,
+          description: service.description,
+          url: pageUrl,
+        })}
+      />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", url: site.baseUrl },
+          { name: "Leistungen", url: `${site.baseUrl}/leistungen` },
+          { name: service.shortTitle, url: pageUrl },
+        ])}
+      />
+
       <PageHero
-        title={service.title}
+        title={`${service.title} Berlin`}
         subtitle={service.description}
         breadcrumbs={[
           { label: "Home", href: "/" },

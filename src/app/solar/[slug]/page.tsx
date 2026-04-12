@@ -7,6 +7,9 @@ import Link from "next/link"
 import PageHero from "@/components/ui/PageHero"
 import CTABanner from "@/components/ui/CTABanner"
 import { getSolarTopicBySlug, solarTopics } from "@/lib/solar-topics"
+import JsonLd from "@/components/seo/JsonLd"
+import { serviceSchema, breadcrumbSchema } from "@/lib/seo"
+import { site } from "@/lib/config"
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -31,10 +34,27 @@ export default function SolarTopicPage() {
 
   const otherTopics = solarTopics.filter((t) => t.slug !== topic.slug)
 
+  const pageUrl = `${site.baseUrl}/solar/${topic.slug}`
+
   return (
     <>
+      <JsonLd
+        data={serviceSchema({
+          name: `${topic.title} Berlin`,
+          description: topic.description,
+          url: pageUrl,
+        })}
+      />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", url: site.baseUrl },
+          { name: "Solar", url: `${site.baseUrl}/solar` },
+          { name: topic.shortTitle, url: pageUrl },
+        ])}
+      />
+
       <PageHero
-        title={topic.title}
+        title={`${topic.title} Berlin`}
         subtitle={topic.description}
         breadcrumbs={[
           { label: "Home", href: "/" },
