@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import { MapPin, ArrowUpRight, Award, Calendar, CheckCircle, Building2 } from "lucide-react"
 import PageHero from "@/components/ui/PageHero"
@@ -165,10 +166,12 @@ export default function ReferenzenPage() {
                   }`}
                 >
                   {/* Image */}
-                  <img
+                  <Image
                     src={project.image}
-                    alt={project.title}
-                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    alt={`${project.title} in ${project.location} — ${project.category}-Referenzprojekt`}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
                   />
 
                   {/* Default Overlay */}

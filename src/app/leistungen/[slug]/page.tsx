@@ -11,6 +11,7 @@ import { notFound } from "next/navigation"
 import JsonLd from "@/components/seo/JsonLd"
 import { serviceSchema, breadcrumbSchema, faqSchema } from "@/lib/seo"
 import { site } from "@/lib/config"
+import Image from "next/image"
 import { useState } from "react"
 import { ChevronDown } from "lucide-react"
 
@@ -315,11 +316,13 @@ export default function ServiceDetailPage() {
                   href={`/leistungen/${s.slug}`}
                   className="group flex items-center gap-4 bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow no-underline"
                 >
-                  <div className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0">
-                    <img
+                  <div className="relative w-14 h-14 rounded-xl overflow-hidden flex-shrink-0">
+                    <Image
                       src={s.image}
-                      alt={s.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                      alt={`${s.title} Berlin — ${s.shortTitle}`}
+                      fill
+                      sizes="56px"
+                      className="object-cover group-hover:scale-110 transition-transform duration-300"
                     />
                   </div>
                   <div className="flex-1 min-w-0">

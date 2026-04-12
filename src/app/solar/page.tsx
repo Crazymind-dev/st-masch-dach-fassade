@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { motion } from "framer-motion"
 import {
   Sun,
@@ -292,10 +293,12 @@ export default function SolarPage() {
               variants={fadeUp}
               transition={{ duration: 0.6 }}
             >
-              <img
+              <Image
                 src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&w=800&q=80"
-                alt="Solaranlage auf einem Hausdach"
-                className="absolute inset-0 w-full h-full object-cover"
+                alt="Solaranlage mit schwarzen Modulen auf einem Hausdach in Berlin — Enphase Solar Partner"
+                fill
+                sizes="(max-width: 768px) 100vw, 40vw"
+                className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent" />
               <div className="absolute bottom-6 left-6 right-6">

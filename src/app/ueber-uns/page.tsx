@@ -16,6 +16,7 @@ import {
 import PageHero from "@/components/ui/PageHero"
 import CTABanner from "@/components/ui/CTABanner"
 import { company } from "@/lib/config"
+import Image from "next/image"
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -225,11 +226,13 @@ export default function UeberUnsPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
             >
-              <div className="rounded-2xl overflow-hidden">
-                <img
+              <div className="relative rounded-2xl overflow-hidden w-full h-[500px]">
+                <Image
                   src="/handwerk-leidenschaft.jpg"
-                  alt="Dachdecker bei der Arbeit im Dachstuhl mit einfallendem Sonnenlicht"
-                  className="w-full h-[500px] object-cover"
+                  alt="Dachdecker bei der Arbeit im Dachstuhl — handwerkliche Leidenschaft vom Meisterbetrieb in Berlin"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 600px"
+                  className="object-cover"
                 />
               </div>
               {/* Experience badge */}
@@ -378,11 +381,13 @@ export default function UeberUnsPage() {
                 variants={fadeUp}
                 transition={{ duration: 0.5 }}
               >
-                <div className="relative rounded-2xl overflow-hidden mb-4">
-                  <img
+                <div className="relative rounded-2xl overflow-hidden mb-4 aspect-square">
+                  <Image
                     src={t.image}
-                    alt={t.name}
-                    className="w-full aspect-square object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    alt={`${t.name} — ${t.role} bei St. Masch Dach, Fassade & Solar in Berlin`}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/60 to-transparent" />
                 </div>
