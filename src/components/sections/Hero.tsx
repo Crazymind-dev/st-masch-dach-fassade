@@ -2,25 +2,26 @@
 
 import { motion } from "framer-motion"
 import { Home, Building2, Sun, ArrowRight } from "lucide-react"
+import { GradientBackground } from "@/components/ui/paper-design-shader-background"
 
 const glassCards = [
   {
     icon: <Home className="w-[22px] h-[22px] text-brand-orange" />,
     title: "Dachsysteme",
     desc: "Steildach, Flachdach, Gründach — Neubau & Sanierung",
-    href: "#leistungen",
+    href: "/leistungen",
   },
   {
     icon: <Building2 className="w-[22px] h-[22px] text-brand-orange" />,
     title: "Fassade & Dämmung",
     desc: "WDVS, VHF, Kerndämmung — Energieeffizient sanieren",
-    href: "#leistungen",
+    href: "/leistungen",
   },
   {
     icon: <Sun className="w-[22px] h-[22px] text-brand-orange" />,
     title: "Photovoltaik",
     desc: "PV-Anlagen, Speicher & Monitoring — Enphase Partner",
-    href: "#solar",
+    href: "/solar",
   },
 ]
 
@@ -75,13 +76,13 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.5 }}
         >
           <a
-            href="#kontakt"
+            href="/kontakt"
             className="inline-flex items-center gap-2 px-9 py-4 bg-brand-orange text-white rounded-full font-heading text-sm font-bold uppercase tracking-wider no-underline shadow-[0_4px_24px_rgba(255,91,1,0.3)] hover:bg-brand-orange-dark hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(255,91,1,0.4)] transition-all"
           >
             Angebot anfragen
           </a>
           <a
-            href="#leistungen"
+            href="/leistungen"
             className="inline-flex items-center gap-2 px-7 py-4 bg-transparent text-brand-dark border-2 border-gray-300 rounded-full font-heading text-sm font-semibold no-underline hover:border-brand-orange hover:text-brand-orange transition-all"
           >
             Unsere Leistungen
@@ -115,18 +116,34 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Right: Image */}
+      {/* Right: Image + Shader Background */}
       <div className="relative overflow-hidden">
-        {/* Fade edge */}
-        <div className="absolute top-0 left-0 w-[120px] h-full bg-gradient-to-r from-brand-beige to-transparent z-[2] hidden lg:block" />
-        {/* Orange accent bar */}
-        <div className="absolute top-0 right-0 w-[6px] h-full bg-gradient-to-b from-brand-orange via-brand-orange-dark to-transparent z-[3]" />
+        {/* Animated Shader Background — sits behind the image */}
+        <div className="absolute inset-0 z-0">
+          <GradientBackground
+            colors={["hsl(14, 100%, 50%)", "hsl(30, 100%, 48%)", "hsl(350, 80%, 45%)"]}
+            colorBack="hsl(0, 0%, 8%)"
+            softness={0.8}
+            intensity={0.55}
+            speed={0.6}
+          />
+        </div>
 
+        {/* Photo with blend mode — shader bleeds through */}
         <img
           src="https://images.unsplash.com/photo-1632759145351-1d592919f522?w=1200&q=80"
           alt="Dachdecker bei der Arbeit"
-          className="w-full h-full object-cover block min-h-[50vh] lg:min-h-screen"
+          className="relative z-[1] w-full h-full object-cover block min-h-[50vh] lg:min-h-screen mix-blend-luminosity opacity-60"
         />
+
+        {/* Gradient overlay for text readability on glass cards */}
+        <div className="absolute inset-0 z-[1] bg-gradient-to-l from-black/30 via-transparent to-transparent" />
+
+        {/* Fade edge to beige */}
+        <div className="absolute top-0 left-0 w-[120px] h-full bg-gradient-to-r from-brand-beige to-transparent z-[2] hidden lg:block" />
+
+        {/* Orange accent bar */}
+        <div className="absolute top-0 right-0 w-[6px] h-full bg-gradient-to-b from-brand-orange via-brand-orange-dark to-transparent z-[5]" />
 
         {/* Stats */}
         <div className="absolute bottom-10 left-10 z-[3] flex gap-6">
@@ -134,23 +151,29 @@ export default function Hero() {
             { num: "15+", label: "Jahre Erfahrung" },
             { num: "500+", label: "Projekte" },
           ].map((s) => (
-            <div
+            <motion.div
               key={s.label}
-              className="bg-white/95 backdrop-blur-sm rounded-2xl px-6 py-5 min-w-[140px] shadow-[0_8px_32px_rgba(0,0,0,0.1)]"
+              className="bg-white/90 backdrop-blur-md rounded-2xl px-6 py-5 min-w-[140px] shadow-[0_8px_32px_rgba(0,0,0,0.15)]"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
             >
               <div className="font-display text-[32px] font-black text-brand-orange leading-none">{s.num}</div>
               <div className="font-body text-xs text-gray-500 mt-1 uppercase tracking-wider">{s.label}</div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* Glass Cards */}
         <div className="absolute right-10 top-1/2 -translate-y-1/2 z-[4] flex-col gap-3 hidden xl:flex">
-          {glassCards.map((card) => (
+          {glassCards.map((card, i) => (
             <motion.a
               key={card.title}
               href={card.href}
-              className="block w-[240px] bg-white/[0.12] backdrop-blur-[20px] rounded-2xl p-[22px_24px] shadow-[0_8px_32px_rgba(0,0,0,0.15)] border border-white/25 no-underline hover:bg-brand-orange/[0.15] hover:border-brand-orange/40 hover:-translate-x-2 transition-all duration-400"
+              className="block w-[240px] bg-white/[0.1] backdrop-blur-[20px] rounded-2xl p-[22px_24px] shadow-[0_8px_32px_rgba(0,0,0,0.2)] border border-white/20 no-underline hover:bg-brand-orange/[0.15] hover:border-brand-orange/40 hover:-translate-x-2 transition-all duration-400"
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 + i * 0.15 }}
               whileHover={{ x: -8 }}
             >
               <div className="flex items-center justify-between mb-2.5">
