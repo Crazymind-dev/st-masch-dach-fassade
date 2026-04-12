@@ -344,7 +344,7 @@ export default function Navbar() {
             />
 
             <motion.div
-              className="fixed top-0 right-0 bottom-0 z-[56] w-[min(360px,90vw)] bg-brand-dark shadow-2xl lg:hidden flex flex-col"
+              className="fixed top-0 right-0 bottom-0 z-[56] w-[min(360px,88vw)] bg-brand-dark shadow-2xl lg:hidden flex flex-col"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
