@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Accessibility, X, Plus, Minus, Eye, Zap, Link2 } from "lucide-react"
+import { PersonStanding, X, Plus, Minus, Eye, Zap, Link2 } from "lucide-react"
 
 type FontSize = "normal" | "large" | "xlarge"
 
@@ -89,7 +89,7 @@ export default function AccessibilityWidget() {
         aria-label="Barrierefreiheit-Einstellungen öffnen"
         title="Barrierefreiheit"
       >
-        <Accessibility className="w-5 h-5 md:w-6 md:h-6" />
+        <PersonStanding className="w-5 h-5 md:w-6 md:h-6" />
       </motion.button>
 
       {/* Panel */}
@@ -116,7 +116,7 @@ export default function AccessibilityWidget() {
               {/* Header */}
               <div className="flex items-center justify-between p-4 sm:p-5 border-b border-white/10">
                 <div className="flex items-center gap-3">
-                  <Accessibility className="w-5 h-5 text-brand-orange" />
+                  <PersonStanding className="w-5 h-5 text-brand-orange" />
                   <h3 className="font-heading text-base font-bold text-white">
                     Barrierefreiheit
                   </h3>

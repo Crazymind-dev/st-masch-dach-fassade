@@ -47,14 +47,31 @@ body {
   filter: blur(6px);
 }
 
-/* Accessibility: Font size */
-html.font-large { font-size: 118.75%; }
-html.font-xlarge { font-size: 137.5%; }
+/* Accessibility: Font size
+   Gentler scale so paddings/gaps (also rem-based in Tailwind) don't explode
+   on mobile. Desktop gets slightly more headroom than phones. */
+html.font-large  { font-size: 108%; }
+html.font-xlarge { font-size: 116%; }
 
-/* Accessibility: High contrast */
-html.high-contrast body { filter: contrast(1.3); }
+@media (min-width: 768px) {
+  html.font-large  { font-size: 112%; }
+  html.font-xlarge { font-size: 122%; }
+}
+
+/* Accessibility: High contrast — darken grays + boost borders,
+   avoid the body-wide contrast() filter which used to wash out the shader
+   hero and break fixed-positioned elements on some mobile browsers. */
 html.high-contrast .text-gray-500,
-html.high-contrast .text-gray-400 { color: #1a1a1a !important; }
+html.high-contrast .text-gray-400,
+html.high-contrast .text-gray-600 { color: #1a1a1a !important; }
+html.high-contrast .text-white\/75,
+html.high-contrast .text-white\/70,
+html.high-contrast .text-white\/60,
+html.high-contrast .text-white\/55,
+html.high-contrast .text-white\/50,
+html.high-contrast .text-white\/40 { color: #ffffff !important; }
+html.high-contrast .border-gray-200,
+html.high-contrast .border-gray-100 { border-color: #1a1a1a !important; }
 
 /* Accessibility: Reduce motion */
 html.reduce-motion *,
@@ -63,6 +80,7 @@ html.reduce-motion *::after {
   animation-duration: 0.01ms !important;
   animation-iteration-count: 1 !important;
   transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
 }
 
 /* Accessibility: Highlight links */
