@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useState, useCallback, useRef, useEffect } from "react"
+import { useState, useCallback, useRef } from "react"
 import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion"
 
 const testimonials = [
@@ -10,46 +10,37 @@ const testimonials = [
     author: "Thomas Bergmann",
     role: "Hausbesitzer",
     company: "Berlin-Steglitz",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80&fit=crop&crop=face",
+    initials: "TB",
   },
   {
     quote: "Von der Beratung bis zur fertigen Solaranlage — alles aus einer Hand. Unsere Stromkosten haben sich halbiert. Absolut empfehlenswert!",
     author: "Sandra Möller",
     role: "Eigentümerin",
     company: "Berlin-Pankow",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80&fit=crop&crop=face",
+    initials: "SM",
   },
   {
     quote: "Nach dem Sturm waren sie innerhalb von 24 Stunden da. Professionell, schnell und fair im Preis. So stellt man sich einen Meisterbetrieb vor.",
     author: "Klaus-Dieter Hartmann",
     role: "Hausverwaltung",
     company: "Brandenburg",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80&fit=crop&crop=face",
+    initials: "KH",
   },
   {
     quote: "Die Fassadensanierung hat unser Mehrfamilienhaus komplett verwandelt. Endlich warme Wohnungen und eine moderne Optik. Danke an das gesamte Team!",
     author: "Maria Schulz",
     role: "WEG-Vorsitzende",
     company: "Berlin-Spandau",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80&fit=crop&crop=face",
+    initials: "MS",
   },
   {
     quote: "Drei Flachdächer in unserem Gewerbegebiet, alle perfekt abgedichtet. St. Masch versteht ihr Handwerk. Wir arbeiten jetzt nur noch mit ihnen.",
     author: "Frank Weber",
     role: "Geschäftsführer",
     company: "Weber Immobilien GmbH",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80&fit=crop&crop=face",
+    initials: "FW",
   },
 ]
-
-function usePreloadImages(images: string[]) {
-  useEffect(() => {
-    images.forEach((src) => {
-      const img = new Image()
-      img.src = src
-    })
-  }, [images])
-}
 
 function SplitText({ text }: { text: string }) {
   const words = text.split(" ")
@@ -78,8 +69,6 @@ export function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [isHovered, setIsHovered] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
-
-  usePreloadImages(testimonials.map((t) => t.avatar))
 
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
@@ -136,7 +125,7 @@ export function Testimonials() {
           onMouseLeave={() => setIsHovered(false)}
           onClick={handleNext}
         >
-          {/* Custom magnetic cursor */}
+          {/* Custom cursor */}
           <motion.div
             className="pointer-events-none absolute z-50 mix-blend-difference hidden md:block"
             style={{
@@ -185,28 +174,30 @@ export function Testimonials() {
             <span className="text-gray-400">{String(testimonials.length).padStart(2, "0")}</span>
           </motion.div>
 
-          {/* Avatar stack */}
+          {/* Initials dots */}
           <motion.div
-            className="absolute top-4 left-8 flex -space-x-2"
+            className="absolute top-4 left-8 flex gap-2"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 0.6 }}
+            animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
           >
             {testimonials.map((t, i) => (
               <motion.div
                 key={i}
-                className={`w-7 h-7 rounded-full border-2 border-brand-beige overflow-hidden transition-all duration-300 ${
-                  i === activeIndex ? "ring-1 ring-brand-orange ring-offset-1 ring-offset-brand-beige" : "grayscale opacity-50"
+                className={`w-8 h-8 rounded-full flex items-center justify-center font-heading text-[10px] font-bold transition-all duration-300 ${
+                  i === activeIndex
+                    ? "bg-brand-orange text-white scale-110"
+                    : "bg-gray-200 text-gray-400"
                 }`}
-                whileHover={{ scale: 1.1, opacity: 1 }}
+                whileHover={{ scale: 1.1 }}
               >
-                <img src={t.avatar} alt={t.author} className="w-full h-full object-cover" />
+                {t.initials}
               </motion.div>
             ))}
           </motion.div>
 
           {/* Quote */}
-          <div className="relative">
+          <div className="relative mt-8">
             {/* Quote mark */}
             <div className="absolute -top-8 -left-4 text-brand-orange/10 font-display text-[120px] leading-none select-none">
               &ldquo;
@@ -227,27 +218,22 @@ export function Testimonials() {
             {/* Author */}
             <motion.div className="mt-10 relative" layout>
               <div className="flex items-center gap-4">
-                {/* Avatar */}
-                <div className="relative w-14 h-14">
-                  <motion.div
-                    className="absolute -inset-1.5 rounded-full border border-brand-orange/30"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.5 }}
-                  />
-                  {testimonials.map((t, i) => (
-                    <motion.img
-                      key={t.avatar}
-                      src={t.avatar}
-                      alt={t.author}
-                      className="absolute inset-0 w-14 h-14 rounded-full object-cover"
-                      animate={{
-                        opacity: i === activeIndex ? 1 : 0,
-                        zIndex: i === activeIndex ? 1 : 0,
-                      }}
-                      transition={{ duration: 0.4, ease: [0.42, 0, 0.58, 1] as [number, number, number, number] }}
-                    />
-                  ))}
+                {/* Initials circle */}
+                <div className="relative">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={activeIndex}
+                      className="w-14 h-14 rounded-full bg-brand-orange/10 border-2 border-brand-orange/20 flex items-center justify-center"
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ scale: 0.8, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <span className="font-heading text-lg font-bold text-brand-orange">
+                        {currentTestimonial.initials}
+                      </span>
+                    </motion.div>
+                  </AnimatePresence>
                 </div>
 
                 {/* Info */}
@@ -289,7 +275,7 @@ export function Testimonials() {
             </div>
           </div>
 
-          {/* Mobile: tap hint */}
+          {/* Mobile hint */}
           <motion.div
             className="absolute bottom-4 left-8 flex items-center gap-2 md:hidden"
             initial={{ opacity: 0 }}
@@ -298,7 +284,7 @@ export function Testimonials() {
             <span className="text-[10px] text-gray-500 uppercase tracking-widest font-body">Tippen zum Weiterblättern</span>
           </motion.div>
 
-          {/* Desktop: click hint */}
+          {/* Desktop hint */}
           <motion.div
             className="absolute bottom-4 left-8 items-center gap-2 hidden md:flex"
             initial={{ opacity: 0 }}
