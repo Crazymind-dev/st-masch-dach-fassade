@@ -22,11 +22,11 @@ interface Project {
 const projects: Project[] = [
   {
     id: 1,
-    title: "Dachsanierung Altbau",
-    location: "Berlin-Charlottenburg",
+    title: "Einfamilienhaus mit PV",
+    location: "Berlin",
     category: "Steildach",
     image: "/referenz-weisses-haus.jpg",
-    description: "Komplettsanierung eines denkmalgeschützten Mehrfamilienhauses mit Naturschiefer und Wärmedämmung.",
+    description: "Neueindeckung und Integration einer Photovoltaik-Anlage in das Steildach eines modernen Einfamilienhauses.",
     year: "2024",
     tall: true,
   },
