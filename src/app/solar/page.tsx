@@ -1,7 +1,6 @@
 "use client"
 
-import { motion, useScroll, useTransform } from "framer-motion"
-import { useRef } from "react"
+import { motion } from "framer-motion"
 import {
   Sun,
   BatteryCharging,
@@ -17,43 +16,6 @@ import {
 } from "lucide-react"
 import { useState } from "react"
 import PageHero from "@/components/ui/PageHero"
-
-function ParallaxImageCard() {
-  const ref = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  })
-  const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"])
-
-  return (
-    <motion.div
-      ref={ref}
-      className="md:col-span-2 md:row-span-2 relative overflow-hidden rounded-3xl border border-white/10"
-      variants={fadeUp}
-      transition={{ duration: 0.6 }}
-    >
-      <motion.img
-        src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&w=800&q=80"
-        alt="Solaranlage auf einem Hausdach"
-        className="absolute inset-0 w-full h-[120%] -top-[10%] object-cover"
-        style={{ y }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent" />
-      <div className="absolute bottom-6 left-6 right-6">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-3">
-          <Award className="w-3.5 h-3.5 text-brand-orange" />
-          <span className="font-heading text-[10px] font-bold uppercase tracking-widest text-white">
-            Enphase Partner
-          </span>
-        </div>
-        <p className="font-heading text-base font-bold text-white">
-          Zertifizierte Installation
-        </p>
-      </div>
-    </motion.div>
-  )
-}
 import CTABanner from "@/components/ui/CTABanner"
 
 const fadeUp = {
@@ -324,8 +286,30 @@ export default function SolarPage() {
               </div>
             </motion.div>
 
-            {/* Card 2: Image (with subtle parallax) */}
-            <ParallaxImageCard />
+            {/* Card 2: Image */}
+            <motion.div
+              className="md:col-span-2 md:row-span-2 relative overflow-hidden rounded-3xl border border-white/10"
+              variants={fadeUp}
+              transition={{ duration: 0.6 }}
+            >
+              <img
+                src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&w=800&q=80"
+                alt="Solaranlage auf einem Hausdach"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent" />
+              <div className="absolute bottom-6 left-6 right-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-3">
+                  <Award className="w-3.5 h-3.5 text-brand-orange" />
+                  <span className="font-heading text-[10px] font-bold uppercase tracking-widest text-white">
+                    Enphase Partner
+                  </span>
+                </div>
+                <p className="font-heading text-base font-bold text-white">
+                  Zertifizierte Installation
+                </p>
+              </div>
+            </motion.div>
 
             {/* Card 3: Stromspeicher */}
             <motion.div
