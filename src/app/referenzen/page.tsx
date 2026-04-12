@@ -6,7 +6,7 @@ import { MapPin, ArrowUpRight, Award, Calendar, CheckCircle, Building2 } from "l
 import PageHero from "@/components/ui/PageHero"
 import CTABanner from "@/components/ui/CTABanner"
 
-type Category = "Alle" | "Steildach" | "Flachdach" | "Fassade" | "Solar"
+type Category = "Alle" | "Steildach" | "Flachdach" | "Fassade" | "Solar" | "Dachfenster"
 
 interface Project {
   id: number
@@ -60,20 +60,20 @@ const projects: Project[] = [
   },
   {
     id: 5,
-    title: "Steildach Neubau Villa",
-    location: "Berlin-Zehlendorf",
-    category: "Steildach",
+    title: "VELUX-Austausch Altbau",
+    location: "Berlin-Charlottenburg",
+    category: "Dachfenster",
     image: "/referenz-dachfenster.jpg",
-    description: "Neueindeckung mit Tonziegeln und Dachfenstern für eine moderne Stadtvilla.",
-    year: "2023",
+    description: "Austausch alter Dachfenster gegen moderne VELUX-Modelle für mehr Licht und bessere Dämmwerte.",
+    year: "2024",
   },
   {
     id: 6,
-    title: "Gründach Bürogebäude",
+    title: "Dachausbau mit Dachfenstern",
     location: "Berlin-Mitte",
-    category: "Flachdach",
+    category: "Dachfenster",
     image: "/referenz-dachausbau.jpg",
-    description: "Extensive Dachbegrünung auf 800 m² Flachdach mit Retentionssystem.",
+    description: "Dachausbau mit mehreren VELUX-Dachfenstern für einen hellen, modernen Wohnraum unterm Dach.",
     year: "2023",
     tall: true,
   },
@@ -97,7 +97,7 @@ const projects: Project[] = [
   },
 ]
 
-const filters: Category[] = ["Alle", "Steildach", "Flachdach", "Fassade", "Solar"]
+const filters: Category[] = ["Alle", "Steildach", "Flachdach", "Fassade", "Solar", "Dachfenster"]
 
 const stats = [
   { icon: Building2, value: "500+", label: "Projekte" },
