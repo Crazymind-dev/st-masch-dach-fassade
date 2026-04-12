@@ -12,68 +12,48 @@ import {
   Wrench,
   ArrowRight,
 } from "lucide-react"
-import {
-  AnimatedCard,
-  CardBody,
-  CardTitle,
-  CardDescription,
-  CardVisual,
-  Visual1,
-} from "@/components/ui/animated-card"
 
 const services = [
   {
-    icon: <Home className="w-5 h-5" />,
+    icon: <Home className="w-6 h-6" />,
     title: "Steildach",
     description: "Neueindeckung, Sanierung und Reparatur mit Ziegel, Schiefer oder Metall.",
     tags: ["Neueindeckung", "Sanierung", "Dachfenster"],
-    mainColor: "#ff5b01",
-    secondaryColor: "#e86425",
     href: "/leistungen/steildach",
   },
   {
-    icon: <Layers className="w-5 h-5" />,
+    icon: <Layers className="w-6 h-6" />,
     title: "Flachdach",
     description: "Professionelle Abdichtung mit Bitumen, EPDM und Kunststoffbahnen.",
     tags: ["Abdichtung", "Bitumen", "EPDM"],
-    mainColor: "#e86425",
-    secondaryColor: "#ff5b01",
     href: "/leistungen/flachdach",
   },
   {
-    icon: <Leaf className="w-5 h-5" />,
+    icon: <Leaf className="w-6 h-6" />,
     title: "Gründach",
     description: "Extensive und intensive Begrünung für nachhaltige Gebäude.",
     tags: ["Extensiv", "Intensiv", "Retention"],
-    mainColor: "#4caf50",
-    secondaryColor: "#ff5b01",
     href: "/leistungen/gruendach",
   },
   {
-    icon: <Building2 className="w-5 h-5" />,
+    icon: <Building2 className="w-6 h-6" />,
     title: "Fassade & WDVS",
     description: "Wärmedämmverbundsysteme und vorgehängte Fassaden für maximale Effizienz.",
     tags: ["WDVS", "VHF", "Kerndämmung"],
-    mainColor: "#ff5b01",
-    secondaryColor: "#c44200",
     href: "/leistungen/fassade",
   },
   {
-    icon: <CircleDot className="w-5 h-5" />,
+    icon: <CircleDot className="w-6 h-6" />,
     title: "Metalldach",
     description: "Stehfalzsysteme in Titanzink, Kupfer oder Aluminium — langlebig und elegant.",
     tags: ["Stehfalz", "Zink", "Kupfer"],
-    mainColor: "#78909c",
-    secondaryColor: "#ff5b01",
     href: "/leistungen/metalldach",
   },
   {
-    icon: <Wrench className="w-5 h-5" />,
+    icon: <Wrench className="w-6 h-6" />,
     title: "Dachservice",
     description: "Wartung, Rinnenreinigung, Sturmschaden und 24h-Notdienst.",
     tags: ["Wartung", "Notdienst", "Reparatur"],
-    mainColor: "#ff5b01",
-    secondaryColor: "#ffa726",
     href: "/leistungen/dachservice",
   },
 ]
@@ -107,8 +87,8 @@ export default function Leistungen() {
           </p>
         </motion.div>
 
-        {/* Grid with AnimatedCards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {services.map((service, i) => (
             <motion.div
               key={service.title}
@@ -116,37 +96,43 @@ export default function Leistungen() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
-              <Link href={service.href} className="block no-underline">
-                <AnimatedCard className="h-full hover:-translate-y-2 transition-transform duration-300">
-                  <CardVisual>
-                    <Visual1
-                      mainColor={service.mainColor}
-                      secondaryColor={service.secondaryColor}
-                    />
-                  </CardVisual>
-                  <CardBody>
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="w-9 h-9 rounded-lg bg-brand-orange/10 flex items-center justify-center text-brand-orange">
-                        {service.icon}
-                      </div>
-                      <CardTitle>{service.title}</CardTitle>
+              <Link href={service.href} className="block no-underline group">
+                <div className="relative bg-white border border-gray-200 rounded-xl p-7 cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(0,0,0,0.08)] hover:border-brand-orange/20 overflow-hidden h-full">
+                  {/* Top accent line */}
+                  <div className="absolute top-0 left-0 w-0 h-[2px] bg-brand-orange group-hover:w-full transition-all duration-500" />
+
+                  {/* Icon + Title row */}
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-12 h-12 rounded-xl bg-brand-orange/[0.08] flex items-center justify-center text-brand-orange group-hover:bg-brand-orange group-hover:text-white transition-all duration-300 flex-shrink-0">
+                      {service.icon}
                     </div>
-                    <CardDescription>{service.description}</CardDescription>
-                    <div className="flex flex-wrap gap-2 mt-3">
-                      {service.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-2.5 py-0.5 bg-brand-beige text-brand-dark font-heading text-[10px] font-semibold rounded-full uppercase tracking-wide"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                    <div className="flex items-center gap-1 mt-3 text-brand-orange font-heading text-xs font-semibold opacity-0 group-hover/animated-card:opacity-100 transition-opacity">
-                      Mehr erfahren <ArrowRight className="w-3 h-3" />
-                    </div>
-                  </CardBody>
-                </AnimatedCard>
+                    <h3 className="font-heading text-lg font-bold text-brand-dark group-hover:text-brand-orange transition-colors">
+                      {service.title}
+                    </h3>
+                  </div>
+
+                  {/* Description */}
+                  <p className="font-body text-gray-500 text-sm leading-relaxed mb-5">
+                    {service.description}
+                  </p>
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {service.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2.5 py-1 bg-gray-50 border border-gray-100 text-gray-600 font-heading text-[10px] font-semibold rounded-lg uppercase tracking-wide"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* More link */}
+                  <div className="flex items-center gap-1.5 text-brand-orange font-heading text-xs font-bold uppercase tracking-wide opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                    Mehr erfahren <ArrowRight className="w-3.5 h-3.5" />
+                  </div>
+                </div>
               </Link>
             </motion.div>
           ))}
