@@ -1,0 +1,93 @@
+import { company, site } from "./config"
+
+export function localBusinessSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "RoofingContractor",
+    name: company.name,
+    url: site.baseUrl,
+    image: `${site.baseUrl}/og-image.jpg`,
+    telephone: company.phone.international,
+    email: company.email.display,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: company.address.street,
+      addressLocality: company.address.city,
+      postalCode: company.address.zip,
+      addressCountry: company.address.country,
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: company.address.latitude,
+      longitude: company.address.longitude,
+    },
+    areaServed: [
+      { "@type": "City", name: "Berlin" },
+      { "@type": "State", name: "Brandenburg" },
+    ],
+    openingHoursSpecification: {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: company.hours.weekdays.open,
+      closes: company.hours.weekdays.close,
+    },
+    priceRange: "$$",
+    founder: { "@type": "Person", name: company.owner },
+    foundingDate: String(company.founded),
+    hasCredential: company.certifications.map((c) => ({
+      "@type": "EducationalOccupationalCredential",
+      credentialCategory: c,
+    })),
+  }
+}
+
+export function serviceSchema(args: {
+  name: string
+  description: string
+  url: string
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: args.name,
+    description: args.description,
+    url: args.url,
+    provider: {
+      "@type": "RoofingContractor",
+      name: company.name,
+      url: site.baseUrl,
+    },
+    areaServed: [
+      { "@type": "City", name: "Berlin" },
+      { "@type": "State", name: "Brandenburg" },
+    ],
+  }
+}
+
+export function faqSchema(faqs: { question: string; answer: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: f.answer,
+      },
+    })),
+  }
+}
+
+export function breadcrumbSchema(items: { name: string; url: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: item.name,
+      item: item.url,
+    })),
+  }
+}
