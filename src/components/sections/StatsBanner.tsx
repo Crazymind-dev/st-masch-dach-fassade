@@ -75,7 +75,7 @@ export default function StatsBanner() {
         className="max-w-6xl mx-auto px-4 sm:px-6 md:px-12 relative z-[2]"
         ref={ref}
       >
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8 md:gap-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-10 lg:gap-12">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
