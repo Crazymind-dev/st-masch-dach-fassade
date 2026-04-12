@@ -168,12 +168,29 @@ export default function Kontakt() {
                   </label>
                   <select className="w-full px-4 py-3 bg-white/5 border border-white/15 rounded-xl text-white font-body text-sm focus:outline-none focus:border-brand-orange transition-colors appearance-none cursor-pointer min-h-[44px]">
                     <option value="" className="bg-brand-dark">Bitte wählen</option>
-                    <option value="steildach" className="bg-brand-dark">Steildach</option>
-                    <option value="flachdach" className="bg-brand-dark">Flachdach</option>
-                    <option value="gruendach" className="bg-brand-dark">Gründach</option>
-                    <option value="fassade" className="bg-brand-dark">Fassade & WDVS</option>
-                    <option value="solar" className="bg-brand-dark">Photovoltaik</option>
-                    <option value="service" className="bg-brand-dark">Dachservice</option>
+                    <optgroup label="Dach" className="bg-brand-dark">
+                      <option value="steildach" className="bg-brand-dark">Steildach</option>
+                      <option value="flachdach" className="bg-brand-dark">Flachdach</option>
+                      <option value="gruendach" className="bg-brand-dark">Gründach</option>
+                      <option value="metalldach" className="bg-brand-dark">Metalldach</option>
+                      <option value="dachservice" className="bg-brand-dark">Dachservice</option>
+                    </optgroup>
+                    <optgroup label="Solar" className="bg-brand-dark">
+                      <option value="pv" className="bg-brand-dark">PV-Anlagen</option>
+                      <option value="stromspeicher" className="bg-brand-dark">Stromspeicher</option>
+                      <option value="monitoring" className="bg-brand-dark">Monitoring & Wartung</option>
+                      <option value="home-energy" className="bg-brand-dark">Home Energy Management</option>
+                    </optgroup>
+                    <optgroup label="Fassade" className="bg-brand-dark">
+                      <option value="wdvs" className="bg-brand-dark">WDVS-Dämmung</option>
+                      <option value="vhf" className="bg-brand-dark">Vorgehängte Fassade (VHF)</option>
+                      <option value="klinker" className="bg-brand-dark">Klinker & Naturstein</option>
+                      <option value="fassadensanierung" className="bg-brand-dark">Fassadensanierung</option>
+                    </optgroup>
+                    <optgroup label="Weiteres" className="bg-brand-dark">
+                      <option value="notdienst" className="bg-brand-dark">Reparatur / Notdienst</option>
+                      <option value="sonstiges" className="bg-brand-dark">Sonstiges</option>
+                    </optgroup>
                   </select>
                 </div>
               </div>

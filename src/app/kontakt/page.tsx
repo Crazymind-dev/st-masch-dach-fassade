@@ -31,15 +31,33 @@ const contactInfo = [
   },
 ]
 
-const leistungen = [
-  "Dachsanierung",
-  "Flachdach",
-  "Gründach",
-  "Fassade / WDVS",
-  "Photovoltaik",
-  "Dachfenster",
-  "Reparatur / Notdienst",
-  "Sonstiges",
+const leistungenGruppen = [
+  {
+    label: "Dach",
+    items: ["Steildach", "Flachdach", "Gründach", "Metalldach", "Dachservice"],
+  },
+  {
+    label: "Solar",
+    items: [
+      "PV-Anlagen",
+      "Stromspeicher",
+      "Monitoring & Wartung",
+      "Home Energy Management",
+    ],
+  },
+  {
+    label: "Fassade",
+    items: [
+      "WDVS-Dämmung",
+      "Vorgehängte Fassade (VHF)",
+      "Klinker & Naturstein",
+      "Fassadensanierung",
+    ],
+  },
+  {
+    label: "Weiteres",
+    items: ["Reparatur / Notdienst", "Sonstiges"],
+  },
 ]
 
 interface FAQItem {
@@ -246,10 +264,14 @@ export default function KontaktPage() {
                       <option value="" disabled>
                         Bitte wählen...
                       </option>
-                      {leistungen.map((l) => (
-                        <option key={l} value={l}>
-                          {l}
-                        </option>
+                      {leistungenGruppen.map((gruppe) => (
+                        <optgroup key={gruppe.label} label={gruppe.label}>
+                          {gruppe.items.map((l) => (
+                            <option key={l} value={l}>
+                              {l}
+                            </option>
+                          ))}
+                        </optgroup>
                       ))}
                     </select>
                   </div>
