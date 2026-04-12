@@ -84,6 +84,7 @@ const navEntries: NavEntry[] = [
     ],
   },
   { kind: "link", href: "/foerderung", label: "Förderung", highlight: true },
+  { kind: "link", href: "/ratgeber", label: "Ratgeber" },
   { kind: "link", href: "/ueber-uns", label: "Über uns" },
   { kind: "link", href: "/referenzen", label: "Referenzen" },
   { kind: "link", href: "/kontakt", label: "Kontakt" },

@@ -3,6 +3,7 @@ import { site } from "@/lib/config"
 import { services } from "@/lib/services"
 import { solarTopics } from "@/lib/solar-topics"
 import { fassadeTopics } from "@/lib/fassade-topics"
+import { ratgeberList } from "@/lib/ratgeber"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date()
@@ -11,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${site.baseUrl}/leistungen`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${site.baseUrl}/solar`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${site.baseUrl}/foerderung`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${site.baseUrl}/ratgeber`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     { url: `${site.baseUrl}/notdienst`, lastModified: now, changeFrequency: "yearly", priority: 0.85 },
     { url: `${site.baseUrl}/ueber-uns`, lastModified: now, changeFrequency: "yearly", priority: 0.7 },
     { url: `${site.baseUrl}/referenzen`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
@@ -40,5 +42,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.75,
   }))
 
-  return [...staticRoutes, ...leistungenRoutes, ...solarRoutes, ...fassadeRoutes]
+  const ratgeberRoutes: MetadataRoute.Sitemap = ratgeberList.map((r) => ({
+    url: `${site.baseUrl}/ratgeber/${r.slug}`,
+    lastModified: new Date(r.datePublished),
+    changeFrequency: "yearly",
+    priority: 0.75,
+  }))
+
+  return [
+    ...staticRoutes,
+    ...leistungenRoutes,
+    ...solarRoutes,
+    ...fassadeRoutes,
+    ...ratgeberRoutes,
+  ]
 }
