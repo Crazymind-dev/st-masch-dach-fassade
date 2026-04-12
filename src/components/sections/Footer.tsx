@@ -37,8 +37,8 @@ export default function Footer() {
               href="#"
               className="font-heading font-extrabold text-xl text-white no-underline flex items-center gap-2 mb-4"
             >
-              ST. MASCH <span className="text-brand-orange">|</span> Dach &
-              Fassade
+              ST. MASCH <span className="text-brand-orange">|</span> Dach,
+              Fassade & Solar
             </a>
             <p className="font-body text-sm text-gray-500 font-light leading-relaxed mb-6">
               Ihr zertifizierter Meisterbetrieb für Dach, Fassade und
