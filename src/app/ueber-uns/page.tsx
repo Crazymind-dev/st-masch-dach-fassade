@@ -30,27 +30,27 @@ const stagger = {
 const werte = [
   {
     icon: Star,
-    title: "Qualitat",
+    title: "Qualität",
     description:
       "Wir verwenden ausschliesslich hochwertige Materialien und arbeiten nach den neuesten Standards der Dachdeckerkunst. Jedes Projekt wird mit Meister-Prazision umgesetzt.",
   },
   {
     icon: Clock,
-    title: "Zuverlassigkeit",
+    title: "Zuverlässigkeit",
     description:
-      "Termintreue und transparente Kommunikation sind fur uns selbstverstandlich. Sie konnen sich auf uns verlassen - vom ersten Gesprach bis zur Fertigstellung.",
+      "Termintreue und transparente Kommunikation sind für uns selbstverstandlich. Sie konnen sich auf uns verlassen - vom ersten Gesprach bis zur Fertigstellung.",
   },
   {
     icon: Lightbulb,
     title: "Innovation",
     description:
-      "Als Enphase Solar Partner und durch standige Weiterbildung bleiben wir am Puls der Zeit. Moderne Technologien und nachhaltige Losungen sind unser Antrieb.",
+      "Als Enphase Solar Partner und durch ständige Weiterbildung bleiben wir am Puls der Zeit. Moderne Technologien und nachhaltige Lösungen sind unser Antrieb.",
   },
   {
     icon: Heart,
-    title: "Kundennahe",
+    title: "Kundennähe",
     description:
-      "Jeder Kunde ist fur uns einzigartig. Wir nehmen uns Zeit fur individuelle Beratung und finden die optimale Losung fur Ihr Dach- oder Fassadenprojekt.",
+      "Jeder Kunde ist für uns einzigartig. Wir nehmen uns Zeit für individuelle Beratung und finden die optimale Lösung für Ihr Dach- oder Fassadenprojekt.",
   },
 ]
 
@@ -63,7 +63,7 @@ const zertifikate = [
   {
     title: "TRGS 519 (Asbest)",
     description:
-      "Sachkundig fur den Umgang mit Asbest nach TRGS 519. Sichere und fachgerechte Sanierung asbesthaltiger Materialien.",
+      "Sachkundig für den Umgang mit Asbest nach TRGS 519. Sichere und fachgerechte Sanierung asbesthaltiger Materialien.",
   },
   {
     title: "PV-Basiswissen",
@@ -73,14 +73,14 @@ const zertifikate = [
   {
     title: "Sachkunde Mineralfasern",
     description:
-      "Qualifiziert fur den sicheren Umgang mit kunstlichen Mineralfasern (KMF) bei Dammarbeiten und Sanierungen.",
+      "Qualifiziert für den sicheren Umgang mit kunstlichen Mineralfasern (KMF) bei Dammarbeiten und Sanierungen.",
   },
 ]
 
 const team = [
   {
     name: "Stefan Masch",
-    role: "Geschaftsfuhrer & Dachdeckermeister",
+    role: "Geschäftsführer & Dachdeckermeister",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&h=400&q=80",
   },
   {
@@ -103,7 +103,7 @@ const team = [
 const milestones = [
   {
     year: "2015",
-    title: "Grundung",
+    title: "Gründung",
     description:
       "St. Masch Dach & Fassade wird als Meisterbetrieb in Berlin gegrundet.",
   },
@@ -123,7 +123,7 @@ const milestones = [
     year: "2022",
     title: "Enphase Partner",
     description:
-      "Zertifizierung als offizieller Enphase Solar Partner fur hochste Qualitat.",
+      "Zertifizierung als offizieller Enphase Solar Partner für höchste Qualität.",
   },
   {
     year: "2024",
@@ -140,12 +140,12 @@ export default function UeberUnsPage() {
     <>
       {/* Hero */}
       <PageHero
-        title="Uber"
+        title="Über"
         highlight="uns"
-        subtitle="Lernen Sie den Meisterbetrieb hinter St. Masch Dach & Fassade kennen. Erfahrung, Leidenschaft und handwerkliche Exzellenz seit der Grundung."
+        subtitle="Lernen Sie den Meisterbetrieb hinter St. Masch Dach & Fassade kennen. Erfahrung, Leidenschaft und handwerkliche Exzellenz seit der Gründung."
         breadcrumbs={[
           { label: "Home", href: "/" },
-          { label: "Uber uns", href: "/ueber-uns" },
+          { label: "Über uns", href: "/ueber-uns" },
         ]}
         image="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1920&q=80"
       />
@@ -171,16 +171,16 @@ export default function UeberUnsPage() {
               </h2>
               <div className="space-y-4 font-body text-base text-brand-dark/70 leading-relaxed">
                 <p>
-                  St. Masch Dach & Fassade ist ein inhabergefuhrter
-                  Meisterbetrieb mit Sitz in Berlin. Seit unserer Grundung
-                  stehen wir fur hochste Qualitat in der Dach- und
+                  St. Masch Dach & Fassade ist ein inhabergeführter
+                  Meisterbetrieb mit Sitz in Berlin. Seit unserer Gründung
+                  stehen wir für höchste Qualität in der Dach- und
                   Fassadentechnik - von der klassischen Dacheindeckung bis zur
                   modernen Solaranlage.
                 </p>
                 <p>
                   Unser Team vereint traditionelles Handwerk mit innovativen
                   Technologien. Als zertifizierter Enphase Solar Partner bieten
-                  wir unseren Kunden ganzheitliche Losungen rund um Dach,
+                  wir unseren Kunden ganzheitliche Lösungen rund um Dach,
                   Fassade und erneuerbare Energien.
                 </p>
                 <p>
@@ -464,7 +464,7 @@ export default function UeberUnsPage() {
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <CTABanner
             title="Lernen Sie uns personlich kennen"
-            subtitle="Wir freuen uns auf Ihr Projekt. Kontaktieren Sie uns fur eine unverbindliche Beratung."
+            subtitle="Wir freuen uns auf Ihr Projekt. Kontaktieren Sie uns für eine unverbindliche Beratung."
             buttonText="Kontakt aufnehmen"
             href="/kontakt"
           />

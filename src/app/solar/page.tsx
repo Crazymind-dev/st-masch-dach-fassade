@@ -34,13 +34,13 @@ const benefits = [
     icon: Zap,
     title: "Stromkosten senken",
     description:
-      "Produzieren Sie Ihren eigenen Strom und reduzieren Sie Ihre Energiekosten um bis zu 80%. Mit steigenden Strompreisen wird die Investition Jahr fur Jahr wertvoller.",
+      "Produzieren Sie Ihren eigenen Strom und reduzieren Sie Ihre Energiekosten um bis zu 80%. Mit steigenden Strompreisen wird die Investition Jahr für Jahr wertvoller.",
   },
   {
     icon: Shield,
-    title: "Unabhangigkeit",
+    title: "Unabhängigkeit",
     description:
-      "Machen Sie sich unabhangig von Energieversorgern und steigenden Strompreisen. Mit einem Batteriespeicher nutzen Sie Ihren Solarstrom auch nachts.",
+      "Machen Sie sich unabhängig von Energieversorgern und steigenden Strompreisen. Mit einem Batteriespeicher nutzen Sie Ihren Solarstrom auch nachts.",
   },
   {
     icon: Leaf,
@@ -55,7 +55,7 @@ const leistungen = [
     icon: Sun,
     title: "PV-Anlagen",
     description:
-      "Massgeschneiderte Photovoltaik-Anlagen fur Ihr Dach - ob Einfamilienhaus, Mehrfamilienhaus oder Gewerbeimmobilie. Wir planen und installieren Anlagen jeder Grosse mit hochwertigen Modulen fuehrender Hersteller.",
+      "Massgeschneiderte Photovoltaik-Anlagen für Ihr Dach - ob Einfamilienhaus, Mehrfamilienhaus oder Gewerbeimmobilie. Wir planen und installieren Anlagen jeder Grosse mit hochwertigen Modulen fuehrender Hersteller.",
   },
   {
     icon: BatteryCharging,
@@ -106,24 +106,24 @@ const steps = [
 
 const faqs = [
   {
-    question: "Lohnt sich eine PV-Anlage fur mich?",
+    question: "Lohnt sich eine PV-Anlage für mich?",
     answer:
-      "In den allermeisten Fallen ja! Dank gesunkener Modulpreise und steigender Stromkosten amortisiert sich eine PV-Anlage heute in 8-12 Jahren. Danach produzieren Sie quasi kostenlosen Strom - und das fur mindestens 25-30 Jahre. Wir berechnen Ihnen die Wirtschaftlichkeit individuell.",
+      "In den allermeisten Fallen ja! Dank gesunkener Modulpreise und steigender Stromkosten amortisiert sich eine PV-Anlage heute in 8-12 Jahren. Danach produzieren Sie quasi kostenlosen Strom - und das für mindestens 25-30 Jahre. Wir berechnen Ihnen die Wirtschaftlichkeit individuell.",
   },
   {
-    question: "Welche Forderungen gibt es fur Solaranlagen?",
+    question: "Welche Förderungen gibt es für Solaranlagen?",
     answer:
-      "Seit 2023 entfallt die Mehrwertsteuer auf PV-Anlagen bis 30 kWp. Zusatzlich erhalten Sie eine Einspeisevergutung fur uberschussigen Strom. Die KfW bietet gunstige Kredite, und einige Bundeslander haben eigene Forderprogramme. Wir beraten Sie umfassend zu allen Fordermoglichkeiten.",
+      "Seit 2023 entfallt die Mehrwertsteuer auf PV-Anlagen bis 30 kWp. Zusatzlich erhalten Sie eine Einspeisevergutung für uberschussigen Strom. Die KfW bietet gunstige Kredite, und einige Bundeslander haben eigene Forderprogramme. Wir beraten Sie umfassend zu allen Fördermöglichkeiten.",
   },
   {
     question: "Wie lange dauert die Installation?",
     answer:
-      "Die reine Montage einer Aufdach-Anlage fur ein Einfamilienhaus dauert in der Regel 1-2 Tage. Die gesamte Projektdauer von der Beratung bis zur Inbetriebnahme betragt typischerweise 4-8 Wochen, abhangig von Genehmigungen und Netzanschluss.",
+      "Die reine Montage einer Aufdach-Anlage für ein Einfamilienhaus dauert in der Regel 1-2 Tage. Die gesamte Projektdauer von der Beratung bis zur Inbetriebnahme betragt typischerweise 4-8 Wochen, abhangig von Genehmigungen und Netzanschluss.",
   },
   {
     question: "Was kostet eine Solaranlage?",
     answer:
-      "Die Kosten hangen von Grosse und Ausstattung ab. Eine typische Anlage fur ein Einfamilienhaus (8-12 kWp) kostet inklusive Montage ca. 12.000-18.000 EUR netto. Mit Speicher kommen ca. 5.000-10.000 EUR hinzu. Durch den Wegfall der MwSt. zahlen Sie den Nettopreis. Gerne erstellen wir Ihnen ein individuelles Angebot.",
+      "Die Kosten hangen von Grosse und Ausstattung ab. Eine typische Anlage für ein Einfamilienhaus (8-12 kWp) kostet inklusive Montage ca. 12.000-18.000 EUR netto. Mit Speicher kommen ca. 5.000-10.000 EUR hinzu. Durch den Wegfall der MwSt. zahlen Sie den Nettopreis. Gerne erstellen wir Ihnen ein individuelles Angebot.",
   },
 ]
 
@@ -392,13 +392,13 @@ export default function SolarPage() {
                 <p className="font-body text-base text-white/60 leading-relaxed mb-4">
                   Als offizieller Enphase Solar Partner setzen wir auf die
                   weltweit fuhrende Mikro-Wechselrichter-Technologie. Enphase
-                  Systeme bieten maximale Sicherheit, hochste Ertrage und eine
+                  Systeme bieten maximale Sicherheit, höchste Ertrage und eine
                   intelligente Uberwachung Ihrer gesamten Anlage - Modul fur
                   Modul.
                 </p>
                 <ul className="space-y-2">
                   {[
-                    "Mikro-Wechselrichter fur maximale Sicherheit",
+                    "Mikro-Wechselrichter für maximale Sicherheit",
                     "Modulweise Uberwachung und Optimierung",
                     "Enphase IQ Batteriespeicher",
                     "25 Jahre Produktgarantie",
@@ -430,7 +430,7 @@ export default function SolarPage() {
             transition={{ duration: 0.6 }}
           >
             <span className="font-heading text-sm font-bold uppercase tracking-widest text-brand-orange mb-3 block">
-              Haufige Fragen
+              Häufige Fragen
             </span>
             <h2 className="font-display text-3xl md:text-4xl font-black text-white">
               FAQ <span className="text-brand-orange">Solar</span>
@@ -459,8 +459,8 @@ export default function SolarPage() {
       <section className="py-24 bg-brand-beige">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <CTABanner
-            title="Bereit fur Ihre Solaranlage?"
-            subtitle="Vereinbaren Sie jetzt eine kostenlose Beratung und starten Sie in Ihre unabhangige Energiezukunft."
+            title="Bereit für Ihre Solaranlage?"
+            subtitle="Vereinbaren Sie jetzt eine kostenlose Beratung und starten Sie in Ihre unabhängige Energiezukunft."
             buttonText="Solar-Beratung anfragen"
             href="/kontakt"
           />
