@@ -80,10 +80,10 @@ export default function AccessibilityWidget() {
 
   return (
     <>
-      {/* Trigger button */}
+      {/* Trigger button - positioned above floating phone on mobile, distinct position to avoid overlap */}
       <motion.button
         onClick={() => setOpen(!open)}
-        className="fixed bottom-24 left-5 z-50 w-12 h-12 md:w-14 md:h-14 rounded-full bg-brand-dark border border-white/20 text-white flex items-center justify-center shadow-lg hover:bg-brand-dark/90 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2"
+        className="fixed bottom-20 md:bottom-24 left-4 sm:left-5 z-50 w-11 h-11 md:w-14 md:h-14 rounded-full bg-brand-dark border border-white/20 text-white flex items-center justify-center shadow-lg hover:bg-brand-dark/90 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         aria-label="Barrierefreiheit-Einstellungen öffnen"
@@ -105,16 +105,16 @@ export default function AccessibilityWidget() {
               onClick={() => setOpen(false)}
             />
 
-            {/* Panel */}
+            {/* Panel - responsive width and position */}
             <motion.div
-              className="fixed bottom-24 left-5 z-50 w-[320px] max-h-[80vh] overflow-y-auto rounded-2xl bg-brand-dark border border-white/15 shadow-2xl"
+              className="fixed bottom-20 md:bottom-24 left-4 sm:left-5 z-50 w-[calc(100vw-2rem)] sm:w-[320px] max-h-[70vh] sm:max-h-[80vh] overflow-y-auto rounded-2xl bg-brand-dark border border-white/15 shadow-2xl"
               initial={{ opacity: 0, y: 20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 20, scale: 0.95 }}
               transition={{ duration: 0.2 }}
             >
               {/* Header */}
-              <div className="flex items-center justify-between p-5 border-b border-white/10">
+              <div className="flex items-center justify-between p-4 sm:p-5 border-b border-white/10">
                 <div className="flex items-center gap-3">
                   <Accessibility className="w-5 h-5 text-brand-orange" />
                   <h3 className="font-heading text-base font-bold text-white">
@@ -123,14 +123,14 @@ export default function AccessibilityWidget() {
                 </div>
                 <button
                   onClick={() => setOpen(false)}
-                  className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/20 transition-colors"
+                  className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/20 transition-colors min-w-[36px] min-h-[36px]"
                   aria-label="Schließen"
                 >
                   <X className="w-4 h-4" />
                 </button>
               </div>
 
-              <div className="p-5 space-y-5">
+              <div className="p-4 sm:p-5 space-y-4 sm:space-y-5">
                 {/* Font size */}
                 <div>
                   <label className="font-heading text-xs font-semibold text-white/70 uppercase tracking-wider mb-3 block">
@@ -140,7 +140,7 @@ export default function AccessibilityWidget() {
                     <button
                       onClick={() => cycleFontSize("down")}
                       disabled={fontSize === "normal"}
-                      className="w-10 h-10 rounded-xl bg-white/10 text-white flex items-center justify-center hover:bg-white/20 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                      className="w-11 h-11 rounded-xl bg-white/10 text-white flex items-center justify-center hover:bg-white/20 disabled:opacity-30 disabled:cursor-not-allowed transition-colors min-w-[44px] min-h-[44px]"
                       aria-label="Schrift verkleinern"
                     >
                       <Minus className="w-4 h-4" />
@@ -153,7 +153,7 @@ export default function AccessibilityWidget() {
                     <button
                       onClick={() => cycleFontSize("up")}
                       disabled={fontSize === "xlarge"}
-                      className="w-10 h-10 rounded-xl bg-white/10 text-white flex items-center justify-center hover:bg-white/20 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                      className="w-11 h-11 rounded-xl bg-white/10 text-white flex items-center justify-center hover:bg-white/20 disabled:opacity-30 disabled:cursor-not-allowed transition-colors min-w-[44px] min-h-[44px]"
                       aria-label="Schrift vergrößern"
                     >
                       <Plus className="w-4 h-4" />
@@ -213,12 +213,12 @@ function ToggleRow({
   return (
     <button
       onClick={onToggle}
-      className="w-full flex items-center gap-3 p-3 rounded-xl bg-white/[0.05] hover:bg-white/10 transition-colors group"
+      className="w-full flex items-center gap-3 p-3 rounded-xl bg-white/[0.05] hover:bg-white/10 transition-colors group min-h-[48px]"
       role="switch"
       aria-checked={active}
     >
       <div
-        className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
+        className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors flex-shrink-0 ${
           active
             ? "bg-brand-orange text-white"
             : "bg-white/10 text-white/60 group-hover:text-white"
@@ -230,7 +230,7 @@ function ToggleRow({
         {label}
       </span>
       <div
-        className={`w-11 h-6 rounded-full relative transition-colors ${
+        className={`w-11 h-6 rounded-full relative transition-colors flex-shrink-0 ${
           active ? "bg-brand-orange" : "bg-white/20"
         }`}
       >

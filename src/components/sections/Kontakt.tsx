@@ -35,7 +35,7 @@ export default function Kontakt() {
   const inView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
-    <section id="kontakt" className="relative py-24 md:py-32 bg-brand-dark overflow-hidden">
+    <section id="kontakt" className="relative py-16 md:py-32 bg-brand-dark overflow-hidden">
       {/* Shader background */}
       <GradientBackground
         colors={[
@@ -48,48 +48,48 @@ export default function Kontakt() {
       />
 
       <div
-        className="max-w-6xl mx-auto px-6 md:px-12 relative z-10"
+        className="max-w-6xl mx-auto px-4 sm:px-6 md:px-12 relative z-10"
         ref={ref}
       >
         {/* Header */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
           <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="w-10 h-[2px] bg-brand-orange" />
+            <div className="w-8 md:w-10 h-[2px] bg-brand-orange" />
             <span className="font-heading text-xs font-bold uppercase tracking-[3px] text-brand-orange">
               Kontakt
             </span>
-            <div className="w-10 h-[2px] bg-brand-orange" />
+            <div className="w-8 md:w-10 h-[2px] bg-brand-orange" />
           </div>
-          <h2 className="font-display text-3xl md:text-5xl font-black text-white leading-tight">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-black text-white leading-tight">
             Jetzt <span className="text-brand-orange">Angebot</span> anfragen
           </h2>
-          <p className="font-body text-gray-400 mt-4 max-w-2xl mx-auto text-lg font-light leading-relaxed">
+          <p className="font-body text-gray-400 mt-3 md:mt-4 max-w-2xl mx-auto text-base md:text-lg font-light leading-relaxed">
             Kontaktieren Sie uns für eine kostenlose Beratung. Wir melden uns innerhalb von 24 Stunden bei Ihnen.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Left: Contact info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="space-y-6 mb-10">
+            <div className="space-y-5 sm:space-y-6 mb-8 md:mb-10">
               {contactInfo.map((item, i) => (
                 <motion.div
                   key={item.label}
-                  className="flex gap-4 items-start"
+                  className="flex gap-3 sm:gap-4 items-start"
                   initial={{ opacity: 0, y: 20 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
                 >
-                  <div className="w-11 h-11 rounded-xl bg-brand-orange/15 flex items-center justify-center text-brand-orange flex-shrink-0">
+                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-brand-orange/15 flex items-center justify-center text-brand-orange flex-shrink-0">
                     {item.icon}
                   </div>
                   <div>
@@ -99,7 +99,7 @@ export default function Kontakt() {
                     {item.href ? (
                       <a
                         href={item.href}
-                        className="font-body text-base text-white no-underline hover:text-brand-orange transition-colors"
+                        className="font-body text-base text-white no-underline hover:text-brand-orange transition-colors min-h-[44px] inline-flex items-center"
                       >
                         {item.value}
                       </a>
@@ -114,7 +114,7 @@ export default function Kontakt() {
             </div>
 
             {/* Map placeholder */}
-            <div className="rounded-2xl overflow-hidden h-[200px] bg-white/5 border border-white/10 flex items-center justify-center">
+            <div className="rounded-2xl overflow-hidden h-[180px] sm:h-[200px] bg-white/5 border border-white/10 flex items-center justify-center">
               <span className="font-heading text-sm text-gray-500">
                 Berlin & Brandenburg
               </span>
@@ -127,8 +127,8 @@ export default function Kontakt() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <form className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 space-y-5">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <form className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-5 sm:p-6 md:p-8 space-y-4 sm:space-y-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                 <div>
                   <label className="font-heading text-xs font-bold uppercase tracking-wider text-gray-400 mb-2 block">
                     Name *
@@ -136,7 +136,7 @@ export default function Kontakt() {
                   <input
                     type="text"
                     placeholder="Ihr Name"
-                    className="w-full px-4 py-3 bg-white/5 border border-white/15 rounded-xl text-white font-body text-sm placeholder:text-gray-600 focus:outline-none focus:border-brand-orange transition-colors"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/15 rounded-xl text-white font-body text-sm placeholder:text-gray-600 focus:outline-none focus:border-brand-orange transition-colors min-h-[44px]"
                   />
                 </div>
                 <div>
@@ -146,12 +146,12 @@ export default function Kontakt() {
                   <input
                     type="email"
                     placeholder="Ihre E-Mail"
-                    className="w-full px-4 py-3 bg-white/5 border border-white/15 rounded-xl text-white font-body text-sm placeholder:text-gray-600 focus:outline-none focus:border-brand-orange transition-colors"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/15 rounded-xl text-white font-body text-sm placeholder:text-gray-600 focus:outline-none focus:border-brand-orange transition-colors min-h-[44px]"
                   />
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                 <div>
                   <label className="font-heading text-xs font-bold uppercase tracking-wider text-gray-400 mb-2 block">
                     Telefon
@@ -159,14 +159,14 @@ export default function Kontakt() {
                   <input
                     type="tel"
                     placeholder="Ihre Telefonnummer"
-                    className="w-full px-4 py-3 bg-white/5 border border-white/15 rounded-xl text-white font-body text-sm placeholder:text-gray-600 focus:outline-none focus:border-brand-orange transition-colors"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/15 rounded-xl text-white font-body text-sm placeholder:text-gray-600 focus:outline-none focus:border-brand-orange transition-colors min-h-[44px]"
                   />
                 </div>
                 <div>
                   <label className="font-heading text-xs font-bold uppercase tracking-wider text-gray-400 mb-2 block">
                     Leistung
                   </label>
-                  <select className="w-full px-4 py-3 bg-white/5 border border-white/15 rounded-xl text-white font-body text-sm focus:outline-none focus:border-brand-orange transition-colors appearance-none cursor-pointer">
+                  <select className="w-full px-4 py-3 bg-white/5 border border-white/15 rounded-xl text-white font-body text-sm focus:outline-none focus:border-brand-orange transition-colors appearance-none cursor-pointer min-h-[44px]">
                     <option value="" className="bg-brand-dark">Bitte wählen</option>
                     <option value="steildach" className="bg-brand-dark">Steildach</option>
                     <option value="flachdach" className="bg-brand-dark">Flachdach</option>
@@ -183,7 +183,7 @@ export default function Kontakt() {
                   Nachricht
                 </label>
                 <textarea
-                  rows={5}
+                  rows={4}
                   placeholder="Beschreiben Sie Ihr Anliegen..."
                   className="w-full px-4 py-3 bg-white/5 border border-white/15 rounded-xl text-white font-body text-sm placeholder:text-gray-600 focus:outline-none focus:border-brand-orange transition-colors resize-none"
                 />
@@ -191,7 +191,7 @@ export default function Kontakt() {
 
               <button
                 type="submit"
-                className="w-full py-4 bg-brand-orange text-white rounded-full font-heading text-sm font-bold uppercase tracking-wider cursor-pointer border-none shadow-[0_4px_24px_rgba(255,91,1,0.3)] hover:bg-brand-orange-dark hover:shadow-[0_8px_32px_rgba(255,91,1,0.4)] transition-all"
+                className="w-full py-3.5 sm:py-4 bg-brand-orange text-white rounded-full font-heading text-sm font-bold uppercase tracking-wider cursor-pointer border-none shadow-[0_4px_24px_rgba(255,91,1,0.3)] hover:bg-brand-orange-dark hover:shadow-[0_8px_32px_rgba(255,91,1,0.4)] transition-all min-h-[48px]"
               >
                 Nachricht senden
               </button>

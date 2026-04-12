@@ -50,7 +50,7 @@ export default function StatsBanner() {
   const inView = useInView(ref, { once: true, margin: "-50px" })
 
   return (
-    <section className="relative py-20 md:py-24 overflow-hidden">
+    <section className="relative py-14 sm:py-20 md:py-24 overflow-hidden">
       {/* Shader background */}
       <GradientBackground
         colors={[
@@ -72,10 +72,10 @@ export default function StatsBanner() {
       />
 
       <div
-        className="max-w-6xl mx-auto px-6 md:px-12 relative z-[2]"
+        className="max-w-6xl mx-auto px-4 sm:px-6 md:px-12 relative z-[2]"
         ref={ref}
       >
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8 md:gap-12">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
@@ -84,14 +84,14 @@ export default function StatsBanner() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
-              <div className="font-display text-4xl md:text-5xl lg:text-6xl font-black text-white leading-none mb-2">
+              <div className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-none mb-1 sm:mb-2">
                 <AnimatedNumber
                   value={stat.value}
                   suffix={stat.suffix}
                   inView={inView}
                 />
               </div>
-              <div className="font-heading text-sm md:text-base text-white/80 font-medium uppercase tracking-wider">
+              <div className="font-heading text-xs sm:text-sm md:text-base text-white/80 font-medium uppercase tracking-wider">
                 {stat.label}
               </div>
             </motion.div>

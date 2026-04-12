@@ -14,7 +14,7 @@ interface PageHeroProps {
 
 export default function PageHero({ title, highlight, subtitle, breadcrumbs, image }: PageHeroProps) {
   return (
-    <section className="relative min-h-[400px] flex items-center overflow-hidden bg-brand-dark">
+    <section className="relative min-h-[300px] sm:min-h-[350px] md:min-h-[400px] flex items-center overflow-hidden bg-brand-dark">
       {/* Background Image */}
       {image && (
         <div className="absolute inset-0 z-0">
@@ -26,23 +26,23 @@ export default function PageHero({ title, highlight, subtitle, breadcrumbs, imag
       {/* Orange accent bar */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-orange via-brand-orange-dark to-transparent z-10" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-32 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-12 py-24 pt-28 md:py-32 w-full">
         {/* Breadcrumbs */}
         <motion.nav
-          className="flex items-center gap-2 mb-6"
+          className="flex items-center gap-1.5 sm:gap-2 mb-4 sm:mb-6 flex-wrap"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
           {breadcrumbs.map((crumb, i) => (
-            <span key={crumb.href} className="flex items-center gap-2">
-              {i > 0 && <ChevronRight className="w-3.5 h-3.5 text-white/30" />}
+            <span key={crumb.href} className="flex items-center gap-1.5 sm:gap-2">
+              {i > 0 && <ChevronRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white/30" />}
               {i < breadcrumbs.length - 1 ? (
-                <Link href={crumb.href} className="font-body text-sm text-white/50 no-underline hover:text-brand-orange transition-colors">
+                <Link href={crumb.href} className="font-body text-xs sm:text-sm text-white/50 no-underline hover:text-brand-orange transition-colors min-h-[44px] inline-flex items-center">
                   {crumb.label}
                 </Link>
               ) : (
-                <span className="font-body text-sm text-brand-orange">{crumb.label}</span>
+                <span className="font-body text-xs sm:text-sm text-brand-orange min-h-[44px] inline-flex items-center">{crumb.label}</span>
               )}
             </span>
           ))}
@@ -50,7 +50,7 @@ export default function PageHero({ title, highlight, subtitle, breadcrumbs, imag
 
         {/* Title */}
         <motion.h1
-          className="font-display text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-4"
+          className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-3 sm:mb-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
@@ -59,7 +59,7 @@ export default function PageHero({ title, highlight, subtitle, breadcrumbs, imag
         </motion.h1>
 
         <motion.p
-          className="font-body text-lg font-light text-white/60 max-w-xl leading-relaxed"
+          className="font-body text-base sm:text-lg font-light text-white/60 max-w-xl leading-relaxed"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}

@@ -7,8 +7,8 @@ import FloatingPhone from "@/components/ui/floating-phone";
 
 export const metadata: Metadata = {
   title: {
-    default: "St. Masch | Dach & Fassade | Meisterbetrieb Berlin",
-    template: "%s | St. Masch Dach & Fassade",
+    default: "St. Masch | Dach, Fassade & Solar | Meisterbetrieb Berlin",
+    template: "%s | St. Masch Dach, Fassade & Solar",
   },
   description:
     "Dachdecker-Meisterbetrieb in Berlin. Dachsanierung, Flachdach, Fassade, Photovoltaik — alles aus einer Hand. Ihr Partner für nachhaltige Gebäudelösungen in Berlin und Brandenburg.",
@@ -22,6 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de" className="h-full antialiased">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+      </head>
       <body className="min-h-full flex flex-col">
         <Navbar />
         <main className="flex-1">{children}</main>

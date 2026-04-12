@@ -20,9 +20,9 @@ export default function FloatingPhone() {
       animate={{ scale: 1 }}
       transition={{ type: "spring", delay: 1, stiffness: 200 }}
     >
-      {/* Expandable text label */}
+      {/* Expandable text label - hidden on mobile to save space */}
       <motion.div
-        className="overflow-hidden flex items-center"
+        className="overflow-hidden items-center hidden md:flex"
         initial={false}
         animate={{
           width: hovered ? "auto" : 0,

@@ -69,32 +69,32 @@ export default function Leistungen() {
   const inView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
-    <section id="leistungen" className="py-24 md:py-32 bg-white">
-      <div className="max-w-7xl mx-auto px-6 md:px-12" ref={ref}>
+    <section id="leistungen" className="py-16 md:py-32 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12" ref={ref}>
         {/* Header */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
           <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="w-10 h-[2px] bg-brand-orange" />
+            <div className="w-8 md:w-10 h-[2px] bg-brand-orange" />
             <span className="font-heading text-xs font-bold uppercase tracking-[3px] text-brand-orange">
               Unsere Leistungen
             </span>
-            <div className="w-10 h-[2px] bg-brand-orange" />
+            <div className="w-8 md:w-10 h-[2px] bg-brand-orange" />
           </div>
-          <h2 className="font-display text-3xl md:text-5xl font-black text-brand-dark leading-tight">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-black text-brand-dark leading-tight">
             Kompetenz in jedem <span className="text-brand-orange">Detail</span>
           </h2>
-          <p className="font-body text-gray-500 mt-4 max-w-2xl mx-auto text-lg font-light leading-relaxed">
+          <p className="font-body text-gray-500 mt-3 md:mt-4 max-w-2xl mx-auto text-base md:text-lg font-light leading-relaxed">
             Von der klassischen Dachsanierung bis zur modernen Fassadengestaltung — wir bieten das volle Spektrum.
           </p>
         </motion.div>
 
-        {/* Grid with AnimatedCard design */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {/* Grid: 1 col mobile, 2 col tablet, 3 col desktop */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {services.map((service, i) => (
             <motion.div
               key={service.title}
@@ -104,10 +104,10 @@ export default function Leistungen() {
             >
               <Link href={service.href} className="block no-underline">
                 <AnimatedCard className="h-full hover:-translate-y-2 transition-transform duration-300">
-                  <CardBody className="p-7">
+                  <CardBody className="p-5 sm:p-7">
                     {/* Icon + Title */}
-                    <div className="flex items-center gap-4 mb-3">
-                      <div className="w-12 h-12 rounded-xl bg-brand-orange/[0.08] flex items-center justify-center text-brand-orange group-hover/animated-card:bg-brand-orange group-hover/animated-card:text-white transition-all duration-300 flex-shrink-0">
+                    <div className="flex items-center gap-3 sm:gap-4 mb-3">
+                      <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-brand-orange/[0.08] flex items-center justify-center text-brand-orange group-hover/animated-card:bg-brand-orange group-hover/animated-card:text-white transition-all duration-300 flex-shrink-0">
                         {service.icon}
                       </div>
                       <CardTitle className="group-hover/animated-card:text-brand-orange transition-colors">
@@ -116,12 +116,12 @@ export default function Leistungen() {
                     </div>
 
                     {/* Description */}
-                    <CardDescription className="mb-5">
+                    <CardDescription className="mb-4 sm:mb-5">
                       {service.description}
                     </CardDescription>
 
                     {/* Tags */}
-                    <div className="flex flex-wrap gap-1.5 mb-4">
+                    <div className="flex flex-wrap gap-1.5 mb-3 sm:mb-4">
                       {service.tags.map((tag) => (
                         <span
                           key={tag}

@@ -93,8 +93,8 @@ export function Testimonials() {
   const currentTestimonial = testimonials[activeIndex]
 
   return (
-    <section className="py-24 bg-brand-beige">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+    <section className="py-16 md:py-24 bg-brand-beige">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
         {/* Section Header */}
         <motion.div
           className="text-center mb-4"
@@ -110,7 +110,7 @@ export function Testimonials() {
             </span>
             <div className="w-10 h-[2px] bg-brand-orange" />
           </div>
-          <h2 className="font-display text-4xl md:text-5xl font-black text-brand-dark leading-tight">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-black text-brand-dark leading-tight">
             Was unsere Kunden <span className="text-brand-orange">sagen</span>
           </h2>
         </motion.div>
@@ -118,14 +118,13 @@ export function Testimonials() {
         {/* Testimonial Card */}
         <div
           ref={containerRef}
-          className="relative w-full max-w-2xl mx-auto py-16 px-8 md:px-12"
-          style={{ cursor: "none" }}
+          className="relative w-full max-w-2xl mx-auto py-10 sm:py-16 px-4 sm:px-8 md:px-12 cursor-pointer md:cursor-none"
           onMouseMove={handleMouseMove}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           onClick={handleNext}
         >
-          {/* Custom cursor */}
+          {/* Custom cursor - hidden on touch/mobile devices */}
           <motion.div
             className="pointer-events-none absolute z-50 mix-blend-difference hidden md:block"
             style={{
@@ -156,13 +155,13 @@ export function Testimonials() {
 
           {/* Index indicator */}
           <motion.div
-            className="absolute top-4 right-8 flex items-baseline gap-1 font-body text-xs"
+            className="absolute top-2 sm:top-4 right-4 sm:right-8 flex items-baseline gap-1 font-body text-xs"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
             <motion.span
-              className="text-2xl font-light text-brand-dark font-display"
+              className="text-xl sm:text-2xl font-light text-brand-dark font-display"
               key={activeIndex}
               initial={{ y: 10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -174,32 +173,37 @@ export function Testimonials() {
             <span className="text-gray-400">{String(testimonials.length).padStart(2, "0")}</span>
           </motion.div>
 
-          {/* Initials dots */}
+          {/* Initials dots - scrollable on small screens */}
           <motion.div
-            className="absolute top-4 left-8 flex gap-2"
+            className="absolute top-2 sm:top-4 left-4 sm:left-8 flex gap-1.5 sm:gap-2 overflow-x-auto max-w-[60%]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
           >
             {testimonials.map((t, i) => (
-              <motion.div
+              <motion.button
                 key={i}
-                className={`w-8 h-8 rounded-full flex items-center justify-center font-heading text-[10px] font-bold transition-all duration-300 ${
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setActiveIndex(i)
+                }}
+                className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-heading text-[9px] sm:text-[10px] font-bold transition-all duration-300 flex-shrink-0 border-none cursor-pointer min-w-[28px] min-h-[28px] ${
                   i === activeIndex
                     ? "bg-brand-orange text-white scale-110"
                     : "bg-gray-200 text-gray-400"
                 }`}
                 whileHover={{ scale: 1.1 }}
+                aria-label={`Bewertung von ${t.author}`}
               >
                 {t.initials}
-              </motion.div>
+              </motion.button>
             ))}
           </motion.div>
 
           {/* Quote */}
-          <div className="relative mt-8">
+          <div className="relative mt-10 sm:mt-8">
             {/* Quote mark */}
-            <div className="absolute -top-8 -left-4 text-brand-orange/10 font-display text-[120px] leading-none select-none">
+            <div className="absolute -top-6 sm:-top-8 -left-2 sm:-left-4 text-brand-orange/10 font-display text-[80px] sm:text-[120px] leading-none select-none">
               &ldquo;
             </div>
 
@@ -209,27 +213,27 @@ export function Testimonials() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0, transition: { duration: 0.2 } }}
-                className="text-xl md:text-2xl font-body font-light leading-relaxed tracking-tight text-brand-dark relative z-10"
+                className="text-lg sm:text-xl md:text-2xl font-body font-light leading-relaxed tracking-tight text-brand-dark relative z-10"
               >
                 <SplitText text={currentTestimonial.quote} />
               </motion.blockquote>
             </AnimatePresence>
 
             {/* Author */}
-            <motion.div className="mt-10 relative" layout>
-              <div className="flex items-center gap-4">
+            <motion.div className="mt-8 sm:mt-10 relative" layout>
+              <div className="flex items-center gap-3 sm:gap-4">
                 {/* Initials circle */}
                 <div className="relative">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={activeIndex}
-                      className="w-14 h-14 rounded-full bg-brand-orange/10 border-2 border-brand-orange/20 flex items-center justify-center"
+                      className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-brand-orange/10 border-2 border-brand-orange/20 flex items-center justify-center"
                       initial={{ scale: 0.8, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
                       exit={{ scale: 0.8, opacity: 0 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <span className="font-heading text-lg font-bold text-brand-orange">
+                      <span className="font-heading text-base sm:text-lg font-bold text-brand-orange">
                         {currentTestimonial.initials}
                       </span>
                     </motion.div>
@@ -240,7 +244,7 @@ export function Testimonials() {
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeIndex}
-                    className="relative pl-4"
+                    className="relative pl-3 sm:pl-4"
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 10 }}
@@ -256,7 +260,7 @@ export function Testimonials() {
                     <span className="block text-sm font-heading font-bold text-brand-dark tracking-wide">
                       {currentTestimonial.author}
                     </span>
-                    <span className="block text-xs text-gray-500 mt-0.5 font-body uppercase tracking-widest">
+                    <span className="block text-[11px] sm:text-xs text-gray-500 mt-0.5 font-body uppercase tracking-widest">
                       {currentTestimonial.role} — {currentTestimonial.company}
                     </span>
                   </motion.div>
@@ -265,7 +269,7 @@ export function Testimonials() {
             </motion.div>
 
             {/* Progress bar */}
-            <div className="mt-12 h-[2px] bg-gray-200 relative overflow-hidden rounded-full">
+            <div className="mt-8 sm:mt-12 h-[2px] bg-gray-200 relative overflow-hidden rounded-full">
               <motion.div
                 className="absolute inset-y-0 left-0 bg-brand-orange rounded-full"
                 initial={{ width: "0%" }}
@@ -277,7 +281,7 @@ export function Testimonials() {
 
           {/* Mobile hint */}
           <motion.div
-            className="absolute bottom-4 left-8 flex items-center gap-2 md:hidden"
+            className="absolute bottom-2 sm:bottom-4 left-4 sm:left-8 flex items-center gap-2 md:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.4 }}
           >

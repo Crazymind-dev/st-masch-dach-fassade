@@ -51,9 +51,9 @@ function AccordionItem({
     >
       <button
         onClick={onClick}
-        className="w-full flex items-center justify-between py-5 text-left cursor-pointer bg-transparent border-none"
+        className="w-full flex items-center justify-between py-4 sm:py-5 text-left cursor-pointer bg-transparent border-none min-h-[44px]"
       >
-        <span className="font-heading text-base md:text-lg font-bold text-brand-dark pr-4">
+        <span className="font-heading text-[15px] sm:text-base md:text-lg font-bold text-brand-dark pr-4">
           {question}
         </span>
         <motion.div
@@ -89,9 +89,9 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   return (
-    <section id="faq" className="py-24 md:py-32 bg-brand-beige">
-      <div className="max-w-6xl mx-auto px-6 md:px-12" ref={ref}>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+    <section id="faq" className="py-16 md:py-32 bg-brand-beige">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-12" ref={ref}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
           {/* Left: Title */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -99,15 +99,15 @@ export default function FAQ() {
             transition={{ duration: 0.6 }}
           >
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-[2px] bg-brand-orange" />
+              <div className="w-8 md:w-10 h-[2px] bg-brand-orange" />
               <span className="font-heading text-xs font-bold uppercase tracking-[3px] text-brand-orange">
                 FAQ
               </span>
             </div>
-            <h2 className="font-display text-3xl md:text-4xl font-black text-brand-dark leading-tight mb-6">
+            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-black text-brand-dark leading-tight mb-4 md:mb-6">
               Häufig gestellte <span className="text-brand-orange">Fragen</span>
             </h2>
-            <p className="font-body text-gray-500 text-lg font-light leading-relaxed">
+            <p className="font-body text-gray-500 text-base md:text-lg font-light leading-relaxed">
               Hier finden Sie Antworten auf die häufigsten Fragen rund um
               Dachsanierung, Photovoltaik und unsere Leistungen. Für weitere
               Informationen stehen wir Ihnen gerne persönlich zur Verfügung.
@@ -115,7 +115,7 @@ export default function FAQ() {
           </motion.div>
 
           {/* Right: Accordion */}
-          <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm">
+          <div className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 shadow-sm">
             {faqs.map((faq, i) => (
               <AccordionItem
                 key={i}
