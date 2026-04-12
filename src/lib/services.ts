@@ -20,7 +20,7 @@ export const services: ServiceDetail[] = [
     description: "Neueindeckung, Sanierung und Reparatur von Steildächern mit hochwertigen Materialien.",
     longDescription:
       "Ob Neueindeckung, Komplettsanierung oder gezielte Reparatur — unser Meisterbetrieb bietet Ihnen die volle Bandbreite an Steildach-Leistungen. Wir arbeiten mit erstklassigen Materialien und garantieren handwerkliche Perfektion für ein Dach, das Jahrzehnte hält.",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1632759145351-1d592919f522?w=1200&q=80",
     icon: "home",
     tags: ["Tondachziegel", "Schiefer", "Betondachsteine", "Bitumenschindeln"],
     features: [
@@ -117,7 +117,7 @@ export const services: ServiceDetail[] = [
     description: "Titanzink-Bedachungen und Metallverkleidungen — langlebig und wartungsarm.",
     longDescription:
       "Metalldächer und Titanzink-Verkleidungen stehen für Langlebigkeit, Ästhetik und Nachhaltigkeit. Wir verarbeiten Titanzink, Kupfer und Aluminium in Stehfalz-, Winkelfalz- und Doppelstehfalztechnik.",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=1200&q=80",
     icon: "square",
     tags: ["Titanzink", "Stehfalz", "Kupfer", "Aluminium"],
     features: [

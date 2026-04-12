@@ -1,22 +1,25 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Home, Layers, Leaf, Building2, CircleDot, Wrench } from "lucide-react"
 import Link from "next/link"
 import PageHero from "@/components/ui/PageHero"
 import CTABanner from "@/components/ui/CTABanner"
 import { services } from "@/lib/services"
+import {
+  AnimatedCard,
+  CardBody,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/animated-card"
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.12 },
-  },
-}
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
+const iconMap: Record<string, React.ReactNode> = {
+  steildach: <Home className="w-6 h-6" />,
+  flachdach: <Layers className="w-6 h-6" />,
+  gruendach: <Leaf className="w-6 h-6" />,
+  fassade: <Building2 className="w-6 h-6" />,
+  metalldach: <CircleDot className="w-6 h-6" />,
+  dachservice: <Wrench className="w-6 h-6" />,
 }
 
 export default function LeistungenPage() {
@@ -50,60 +53,51 @@ export default function LeistungenPage() {
             </h2>
           </motion.div>
 
-          <motion.div
-            className="grid grid-cols-1 lg:grid-cols-2 gap-8"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-          >
-            {services.map((service) => (
-              <motion.div key={service.slug} variants={cardVariants}>
-                <Link
-                  href={`/leistungen/${service.slug}`}
-                  className="group block bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 no-underline"
-                >
-                  {/* Card Image */}
-                  <div className="relative h-56 overflow-hidden">
-                    <img
-                      src={service.image}
-                      alt={service.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                    <h3 className="absolute bottom-4 left-5 font-display text-2xl font-bold text-white">
-                      {service.title}
-                    </h3>
-                  </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {services.map((service, i) => (
+              <motion.div
+                key={service.slug}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+              >
+                <Link href={`/leistungen/${service.slug}`} className="block no-underline">
+                  <AnimatedCard className="h-full hover:-translate-y-2 transition-transform duration-300">
+                    <CardBody className="p-7">
+                      <div className="flex items-center gap-4 mb-3">
+                        <div className="w-12 h-12 rounded-xl bg-brand-orange/[0.08] flex items-center justify-center text-brand-orange group-hover/animated-card:bg-brand-orange group-hover/animated-card:text-white transition-all duration-300 flex-shrink-0">
+                          {iconMap[service.slug] || <Home className="w-6 h-6" />}
+                        </div>
+                        <CardTitle className="group-hover/animated-card:text-brand-orange transition-colors">
+                          {service.title}
+                        </CardTitle>
+                      </div>
 
-                  {/* Card Body */}
-                  <div className="p-6">
-                    <p className="font-body text-sm text-brand-dark/70 leading-relaxed mb-4">
-                      {service.description}
-                    </p>
+                      <CardDescription className="mb-5">
+                        {service.description}
+                      </CardDescription>
 
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-2 mb-5">
-                      {service.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="inline-block px-3 py-1 text-xs font-heading font-semibold uppercase tracking-wide rounded-full bg-brand-orange/10 text-brand-orange-dark"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+                      <div className="flex flex-wrap gap-1.5 mb-4">
+                        {service.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="px-2.5 py-1 bg-gray-50 border border-gray-100 text-gray-500 font-heading text-[10px] font-semibold rounded-lg uppercase tracking-wide"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
 
-                    {/* Link */}
-                    <span className="inline-flex items-center gap-2 font-heading text-sm font-bold text-brand-orange group-hover:gap-3 transition-all">
-                      Mehr erfahren
-                      <ArrowRight className="w-4 h-4" />
-                    </span>
-                  </div>
+                      <div className="flex items-center gap-1.5 text-brand-orange font-heading text-xs font-bold uppercase tracking-wide opacity-0 group-hover/animated-card:opacity-100 translate-y-2 group-hover/animated-card:translate-y-0 transition-all duration-300">
+                        Mehr erfahren <ArrowRight className="w-3.5 h-3.5" />
+                      </div>
+                    </CardBody>
+                  </AnimatedCard>
                 </Link>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
