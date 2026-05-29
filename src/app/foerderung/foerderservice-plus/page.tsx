@@ -57,9 +57,10 @@ const eur = (n: number) =>
   }).format(n)
 
 type FoerderResult = {
-  zuschuss: number // € Zuschuss, der ausgezahlt wird
+  zuschuss: number // € Förderung brutto (ausgezahlter Zuschuss)
   eigenanteil: number // € die nach Abzug des Zuschusses bleiben
   foerderfaehig: number // € Kosten, die zählen (nach Deckelung)
+  cap: number // € max. Fördersumme = Wohneinheiten × Deckel
   capped: boolean // true, wenn die Kosten über dem Deckel liegen
 }
 
@@ -68,20 +69,29 @@ type FoerderResult = {
  *   ohne iSFP: 15 % auf max. 30.000 € förderfähige Kosten  → max.  4.500 €
  *   mit  iSFP: 20 % auf max. 60.000 € förderfähige Kosten  → max. 12.000 €
  *
- * Die zentrale Entscheidung steckt in der DECKELUNG:
- *   Nicht der Zuschuss wird gedeckelt, sondern die FÖRDERFÄHIGEN KOSTEN
- *   (30.000 € bzw. 60.000 €). Liegen `kosten` darüber, zählt nur der Deckel —
- *   der Zuschuss steigt also nicht weiter. `capped` ist dann `true`, damit die
- *   UI einen Hinweis anzeigen kann.
+ * Die DECKELUNG begrenzt die förderfähigen Kosten, nicht den Prozentsatz:
+ *   30.000 € je Wohneinheit (ohne iSFP) bzw. 60.000 € je Wohneinheit (mit iSFP),
+ *   jeweils pro Jahr. Die max. Fördersumme skaliert also mit der Anzahl der
+ *   Wohneinheiten (BAFA BEG EM, Stand 2026).
  */
-function computeFoerderung(kosten: number, withISFP: boolean): FoerderResult {
+function computeFoerderung(
+  kosten: number,
+  withISFP: boolean,
+  units: number
+): FoerderResult {
   const rate = withISFP ? 0.2 : 0.15
-  const cap = withISFP ? 60000 : 30000
+  const cap = (withISFP ? 60000 : 30000) * Math.max(units, 1)
   const foerderfaehig = Math.min(kosten, cap)
   const zuschuss = Math.round(foerderfaehig * rate)
   const eigenanteil = Math.max(kosten - zuschuss, 0)
-  return { zuschuss, eigenanteil, foerderfaehig, capped: kosten > cap }
+  return { zuschuss, eigenanteil, foerderfaehig, cap, capped: kosten > cap }
 }
+
+const MASSNAHMEN: { gruppe: string; items: string[] }[] = [
+  { gruppe: "Oben", items: ["Dach", "Gauben", "Dachfenster", "Oberste Geschossdecke"] },
+  { gruppe: "Seitlich", items: ["Fassade", "Fenster", "Haustür"] },
+  { gruppe: "Unten", items: ["Kellerdecke", "Kellerwände"] },
+]
 
 type SteuerResult = {
   gesamt: number // gesamte Steuerersparnis über 3 Jahre
@@ -775,35 +785,49 @@ export default function FoerderServicePlusPage() {
 
 function FoerderRechner() {
   const [kosten, setKosten] = useState(30000)
+  const [units, setUnits] = useState(1)
+  const [selected, setSelected] = useState<Record<string, boolean>>({
+    Dach: true,
+    Gauben: true,
+    Dachfenster: true,
+  })
 
-  const ohne = computeFoerderung(kosten, false)
-  const mit = computeFoerderung(kosten, true)
+  const toggle = (m: string) =>
+    setSelected((s) => ({ ...s, [m]: !s[m] }))
+  const chosen = MASSNAHMEN.flatMap((g) => g.items).filter((m) => selected[m])
+
+  const ohne = computeFoerderung(kosten, false, units)
+  const mit = computeFoerderung(kosten, true, units)
   const steuer = computeSteuerbonus(kosten)
 
-  const clamp = (n: number) => Math.min(Math.max(n, 0), 250000)
+  const clamp = (n: number) => Math.min(Math.max(n, 0), 1000000)
 
-  // Empfehlung: bis 60.000 € sind BAFA-mit-iSFP und § 35c rechnerisch gleich
-  // (beide 20 %) — dann gewinnt der Zuschuss (Bargeld sofort, auch für
-  // Vermieter/WEG, unabhängig von der Steuerlast). Erst über 60.000 € zieht
-  // der Steuerbonus davon, weil sein Deckel bei 200.000 € statt 60.000 € liegt.
+  // Empfehlung: rein numerischer Vergleich BAFA-mit-iSFP vs. § 35c.
+  // Bei Gleichstand gewinnt der Zuschuss (Bargeld sofort, auch für
+  // Vermieter/WEG, unabhängig von der Steuerlast).
   const empfehlung =
     kosten <= 0
       ? null
-      : kosten > 60000
+      : steuer.gesamt > mit.zuschuss
         ? {
             titel: "§ 35c lohnt sich hier rechnerisch am meisten",
             text: `Bei ${eur(kosten)} bringt der Steuerbonus bis zu ${eur(
               steuer.gesamt
             )} — rund ${eur(
-              Math.max(steuer.gesamt - mit.zuschuss, 0)
+              steuer.gesamt - mit.zuschuss
             )} mehr als der BAFA-Zuschuss mit iSFP. Voraussetzung: Sie nutzen das Haus selbst und haben über drei Jahre genug Steuerlast. Für Vermieter, WEG oder bei geringer Steuerlast ist der BAFA-Zuschuss meist besser.`,
           }
         : {
             titel: "BAFA mit iSFP ist hier die erste Wahl",
-            text: `Bei ${eur(
-              kosten
-            )} bringen BAFA-Zuschuss (mit iSFP) und Steuerbonus rechnerisch dasselbe (20 %). Der Zuschuss landet aber direkt auf dem Konto, gilt auch für Vermieter und WEG und hängt nicht von Ihrer Steuerlast ab.`,
+            text: `Bei ${eur(kosten)} bringt der BAFA-Zuschuss mit iSFP bis zu ${eur(
+              mit.zuschuss
+            )}. Er landet direkt auf dem Konto, gilt auch für Vermieter und WEG und hängt nicht von Ihrer Steuerlast ab.`,
           }
+
+  const begLines = (r: FoerderResult) => [
+    { k: "Förderfähiger Betrag", v: `${eur(r.foerderfaehig)} inkl. MwSt.` },
+    { k: "max. Fördersumme", v: eur(r.cap) },
+  ]
 
   return (
     <motion.div
@@ -823,39 +847,114 @@ function FoerderRechner() {
         Was kann ich sparen?
       </h3>
 
-      {/* Eingabe */}
-      <label
-        htmlFor="kosten"
-        className="font-heading text-sm font-bold text-brand-dark block mb-3"
-      >
-        Voraussichtliche Sanierungskosten (netto)
-      </label>
-      <div className="flex items-center gap-3 mb-4">
-        <input
-          id="kosten"
-          type="number"
-          min={0}
-          max={250000}
-          step={1000}
-          value={kosten}
-          onChange={(e) => setKosten(clamp(Number(e.target.value) || 0))}
-          className="w-44 font-display text-2xl font-black text-brand-dark bg-brand-beige rounded-xl px-4 py-3 border border-black/5 focus:outline-none focus:border-brand-orange/50"
-        />
-        <span className="font-display text-2xl font-black text-brand-dark/40">€</span>
+      {/* Eingaben */}
+      <div className="grid sm:grid-cols-2 gap-6 mb-6">
+        {/* Investitionssumme */}
+        <div>
+          <label
+            htmlFor="kosten"
+            className="font-heading text-sm font-bold text-brand-dark block mb-3"
+          >
+            Voraussichtliche Investitionssumme (brutto)
+          </label>
+          <div className="flex items-center gap-3 mb-4">
+            <input
+              id="kosten"
+              type="number"
+              min={0}
+              max={1000000}
+              step={1000}
+              value={kosten}
+              onChange={(e) => setKosten(clamp(Number(e.target.value) || 0))}
+              className="w-44 font-display text-2xl font-black text-brand-dark bg-brand-beige rounded-xl px-4 py-3 border border-black/5 focus:outline-none focus:border-brand-orange/50"
+            />
+            <span className="font-display text-2xl font-black text-brand-dark/40">€</span>
+          </div>
+          <input
+            type="range"
+            min={0}
+            max={300000}
+            step={5000}
+            value={Math.min(kosten, 300000)}
+            onChange={(e) => setKosten(clamp(Number(e.target.value)))}
+            className="w-full accent-brand-orange mb-2 cursor-pointer"
+            aria-label="Investitionssumme per Schieberegler einstellen"
+          />
+          <div className="flex justify-between font-body text-xs text-brand-dark/40">
+            <span>0 €</span>
+            <span>300.000 €</span>
+          </div>
+        </div>
+
+        {/* Wohneinheiten + Gebäudealter */}
+        <div>
+          <label
+            htmlFor="units"
+            className="font-heading text-sm font-bold text-brand-dark block mb-3"
+          >
+            Wie viele Wohneinheiten hat das Gebäude?
+          </label>
+          <select
+            id="units"
+            value={units}
+            onChange={(e) => setUnits(Number(e.target.value))}
+            className="w-full font-heading text-base font-bold text-brand-dark bg-brand-beige rounded-xl px-4 py-3.5 border border-black/5 focus:outline-none focus:border-brand-orange/50 cursor-pointer"
+          >
+            {Array.from({ length: 15 }, (_, i) => i + 1).map((n) => (
+              <option key={n} value={n}>
+                {n} {n === 1 ? "Wohneinheit" : "Wohneinheiten"}
+              </option>
+            ))}
+          </select>
+          <div className="flex items-center gap-2 mt-3 font-body text-xs text-brand-dark/55">
+            <CheckCircle2 className="w-4 h-4 text-brand-orange flex-shrink-0" />
+            <span>
+              Förderfähig, wenn das Gebäude mind. <strong className="text-brand-dark">5 Jahre</strong> alt ist.
+            </span>
+          </div>
+        </div>
       </div>
-      <input
-        type="range"
-        min={0}
-        max={200000}
-        step={5000}
-        value={Math.min(kosten, 200000)}
-        onChange={(e) => setKosten(clamp(Number(e.target.value)))}
-        className="w-full accent-brand-orange mb-2 cursor-pointer"
-        aria-label="Sanierungskosten per Schieberegler einstellen"
-      />
-      <div className="flex justify-between font-body text-xs text-brand-dark/40 mb-8">
-        <span>0 €</span>
-        <span>200.000 €</span>
+
+      {/* Maßnahmen */}
+      <p className="font-heading text-sm font-bold text-brand-dark mb-3">Maßnahmen</p>
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-2 mb-6">
+        {MASSNAHMEN.map((g) => (
+          <div key={g.gruppe}>
+            <p className="font-heading text-[11px] font-bold uppercase tracking-widest text-brand-dark/40 mb-2">
+              {g.gruppe}
+            </p>
+            <div className="space-y-1.5">
+              {g.items.map((m) => (
+                <label
+                  key={m}
+                  className="flex items-center gap-2.5 cursor-pointer font-body text-sm text-brand-dark/80"
+                >
+                  <input
+                    type="checkbox"
+                    checked={!!selected[m]}
+                    onChange={() => toggle(m)}
+                    className="w-4 h-4 accent-brand-orange cursor-pointer"
+                  />
+                  {m}
+                </label>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Zusammenfassung der Eingaben */}
+      <div className="flex flex-wrap gap-x-6 gap-y-1 mb-6 p-4 rounded-xl bg-brand-beige font-body text-sm text-brand-dark/70">
+        <span>
+          Anzahl Wohneinheiten:{" "}
+          <strong className="text-brand-dark">{units}</strong>
+        </span>
+        <span>
+          Maßnahmen:{" "}
+          <strong className="text-brand-dark">
+            {chosen.length ? chosen.join(", ") : "—"}
+          </strong>
+        </span>
       </div>
 
       {/* Ergebnis — drei Wege im Vergleich */}
@@ -864,10 +963,11 @@ function FoerderRechner() {
           label="BEG-Einzelmaßnahme"
           rate="15 %"
           amount={ohne.zuschuss}
-          caption={`Zuschuss · Eigenanteil ${eur(ohne.eigenanteil)}`}
+          amountLabel="Förderung (brutto)"
+          lines={begLines(ohne)}
           note={
             ohne.capped
-              ? `Förderfähige Kosten auf ${eur(ohne.foerderfaehig)} gedeckelt.`
+              ? "Förderfähige Kosten auf die max. Fördersumme gedeckelt."
               : undefined
           }
           tone="light"
@@ -876,10 +976,11 @@ function FoerderRechner() {
           label="Mit iSFP-Bonus"
           rate="20 %"
           amount={mit.zuschuss}
-          caption={`Zuschuss · Eigenanteil ${eur(mit.eigenanteil)}`}
+          amountLabel="Förderung (brutto)"
+          lines={begLines(mit)}
           note={
             mit.capped
-              ? `Förderfähige Kosten auf ${eur(mit.foerderfaehig)} gedeckelt.`
+              ? "Förderfähige Kosten auf die max. Fördersumme gedeckelt."
               : undefined
           }
           tone="dark"
@@ -888,9 +989,16 @@ function FoerderRechner() {
           label="Steuerbonus § 35c"
           rate="20 % / 3 J."
           amount={steuer.gesamt}
-          caption={`Steuerersparnis · ${eur(steuer.jahre[0])} / ${eur(
-            steuer.jahre[1]
-          )} / ${eur(steuer.jahre[2])}`}
+          amountLabel="Steuerersparnis"
+          lines={[
+            {
+              k: "Verteilung 3 Jahre",
+              v: `${eur(steuer.jahre[0])} / ${eur(steuer.jahre[1])} / ${eur(
+                steuer.jahre[2]
+              )}`,
+            },
+            { k: "max. förderfähig", v: "200.000 €" },
+          ]}
           note={
             steuer.capped
               ? "Förderfähige Kosten auf 200.000 € gedeckelt."
@@ -915,10 +1023,10 @@ function FoerderRechner() {
       )}
 
       <p className="font-body text-xs text-brand-dark/50 leading-relaxed mt-4">
-        Unverbindliche Orientierung. BAFA-Zuschuss und § 35c sind für dieselbe
-        Maßnahme nicht kombinierbar. Die Empfehlung ersetzt keine Steuer- oder
-        Energieberatung — die genaue Förderhöhe ermitteln wir gemeinsam im
-        Beratungsgespräch.
+        Unverbindliche Orientierung nach BEG-EM (max. 30.000 € bzw. 60.000 € je
+        Wohneinheit und Jahr). BAFA-Zuschuss und § 35c sind für dieselbe Maßnahme
+        nicht kombinierbar. Ersetzt keine Steuer- oder Energieberatung — die
+        genaue Förderhöhe ermitteln wir gemeinsam im Beratungsgespräch.
       </p>
     </motion.div>
   )
@@ -928,14 +1036,16 @@ function ResultTile({
   label,
   rate,
   amount,
-  caption,
+  amountLabel,
+  lines,
   note,
   tone,
 }: {
   label: string
   rate: string
   amount: number
-  caption: string
+  amountLabel: string
+  lines: { k: string; v: string }[]
   note?: string
   tone: "light" | "dark"
 }) {
@@ -963,19 +1073,43 @@ function ResultTile({
           </span>
         </div>
         <p
-          className={`font-display text-3xl font-black mb-1 ${
+          className={`font-display text-3xl font-black ${
             dark ? "text-white" : "text-brand-dark"
           }`}
         >
           {eur(amount)}
         </p>
         <p
-          className={`font-body text-xs ${
-            dark ? "text-white/55" : "text-brand-dark/55"
+          className={`font-body text-[11px] mb-3 ${
+            dark ? "text-white/45" : "text-brand-dark/45"
           }`}
         >
-          {caption}
+          {amountLabel}
         </p>
+        <div
+          className={`space-y-1 pt-3 border-t ${
+            dark ? "border-white/15" : "border-brand-dark/10"
+          }`}
+        >
+          {lines.map((l) => (
+            <div key={l.k} className="flex justify-between gap-2">
+              <span
+                className={`font-body text-[11px] ${
+                  dark ? "text-white/50" : "text-brand-dark/50"
+                }`}
+              >
+                {l.k}
+              </span>
+              <span
+                className={`font-body text-[11px] text-right ${
+                  dark ? "text-white/80" : "text-brand-dark/75"
+                }`}
+              >
+                {l.v}
+              </span>
+            </div>
+          ))}
+        </div>
         {note && (
           <p
             className={`font-body text-[11px] mt-3 pt-3 border-t leading-relaxed ${
