@@ -83,6 +83,26 @@ function computeFoerderung(kosten: number, withISFP: boolean): FoerderResult {
   return { zuschuss, eigenanteil, foerderfaehig, capped: kosten > cap }
 }
 
+type SteuerResult = {
+  gesamt: number // gesamte Steuerersparnis über 3 Jahre
+  jahre: [number, number, number] // 7 % / 7 % / 6 % je Jahr
+  capped: boolean // true, wenn die Kosten über 200.000 € liegen
+}
+
+/**
+ * Steuerbonus nach § 35c EStG (selbstgenutztes Wohneigentum, Gebäude ≥ 10 Jahre):
+ *   20 % der Sanierungskosten, verteilt auf 7 % / 7 % / 6 % über drei Jahre,
+ *   auf max. 200.000 € förderfähige Kosten  → max. 40.000 € Steuerersparnis.
+ *   Nicht mit BAFA/KfW für dieselbe Maßnahme kombinierbar.
+ */
+function computeSteuerbonus(kosten: number): SteuerResult {
+  const ff = Math.min(kosten, 200000)
+  const y1 = Math.round(ff * 0.07)
+  const y2 = Math.round(ff * 0.07)
+  const y3 = Math.round(ff * 0.06)
+  return { gesamt: y1 + y2 + y3, jahre: [y1, y2, y3], capped: kosten > 200000 }
+}
+
 /* ─────────────────────────  DATA  ───────────────────────── */
 
 const gefoerdert: { icon: typeof Home; title: string; text: string }[] = [
@@ -758,9 +778,32 @@ function FoerderRechner() {
 
   const ohne = computeFoerderung(kosten, false)
   const mit = computeFoerderung(kosten, true)
-  const isfpVorteil = Math.max(mit.zuschuss - ohne.zuschuss, 0)
+  const steuer = computeSteuerbonus(kosten)
 
-  const clamp = (n: number) => Math.min(Math.max(n, 0), 100000)
+  const clamp = (n: number) => Math.min(Math.max(n, 0), 250000)
+
+  // Empfehlung: bis 60.000 € sind BAFA-mit-iSFP und § 35c rechnerisch gleich
+  // (beide 20 %) — dann gewinnt der Zuschuss (Bargeld sofort, auch für
+  // Vermieter/WEG, unabhängig von der Steuerlast). Erst über 60.000 € zieht
+  // der Steuerbonus davon, weil sein Deckel bei 200.000 € statt 60.000 € liegt.
+  const empfehlung =
+    kosten <= 0
+      ? null
+      : kosten > 60000
+        ? {
+            titel: "§ 35c lohnt sich hier rechnerisch am meisten",
+            text: `Bei ${eur(kosten)} bringt der Steuerbonus bis zu ${eur(
+              steuer.gesamt
+            )} — rund ${eur(
+              Math.max(steuer.gesamt - mit.zuschuss, 0)
+            )} mehr als der BAFA-Zuschuss mit iSFP. Voraussetzung: Sie nutzen das Haus selbst und haben über drei Jahre genug Steuerlast. Für Vermieter, WEG oder bei geringer Steuerlast ist der BAFA-Zuschuss meist besser.`,
+          }
+        : {
+            titel: "BAFA mit iSFP ist hier die erste Wahl",
+            text: `Bei ${eur(
+              kosten
+            )} bringen BAFA-Zuschuss (mit iSFP) und Steuerbonus rechnerisch dasselbe (20 %). Der Zuschuss landet aber direkt auf dem Konto, gilt auch für Vermieter und WEG und hängt nicht von Ihrer Steuerlast ab.`,
+          }
 
   return (
     <motion.div
@@ -792,7 +835,7 @@ function FoerderRechner() {
           id="kosten"
           type="number"
           min={0}
-          max={100000}
+          max={250000}
           step={1000}
           value={kosten}
           onChange={(e) => setKosten(clamp(Number(e.target.value) || 0))}
@@ -803,48 +846,79 @@ function FoerderRechner() {
       <input
         type="range"
         min={0}
-        max={80000}
-        step={1000}
-        value={Math.min(kosten, 80000)}
+        max={200000}
+        step={5000}
+        value={Math.min(kosten, 200000)}
         onChange={(e) => setKosten(clamp(Number(e.target.value)))}
         className="w-full accent-brand-orange mb-2 cursor-pointer"
         aria-label="Sanierungskosten per Schieberegler einstellen"
       />
       <div className="flex justify-between font-body text-xs text-brand-dark/40 mb-8">
         <span>0 €</span>
-        <span>80.000 €</span>
+        <span>200.000 €</span>
       </div>
 
-      {/* Ergebnis */}
-      <div className="grid sm:grid-cols-2 gap-4">
+      {/* Ergebnis — drei Wege im Vergleich */}
+      <div className="grid sm:grid-cols-3 gap-4">
         <ResultTile
           label="BEG-Einzelmaßnahme"
           rate="15 %"
-          result={ohne}
+          amount={ohne.zuschuss}
+          caption={`Zuschuss · Eigenanteil ${eur(ohne.eigenanteil)}`}
+          note={
+            ohne.capped
+              ? `Förderfähige Kosten auf ${eur(ohne.foerderfaehig)} gedeckelt.`
+              : undefined
+          }
           tone="light"
         />
         <ResultTile
           label="Mit iSFP-Bonus"
           rate="20 %"
-          result={mit}
+          amount={mit.zuschuss}
+          caption={`Zuschuss · Eigenanteil ${eur(mit.eigenanteil)}`}
+          note={
+            mit.capped
+              ? `Förderfähige Kosten auf ${eur(mit.foerderfaehig)} gedeckelt.`
+              : undefined
+          }
           tone="dark"
+        />
+        <ResultTile
+          label="Steuerbonus § 35c"
+          rate="20 % / 3 J."
+          amount={steuer.gesamt}
+          caption={`Steuerersparnis · ${eur(steuer.jahre[0])} / ${eur(
+            steuer.jahre[1]
+          )} / ${eur(steuer.jahre[2])}`}
+          note={
+            steuer.capped
+              ? "Förderfähige Kosten auf 200.000 € gedeckelt."
+              : "Nur bei Selbstnutzung & ausreichender Steuerlast."
+          }
+          tone="light"
         />
       </div>
 
-      {isfpVorteil > 0 && (
-        <div className="mt-4 flex items-center gap-3 p-4 rounded-xl bg-brand-orange/10 border border-brand-orange/25">
-          <Sparkles className="w-5 h-5 text-brand-orange flex-shrink-0" />
-          <p className="font-body text-sm text-brand-dark/80 leading-relaxed">
-            Ihr Vorteil durch den iSFP:{" "}
-            <strong className="text-brand-orange">+{eur(isfpVorteil)}</strong>{" "}
-            mehr Zuschuss.
-          </p>
+      {empfehlung && (
+        <div className="mt-4 flex items-start gap-3 p-5 rounded-xl bg-brand-orange/10 border border-brand-orange/25">
+          <Sparkles className="w-5 h-5 text-brand-orange flex-shrink-0 mt-0.5" />
+          <div>
+            <p className="font-heading text-sm font-bold text-brand-dark mb-1">
+              Unsere Empfehlung: {empfehlung.titel}
+            </p>
+            <p className="font-body text-sm text-brand-dark/75 leading-relaxed">
+              {empfehlung.text}
+            </p>
+          </div>
         </div>
       )}
 
       <p className="font-body text-xs text-brand-dark/50 leading-relaxed mt-4">
-        Unverbindliche Orientierung nach BEG-EM. Maßgeblich ist die jeweilige
-        Zusage der BAFA — die genaue Förderhöhe ermitteln wir im Beratungsgespräch.
+        Unverbindliche Orientierung. BAFA-Zuschuss und § 35c sind für dieselbe
+        Maßnahme nicht kombinierbar. Die Empfehlung ersetzt keine Steuer- oder
+        Energieberatung — die genaue Förderhöhe ermitteln wir gemeinsam im
+        Beratungsgespräch.
       </p>
     </motion.div>
   )
@@ -853,12 +927,16 @@ function FoerderRechner() {
 function ResultTile({
   label,
   rate,
-  result,
+  amount,
+  caption,
+  note,
   tone,
 }: {
   label: string
   rate: string
-  result: FoerderResult
+  amount: number
+  caption: string
+  note?: string
   tone: "light" | "dark"
 }) {
   const dark = tone === "dark"
@@ -872,16 +950,12 @@ function ResultTile({
         <div className="absolute top-0 right-0 w-32 h-32 bg-brand-orange/20 rounded-full blur-[70px] pointer-events-none" />
       )}
       <div className="relative z-10">
-        <div className="flex items-center justify-between mb-3">
-          <span
-            className={`font-heading text-[11px] font-bold uppercase tracking-widest ${
-              dark ? "text-brand-orange" : "text-brand-orange"
-            }`}
-          >
+        <div className="flex items-center justify-between gap-2 mb-3">
+          <span className="font-heading text-[11px] font-bold uppercase tracking-widest text-brand-orange">
             {label}
           </span>
           <span
-            className={`font-heading text-xs font-bold ${
+            className={`font-heading text-xs font-bold whitespace-nowrap ${
               dark ? "text-white/50" : "text-brand-dark/40"
             }`}
           >
@@ -893,16 +967,16 @@ function ResultTile({
             dark ? "text-white" : "text-brand-dark"
           }`}
         >
-          {eur(result.zuschuss)}
+          {eur(amount)}
         </p>
         <p
           className={`font-body text-xs ${
             dark ? "text-white/55" : "text-brand-dark/55"
           }`}
         >
-          Zuschuss · Eigenanteil {eur(result.eigenanteil)}
+          {caption}
         </p>
-        {result.capped && (
+        {note && (
           <p
             className={`font-body text-[11px] mt-3 pt-3 border-t leading-relaxed ${
               dark
@@ -910,8 +984,7 @@ function ResultTile({
                 : "border-brand-dark/10 text-brand-dark/50"
             }`}
           >
-            Förderfähige Kosten auf {eur(result.foerderfaehig)} gedeckelt — der
-            Zuschuss steigt darüber hinaus nicht.
+            {note}
           </p>
         )}
       </div>
