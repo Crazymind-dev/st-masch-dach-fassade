@@ -4,6 +4,7 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import {
   Banknote,
+  Calculator,
   CheckCircle2,
   ChevronDown,
   ClipboardList,
@@ -44,6 +45,42 @@ const fadeUp = {
 const stagger = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.08 } },
+}
+
+/* ────────────────────  FÖRDERRECHNER-LOGIK  ──────────────────── */
+
+const eur = (n: number) =>
+  new Intl.NumberFormat("de-DE", {
+    style: "currency",
+    currency: "EUR",
+    maximumFractionDigits: 0,
+  }).format(n)
+
+type FoerderResult = {
+  zuschuss: number // € Zuschuss, der ausgezahlt wird
+  eigenanteil: number // € die nach Abzug des Zuschusses bleiben
+  foerderfaehig: number // € Kosten, die zählen (nach Deckelung)
+  capped: boolean // true, wenn die Kosten über dem Deckel liegen
+}
+
+/**
+ * BAFA BEG-EM (Einzelmaßnahme Gebäudehülle):
+ *   ohne iSFP: 15 % auf max. 30.000 € förderfähige Kosten  → max.  4.500 €
+ *   mit  iSFP: 20 % auf max. 60.000 € förderfähige Kosten  → max. 12.000 €
+ *
+ * Die zentrale Entscheidung steckt in der DECKELUNG:
+ *   Nicht der Zuschuss wird gedeckelt, sondern die FÖRDERFÄHIGEN KOSTEN
+ *   (30.000 € bzw. 60.000 €). Liegen `kosten` darüber, zählt nur der Deckel —
+ *   der Zuschuss steigt also nicht weiter. `capped` ist dann `true`, damit die
+ *   UI einen Hinweis anzeigen kann.
+ */
+function computeFoerderung(kosten: number, withISFP: boolean): FoerderResult {
+  const rate = withISFP ? 0.2 : 0.15
+  const cap = withISFP ? 60000 : 30000
+  const foerderfaehig = Math.min(kosten, cap)
+  const zuschuss = Math.round(foerderfaehig * rate)
+  const eigenanteil = Math.max(kosten - zuschuss, 0)
+  return { zuschuss, eigenanteil, foerderfaehig, capped: kosten > cap }
 }
 
 /* ─────────────────────────  DATA  ───────────────────────── */
@@ -421,8 +458,10 @@ export default function FoerderServicePlusPage() {
             </motion.div>
           </motion.div>
 
+          <FoerderRechner />
+
           <motion.div
-            className="flex items-start gap-4 p-6 rounded-2xl bg-white border border-brand-orange/20"
+            className="flex items-start gap-4 p-6 rounded-2xl bg-white border border-brand-orange/20 mt-5"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -711,6 +750,172 @@ export default function FoerderServicePlusPage() {
         </div>
       </section>
     </>
+  )
+}
+
+function FoerderRechner() {
+  const [kosten, setKosten] = useState(30000)
+
+  const ohne = computeFoerderung(kosten, false)
+  const mit = computeFoerderung(kosten, true)
+  const isfpVorteil = Math.max(mit.zuschuss - ohne.zuschuss, 0)
+
+  const clamp = (n: number) => Math.min(Math.max(n, 0), 100000)
+
+  return (
+    <motion.div
+      className="rounded-2xl bg-white border border-black/5 p-6 sm:p-8 mb-5"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className="flex items-center gap-2 mb-1">
+        <Calculator className="w-4 h-4 text-brand-orange" />
+        <span className="font-heading text-xs font-bold uppercase tracking-widest text-brand-orange">
+          Förderrechner
+        </span>
+      </div>
+      <h3 className="font-display text-xl md:text-2xl font-black text-brand-dark mb-6">
+        Was kann ich sparen?
+      </h3>
+
+      {/* Eingabe */}
+      <label
+        htmlFor="kosten"
+        className="font-heading text-sm font-bold text-brand-dark block mb-3"
+      >
+        Voraussichtliche Sanierungskosten (netto)
+      </label>
+      <div className="flex items-center gap-3 mb-4">
+        <input
+          id="kosten"
+          type="number"
+          min={0}
+          max={100000}
+          step={1000}
+          value={kosten}
+          onChange={(e) => setKosten(clamp(Number(e.target.value) || 0))}
+          className="w-44 font-display text-2xl font-black text-brand-dark bg-brand-beige rounded-xl px-4 py-3 border border-black/5 focus:outline-none focus:border-brand-orange/50"
+        />
+        <span className="font-display text-2xl font-black text-brand-dark/40">€</span>
+      </div>
+      <input
+        type="range"
+        min={0}
+        max={80000}
+        step={1000}
+        value={Math.min(kosten, 80000)}
+        onChange={(e) => setKosten(clamp(Number(e.target.value)))}
+        className="w-full accent-brand-orange mb-2 cursor-pointer"
+        aria-label="Sanierungskosten per Schieberegler einstellen"
+      />
+      <div className="flex justify-between font-body text-xs text-brand-dark/40 mb-8">
+        <span>0 €</span>
+        <span>80.000 €</span>
+      </div>
+
+      {/* Ergebnis */}
+      <div className="grid sm:grid-cols-2 gap-4">
+        <ResultTile
+          label="BEG-Einzelmaßnahme"
+          rate="15 %"
+          result={ohne}
+          tone="light"
+        />
+        <ResultTile
+          label="Mit iSFP-Bonus"
+          rate="20 %"
+          result={mit}
+          tone="dark"
+        />
+      </div>
+
+      {isfpVorteil > 0 && (
+        <div className="mt-4 flex items-center gap-3 p-4 rounded-xl bg-brand-orange/10 border border-brand-orange/25">
+          <Sparkles className="w-5 h-5 text-brand-orange flex-shrink-0" />
+          <p className="font-body text-sm text-brand-dark/80 leading-relaxed">
+            Ihr Vorteil durch den iSFP:{" "}
+            <strong className="text-brand-orange">+{eur(isfpVorteil)}</strong>{" "}
+            mehr Zuschuss.
+          </p>
+        </div>
+      )}
+
+      <p className="font-body text-xs text-brand-dark/50 leading-relaxed mt-4">
+        Unverbindliche Orientierung nach BEG-EM. Maßgeblich ist die jeweilige
+        Zusage der BAFA — die genaue Förderhöhe ermitteln wir im Beratungsgespräch.
+      </p>
+    </motion.div>
+  )
+}
+
+function ResultTile({
+  label,
+  rate,
+  result,
+  tone,
+}: {
+  label: string
+  rate: string
+  result: FoerderResult
+  tone: "light" | "dark"
+}) {
+  const dark = tone === "dark"
+  return (
+    <div
+      className={`rounded-2xl p-6 relative overflow-hidden ${
+        dark ? "bg-brand-dark" : "bg-brand-beige"
+      }`}
+    >
+      {dark && (
+        <div className="absolute top-0 right-0 w-32 h-32 bg-brand-orange/20 rounded-full blur-[70px] pointer-events-none" />
+      )}
+      <div className="relative z-10">
+        <div className="flex items-center justify-between mb-3">
+          <span
+            className={`font-heading text-[11px] font-bold uppercase tracking-widest ${
+              dark ? "text-brand-orange" : "text-brand-orange"
+            }`}
+          >
+            {label}
+          </span>
+          <span
+            className={`font-heading text-xs font-bold ${
+              dark ? "text-white/50" : "text-brand-dark/40"
+            }`}
+          >
+            {rate}
+          </span>
+        </div>
+        <p
+          className={`font-display text-3xl font-black mb-1 ${
+            dark ? "text-white" : "text-brand-dark"
+          }`}
+        >
+          {eur(result.zuschuss)}
+        </p>
+        <p
+          className={`font-body text-xs ${
+            dark ? "text-white/55" : "text-brand-dark/55"
+          }`}
+        >
+          Zuschuss · Eigenanteil {eur(result.eigenanteil)}
+        </p>
+        {result.capped && (
+          <p
+            className={`font-body text-[11px] mt-3 pt-3 border-t leading-relaxed ${
+              dark
+                ? "border-white/15 text-white/50"
+                : "border-brand-dark/10 text-brand-dark/50"
+            }`}
+          >
+            Förderfähige Kosten auf {eur(result.foerderfaehig)} gedeckelt — der
+            Zuschuss steigt darüber hinaus nicht.
+          </p>
+        )}
+      </div>
+    </div>
   )
 }
 
