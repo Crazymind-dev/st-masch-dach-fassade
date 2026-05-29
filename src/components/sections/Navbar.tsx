@@ -23,6 +23,8 @@ import {
   Thermometer,
   PanelsTopLeft,
   Paintbrush,
+  Banknote,
+  Sparkles,
 } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
@@ -45,6 +47,7 @@ type DropdownLink = {
   kind: "dropdown"
   label: string
   items: DropdownItem[]
+  highlight?: boolean
 }
 
 type NavEntry = SimpleLink | DropdownLink
@@ -83,7 +86,15 @@ const navEntries: NavEntry[] = [
       { href: "/leistungen/fassade/sanierung", label: "Fassadensanierung", description: "Reinigung, Putz und Neuanstrich vom Profi.", icon: Paintbrush },
     ],
   },
-  { kind: "link", href: "/foerderung", label: "Förderung", highlight: true },
+  {
+    kind: "dropdown",
+    label: "Förderung",
+    highlight: true,
+    items: [
+      { href: "/foerderung", label: "Förderübersicht", description: "Alle Zuschüsse, Kredite & Steuervorteile im Überblick.", icon: Banknote },
+      { href: "/foerderung/foerderservice-plus", label: "FörderService PLUS", description: "Komplette Abwicklung Ihrer Dachsanierungs-Förderung — aus einer Hand.", icon: Sparkles },
+    ],
+  },
   { kind: "link", href: "/ratgeber", label: "Ratgeber" },
   { kind: "link", href: "/ueber-uns", label: "Über uns" },
   { kind: "link", href: "/referenzen", label: "Referenzen" },
@@ -220,13 +231,20 @@ export default function Navbar() {
                     onClick={() => setOpenMenu(open ? null : entry.label)}
                     aria-expanded={open}
                     className={cn(
-                      "no-underline font-heading text-sm font-medium tracking-wide transition-colors min-h-[44px] flex items-center gap-1 px-3 rounded-md bg-transparent border-none cursor-pointer",
+                      "no-underline font-heading text-sm font-medium tracking-wide transition-colors min-h-[44px] flex items-center gap-1.5 px-3 rounded-md bg-transparent border-none cursor-pointer",
                       active || open
                         ? "text-brand-orange"
-                        : "text-gray-700 hover:text-brand-orange hover:bg-black/[0.03]"
+                        : entry.highlight
+                          ? "text-brand-orange hover:bg-brand-orange/10"
+                          : "text-gray-700 hover:text-brand-orange hover:bg-black/[0.03]"
                     )}
                   >
                     {entry.label}
+                    {entry.highlight && !active && (
+                      <span className="text-[9px] font-bold uppercase tracking-wider bg-brand-orange text-white px-1.5 py-0.5 rounded-full leading-none">
+                        Neu
+                      </span>
+                    )}
                     <ChevronDown
                       className={cn(
                         "w-3.5 h-3.5 transition-transform duration-200",
@@ -413,10 +431,19 @@ export default function Navbar() {
                             "w-full py-3 px-4 rounded-xl font-heading text-base font-semibold transition-colors min-h-[44px] flex items-center justify-between bg-transparent border-none cursor-pointer text-left",
                             dropActive
                               ? "text-brand-orange bg-white/5"
-                              : "text-white hover:text-brand-orange hover:bg-white/5"
+                              : entry.highlight
+                                ? "text-brand-orange bg-brand-orange/10"
+                                : "text-white hover:text-brand-orange hover:bg-white/5"
                           )}
                         >
-                          {entry.label}
+                          <span className="flex items-center gap-2">
+                            {entry.label}
+                            {entry.highlight && !dropActive && (
+                              <span className="text-[9px] font-bold uppercase tracking-wider bg-brand-orange text-white px-1.5 py-0.5 rounded-full leading-none">
+                                Neu
+                              </span>
+                            )}
+                          </span>
                           <ChevronDown
                             className={cn(
                               "w-4 h-4 transition-transform duration-200",

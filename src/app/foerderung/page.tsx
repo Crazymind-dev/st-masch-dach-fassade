@@ -218,6 +218,42 @@ export default function FoerderungPage() {
         </div>
       </section>
 
+      {/* FörderService PLUS — Promo-Banner */}
+      <section className="bg-white pt-16 md:pt-20">
+        <div className="max-w-6xl mx-auto px-6 md:px-12">
+          <motion.a
+            href="/foerderung/foerderservice-plus"
+            className="group block rounded-3xl bg-brand-dark p-7 sm:p-9 md:p-12 relative overflow-hidden no-underline"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="absolute top-0 right-0 w-[360px] h-[360px] bg-brand-orange/15 rounded-full blur-[120px] pointer-events-none" />
+            <div className="relative z-10 flex flex-col md:flex-row md:items-center gap-6 md:gap-10">
+              <div className="w-14 h-14 rounded-2xl bg-brand-orange/20 border border-brand-orange/30 flex items-center justify-center flex-shrink-0">
+                <Gift className="w-7 h-7 text-brand-orange" />
+              </div>
+              <div className="flex-1">
+                <span className="font-heading text-xs font-bold uppercase tracking-widest text-brand-orange mb-2 block">
+                  Unser Komplett-Service
+                </span>
+                <h3 className="font-display text-2xl md:text-3xl font-black text-white mb-2">
+                  FörderService PLUS — Zuschüsse sichern, ohne Papierkram
+                </h3>
+                <p className="font-body text-sm md:text-base text-white/60 leading-relaxed max-w-2xl">
+                  Bis 20 % BAFA-Zuschuss für Ihre energetische Dachsanierung. Wir
+                  übernehmen Antrag, iSFP und Nachweise — komplett aus einer Hand.
+                </p>
+              </div>
+              <span className="font-heading text-sm font-bold uppercase tracking-wider text-brand-orange inline-flex items-center gap-2 flex-shrink-0 group-hover:gap-3 transition-all">
+                Mehr erfahren →
+              </span>
+            </div>
+          </motion.a>
+        </div>
+      </section>
+
       {/* Die 3 Förderungsarten — Einsteiger-Erklärer */}
       <section className="bg-white py-16 md:py-20">
         <div className="max-w-6xl mx-auto px-6 md:px-12">

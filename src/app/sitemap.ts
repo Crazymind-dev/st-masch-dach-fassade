@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${site.baseUrl}/leistungen`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${site.baseUrl}/solar`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${site.baseUrl}/foerderung`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${site.baseUrl}/foerderung/foerderservice-plus`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     { url: `${site.baseUrl}/ratgeber`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     { url: `${site.baseUrl}/notdienst`, lastModified: now, changeFrequency: "yearly", priority: 0.85 },
     { url: `${site.baseUrl}/ueber-uns`, lastModified: now, changeFrequency: "yearly", priority: 0.7 },
