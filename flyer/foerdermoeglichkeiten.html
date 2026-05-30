@@ -109,7 +109,15 @@
     display: flex;
     justify-content: center;
   }
-  .cover .logo-wrap img { width: 96mm; height: auto; }
+  /* Logo nahtlos in den Hintergrund einbetten: reines Schwarz (0,0,0)
+     wird durch den screen-Blendmodus transparent, nur die hellen
+     Logo-Elemente bleiben sichtbar – kein abgesetzter Kasten mehr. */
+  .cover .logo-wrap img {
+    width: 104mm; height: auto;
+    mix-blend-mode: screen;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
 
   /* ── Cards (page 2) ────────────────────────────── */
   .cards { display: flex; flex-direction: column; gap: 14px; margin-top: 6px; }
