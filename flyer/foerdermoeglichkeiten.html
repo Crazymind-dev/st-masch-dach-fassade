@@ -18,8 +18,8 @@
     --font-display: 'Playfair Display', serif;
     --font-heading: 'Raleway', sans-serif;
     --font-body: 'Roboto', sans-serif;
-    --ink: rgba(255, 255, 255, 0.82);
-    --ink-soft: rgba(255, 255, 255, 0.58);
+    --ink: rgba(255, 255, 255, 0.92);
+    --ink-soft: rgba(255, 255, 255, 0.72);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -87,9 +87,9 @@
     font-size: 13.5pt;
     color: var(--orange);
   }
-  p { font-family: var(--font-body); font-weight: 300; font-size: 11pt; line-height: 1.62; color: var(--ink); }
-  p strong, .body strong { font-weight: 500; color: #fff; }
-  .lead { font-size: 11.5pt; color: var(--ink); }
+  p { font-family: var(--font-body); font-weight: 400; font-size: 11.5pt; line-height: 1.6; color: var(--ink); }
+  p strong, .body strong { font-weight: 600; color: #fff; }
+  .lead { font-size: 12.5pt; color: #fff; font-weight: 400; }
   .muted { color: var(--ink-soft); }
 
   .divider { width: 54px; height: 4px; background: var(--orange); border-radius: 2px; margin: 14px 0 22px; }
@@ -135,32 +135,32 @@
   .steps { margin-top: 10px; display: flex; flex-direction: column; gap: 20px; }
   .step { display: flex; gap: 20px; align-items: flex-start; }
   .step .num {
-    flex: 0 0 46px; width: 46px; height: 46px;
+    flex: 0 0 54px; width: 54px; height: 54px;
     border-radius: 50%;
     background: var(--orange);
     color: #fff;
-    font-family: var(--font-heading); font-weight: 800; font-size: 18pt;
+    font-family: var(--font-display); font-weight: 900; font-size: 24pt;
     display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 6px 18px rgba(255, 91, 1, 0.35);
+    box-shadow: 0 6px 18px rgba(255, 91, 1, 0.4);
   }
-  .step h3 { margin-bottom: 4px; }
-  .step p { font-size: 10.5pt; }
+  .step h3 { margin-bottom: 4px; font-size: 14.5pt; }
+  .step p { font-size: 11pt; }
 
   /* ── Lists ─────────────────────────────────────── */
   ul.checks { list-style: none; margin: 8px 0; }
   ul.checks li {
-    position: relative; padding-left: 30px; margin-bottom: 9px;
-    font-family: var(--font-body); font-weight: 300; font-size: 11pt; line-height: 1.55; color: var(--ink);
+    position: relative; padding-left: 32px; margin-bottom: 11px;
+    font-family: var(--font-body); font-weight: 400; font-size: 11.5pt; line-height: 1.5; color: var(--ink);
   }
   ul.checks li::before {
     content: "→";
     position: absolute; left: 0; top: 0;
-    color: var(--orange); font-weight: 700;
+    color: var(--orange); font-weight: 800; font-size: 13pt;
   }
   ul.dots { list-style: none; margin: 6px 0; }
   ul.dots li {
-    position: relative; padding-left: 22px; margin-bottom: 8px;
-    font-weight: 300; font-size: 10.5pt; line-height: 1.5; color: var(--ink);
+    position: relative; padding-left: 22px; margin-bottom: 9px;
+    font-weight: 400; font-size: 11pt; line-height: 1.5; color: var(--ink);
   }
   ul.dots li::before {
     content: ""; position: absolute; left: 4px; top: 8px;
@@ -168,6 +168,17 @@
   }
 
   /* ── Förderhöhe cards ──────────────────────────── */
+  .panel {
+    margin-top: 8px;
+    border-radius: 20px;
+    padding: 24px 26px 26px;
+    background:
+      radial-gradient(circle at 85% 0%, rgba(255, 91, 1, 0.12), transparent 55%),
+      var(--bg-soft);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .panel .eyebrow { margin-bottom: 8px; }
+  .panel .divider { margin: 12px 0 16px; }
   .two { display: flex; gap: 16px; margin-top: 8px; }
   .tile {
     flex: 1; border-radius: 16px; padding: 20px 22px;
@@ -189,31 +200,33 @@
   .specs { margin-top: 6px; }
   .spec-row {
     display: flex; justify-content: space-between; align-items: center; gap: 20px;
-    padding: 13px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 16px 0; border-bottom: 2px solid rgba(255, 255, 255, 0.22);
   }
-  .spec-row .label { font-family: var(--font-heading); font-weight: 700; font-size: 11.5pt; color: #fff; }
-  .spec-row .label small { display: block; font-family: var(--font-body); font-weight: 300; font-size: 9pt; color: var(--ink-soft); margin-top: 2px; }
-  .spec-row .val { font-family: var(--font-heading); font-weight: 700; font-size: 12pt; color: var(--orange); white-space: nowrap; }
+  .spec-row .label { font-family: var(--font-heading); font-weight: 700; font-size: 13pt; color: #fff; }
+  .spec-row .label small { display: block; font-family: var(--font-body); font-weight: 400; font-size: 9.5pt; color: var(--ink-soft); margin-top: 2px; }
+  .spec-row .val { font-family: var(--font-heading); font-weight: 800; font-size: 13.5pt; color: var(--orange); white-space: nowrap; }
 
   .example {
     margin-top: auto;
     align-self: flex-end;
-    width: 78mm;
+    width: 88mm;
     background: var(--beige);
     border-radius: 50%;
     aspect-ratio: 1;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
-    text-align: center; padding: 18mm 14mm;
+    text-align: center; padding: 18mm 15mm;
   }
-  .example .t { font-family: var(--font-heading); font-weight: 800; font-size: 12pt; color: var(--orange-deep); margin-bottom: 8px; }
-  .example p { color: var(--dark); font-weight: 400; font-size: 9.5pt; line-height: 1.5; }
-  .example .hot-num { color: var(--orange-deep); font-weight: 700; }
+  .example .t { font-family: var(--font-heading); font-weight: 800; font-size: 13.5pt; color: var(--orange-deep); margin-bottom: 9px; }
+  .example p { color: var(--dark); font-weight: 400; font-size: 11pt; line-height: 1.5; }
+  .example .hot-num { color: var(--orange-deep); font-weight: 800; }
 
   /* ── FAQ ───────────────────────────────────────── */
-  .faq { margin-top: 10px; display: flex; flex-direction: column; gap: 16px; }
-  .faq .q { font-family: var(--font-heading); font-weight: 800; font-size: 12.5pt; color: var(--orange); margin-bottom: 5px; line-height: 1.25; }
-  .faq .a { font-size: 10.5pt; line-height: 1.55; }
+  .faq { margin-top: 10px; display: flex; flex-direction: column; gap: 18px; }
+  .faq .q { font-family: var(--font-heading); font-weight: 800; font-size: 14pt; color: var(--orange); margin-bottom: 6px; line-height: 1.25; }
+  .faq .a { font-size: 11.5pt; line-height: 1.55; color: #fff; font-weight: 400; }
+  .faq .a strong { color: #fff; font-weight: 700; }
   .faq ul.dots { margin-top: 6px; }
+  .faq ul.dots li { color: #fff; }
 
   /* ── Footer (page 7) ───────────────────────────── */
   .footer {
@@ -224,8 +237,15 @@
   }
   .footer .brand { font-family: var(--font-display); font-weight: 900; font-size: 16pt; color: var(--orange); margin-bottom: 8px; }
   .footer .contact p { font-size: 10.5pt; line-height: 1.7; color: var(--ink); }
-  .footer .qr { flex: 0 0 auto; text-align: center; }
+  .footer .qr { flex: 0 0 auto; text-align: center; position: relative; }
   .footer .qr img { width: 34mm; height: 34mm; background: #fff; padding: 6px; border-radius: 8px; }
+  .qr-arrow {
+    position: absolute;
+    top: -16mm; left: -30mm;
+    width: 32mm; height: auto;
+    color: var(--orange);
+    pointer-events: none;
+  }
   .footer .qr .cap { font-family: var(--font-heading); font-weight: 700; font-size: 8.5pt; letter-spacing: 1px; text-transform: uppercase; color: var(--orange); margin-top: 8px; }
 
   .section-gap { height: 26px; }
@@ -347,6 +367,7 @@
   <p class="muted" style="margin-top:4px">Alle notwendigen Umfeldmaßnahmen wie Gerüstbau, Abbrucharbeiten, statische Ertüchtigungen oder Klempnerarbeiten.</p>
 
   <div class="section-gap"></div>
+  <div class="panel">
   <p class="eyebrow">Förderhöhe</p>
   <h2>Wie hoch ist die <span class="o">Förderung?</span></h2>
   <div class="divider"></div>
@@ -368,6 +389,7 @@
   <div class="callout">
     <h3>Steuerbonus als Alternative</h3>
     <p>Bis zu <strong>40.000 € Steuerentlastung</strong> auf Sanierungskosten bis 200.000 €, verteilt über drei Jahre (7 % im ersten und zweiten Jahr, 6 % im dritten Jahr).</p>
+  </div>
   </div>
 </section>
 
@@ -453,6 +475,10 @@
       </p>
     </div>
     <div class="qr">
+      <svg class="qr-arrow" viewBox="0 0 120 70" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M4 16 C 40 -2, 86 6, 108 40" stroke="currentColor" stroke-width="6" stroke-linecap="round" />
+        <path d="M92 30 L 110 42 L 90 52" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
       <img src="assets/qr.png" alt="QR-Code zur Website" />
       <div class="cap">Jetzt informieren</div>
     </div>
