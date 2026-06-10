@@ -9,7 +9,9 @@ const stats = [
   { value: company.yearsExperience, suffix: "+", label: "Jahre Erfahrung" },
   { value: 500, suffix: "+", label: "Projekte" },
   { value: 100, suffix: "%", label: "Meisterqualität" },
-  { value: 24, suffix: "h", label: "Notdienst" },
+  // Ersatz für die frühere „24h Notdienst"-Kachel — belegbar über config.certifications.
+  // Finale Ersatz-Kennzahl kommt noch von Steve (offener Punkt #4).
+  { value: company.certifications.length, suffix: "", label: "Zertifizierungen" },
 ]
 
 function AnimatedNumber({

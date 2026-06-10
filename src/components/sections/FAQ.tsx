@@ -23,9 +23,9 @@ const faqs = [
       "Es gibt zahlreiche Förderprogramme: KfW-Förderung für energetische Sanierung, BAFA-Zuschüsse für Wärmedämmung, sowie EEG-Einspeisevergütung für Solarstrom. Auch das Land Berlin bietet eigene Programme an. Wir beraten Sie umfassend zu allen aktuellen Fördermöglichkeiten und unterstützen Sie bei der Antragstellung.",
   },
   {
-    question: "Bieten Sie einen Notdienst für Sturmschäden an?",
+    question: "Helfen Sie bei Sturmschäden?",
     answer:
-      "Ja, wir bieten einen 24-Stunden-Notdienst für akute Dachschäden an. Bei Sturmschäden, Wassereintritt oder anderen Notfällen sind wir schnell vor Ort, um Sofortmaßnahmen einzuleiten und Ihr Gebäude zu sichern. Rufen Sie uns an unter 030 - 844 17 068.",
+      "Ja, bei Sturmschäden, Wassereintritt oder anderen akuten Dachschäden sind wir schnell vor Ort, um Sofortmaßnahmen einzuleiten und Ihr Gebäude zu sichern. Rufen Sie uns an unter 030 - 844 17 068.",
   },
 ]
 

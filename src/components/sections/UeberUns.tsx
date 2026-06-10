@@ -46,7 +46,7 @@ const rightServices = [
   {
     icon: <Wrench className="w-6 h-6" />,
     title: "Dachservice",
-    description: "Wartung, Reparatur & 24h Notdienst.",
+    description: "Wartung, Reparatur & Inspektion.",
   },
 ]
 

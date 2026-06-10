@@ -478,14 +478,14 @@ export const services: ServiceDetail[] = [
     shortTitle: "Dachservice",
     description: "Regelmäßige Wartung, Inspektion und schnelle Reparaturen für Ihr Dach.",
     longDescription:
-      "Ein gut gewartetes Dach hält doppelt so lange. Unser Dachservice umfasst regelmäßige Inspektionen, vorbeugende Wartung und schnelle Reparaturen — auch im 24h-Notdienst bei Sturmschäden.",
+      "Ein gut gewartetes Dach hält doppelt so lange. Unser Dachservice umfasst regelmäßige Inspektionen, vorbeugende Wartung und schnelle Reparaturen — auch kurzfristig bei Sturmschäden.",
     image: "https://images.unsplash.com/photo-1632759145351-1d592919f522?w=1200&q=80",
     icon: "wrench",
-    tags: ["Wartung", "Reparatur", "Inspektion", "Notdienst"],
+    tags: ["Wartung", "Reparatur", "Inspektion", "Sturmschäden"],
     features: [
       { title: "Dachinspektion", description: "Regelmäßige Kontrolle auf Schäden, lose Ziegel, verstopfte Rinnen und undichte Stellen." },
       { title: "Wartungsvertrag", description: "Planbare Kosten durch jährliche Wartungsverträge mit Prioritäts-Service." },
-      { title: "Sturmschaden-Reparatur", description: "Schnelle Notreparatur bei Sturmschäden — 24h erreichbar." },
+      { title: "Sturmschaden-Reparatur", description: "Schnelle Reparatur und Sicherung bei Sturmschäden." },
       { title: "Dachreinigung", description: "Professionelle Reinigung von Moos, Algen und Verschmutzungen." },
     ],
     process: [
@@ -525,9 +525,9 @@ export const services: ServiceDetail[] = [
           "Fürs Einfamilienhaus reicht eine jährliche Sichtinspektion, idealerweise im Herbst. Bei Flachdächern und Gründächern raten wir zusätzlich zu einer Kontrolle im Frühjahr (nach Winter). Nach Sturmereignissen immer zusätzlich. Für größere Wohn­anlagen und Gewerbe­dächer empfehlen wir halbjährlich.",
       },
       {
-        question: "Was kostet ein Notdienst-Einsatz?",
+        question: "Was kostet ein kurzfristiger Sicherungseinsatz?",
         answer:
-          "Ein Notdienst-Einsatz (Fahrt + 1–2 Stunden Sicherungs­arbeiten, Plane anbringen, loses Dachmaterial sichern) kostet 350–650 €. Das ist meist über die Wohn­gebäude­versicherung abgedeckt. Die anschließende dauerhafte Sanierung wird separat kalkuliert und ebenfalls oft von der Versicherung getragen. Wir dokumentieren den Schaden so, dass Ihre Versicherung alles Nötige hat.",
+          "Ein Sicherungseinsatz (Fahrt + 1–2 Stunden Sicherungs­arbeiten, Plane anbringen, loses Dachmaterial sichern) kostet 350–650 €. Das ist meist über die Wohn­gebäude­versicherung abgedeckt. Die anschließende dauerhafte Sanierung wird separat kalkuliert und ebenfalls oft von der Versicherung getragen. Wir dokumentieren den Schaden so, dass Ihre Versicherung alles Nötige hat.",
       },
       {
         question: "Was prüft ihr bei einer Dachinspektion genau?",

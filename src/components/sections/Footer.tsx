@@ -16,7 +16,6 @@ const unternehmenLinks = [
   { label: "Über uns", href: "/ueber-uns" },
   { label: "Referenzen", href: "/referenzen" },
   { label: "Förderung", href: "/foerderung" },
-  { label: "Notdienst 24h", href: "/notdienst" },
   { label: "Kontakt", href: "/kontakt" },
 ]
 

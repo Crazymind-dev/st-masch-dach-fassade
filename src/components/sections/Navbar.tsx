@@ -62,7 +62,7 @@ const navEntries: NavEntry[] = [
       { href: "/leistungen/gruendach", label: "Gründach", description: "Extensive und intensive Begrünung.", icon: Leaf },
       { href: "/leistungen/metalldach", label: "Metalldach", description: "Zink, Kupfer und Titanzink in Meisterhand.", icon: Shield },
       { href: "/leistungen/dachfenster", label: "Dachfenster", description: "VELUX-Partner — Neueinbau und Austausch.", icon: PanelsTopLeft },
-      { href: "/leistungen/dachservice", label: "Dachservice", description: "Inspektion, Wartung und Notfall-Reparatur.", icon: Wrench },
+      { href: "/leistungen/dachservice", label: "Dachservice", description: "Inspektion, Wartung und Reparatur.", icon: Wrench },
       { href: "/leistungen", label: "Alle Dacharbeiten", description: "Übersicht aller Dach-Leistungen im Detail.", icon: LayoutGrid },
     ],
   },

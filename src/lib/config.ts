@@ -48,7 +48,6 @@ export const company = {
   stats: {
     projects: "500+",
     quality: "100%",
-    emergency: "24h",
   },
 
   /**
@@ -74,7 +73,7 @@ export const site = {
   locale: "de_DE",
   title: `Dachdecker Berlin | Meisterbetrieb Dach, Fassade & Solar | ${company.brandName}`,
   description:
-    "St. Masch — Ihr Dachdecker-Meisterbetrieb in Berlin. Steildach, Flachdach, Fassadendämmung, Photovoltaik & Energieberatung aus einer Hand. Kostenlose Beratung ✓ 24h Notdienst ✓",
+    "St. Masch — Ihr Dachdecker-Meisterbetrieb in Berlin. Steildach, Flachdach, Fassadendämmung, Photovoltaik & Energieberatung aus einer Hand. Kostenlose Beratung ✓ Meisterqualität ✓",
 } as const
 
 export function phoneHref() {

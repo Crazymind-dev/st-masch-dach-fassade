@@ -159,7 +159,7 @@ export default function Hero() {
               {[
                 { num: "15+", label: "Jahre Erfahrung" },
                 { num: "500+", label: "Projekte" },
-                { num: "24h", label: "Notdienst" },
+                { num: "100%", label: "Meisterqualität" },
               ].map((s, i) => (
                 <motion.div
                   key={s.label}

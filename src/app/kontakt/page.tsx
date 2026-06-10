@@ -70,9 +70,9 @@ const faqs: FAQItem[] = [
       "Die Kosten hängen von vielen Faktoren ab: Dachfläche, Material, Dämmung, Gerüst und eventuelle Zusatzarbeiten. Nach unserer Vor-Ort-Besichtigung erstellen wir Ihnen ein transparentes Festpreisangebot — ohne versteckte Kosten.",
   },
   {
-    question: "Bieten Sie einen Notdienst an?",
+    question: "Was tun bei Sturmschäden oder akuten Undichtigkeiten?",
     answer:
-      "Ja, bei Sturmschäden oder akuten Undichtigkeiten sind wir schnell für Sie da. Rufen Sie uns an unter 030-844 17 068 — wir kümmern uns umgehend um eine Notabdichtung, damit keine Folgeschäden entstehen.",
+      "Rufen Sie uns an unter 030-844 17 068 — wir kümmern uns umgehend um eine Notabdichtung, damit keine Folgeschäden entstehen.",
   },
 ]
 

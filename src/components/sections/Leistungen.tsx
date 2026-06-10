@@ -59,7 +59,7 @@ const services = [
     icon: <Wrench className="w-6 h-6" />,
     title: "Service",
     description:
-      "Wartung, Reparatur, 24h-Notdienst — damit Ihr Dach auch nach Jahren hält.",
+      "Wartung, Reparatur, Inspektion — damit Ihr Dach auch nach Jahren hält.",
     href: "/kontakt",
   },
 ]
