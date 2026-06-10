@@ -103,6 +103,28 @@ export default function SolarTopicPage() {
               </motion.li>
             ))}
           </motion.ul>
+
+          {/* Weiterführende Ratgeber/Förderung */}
+          {topic.weiterfuehrend && topic.weiterfuehrend.length > 0 && (
+            <motion.div
+              className="mt-10 flex flex-col gap-2"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              {topic.weiterfuehrend.map((l) => (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  className="inline-flex items-center gap-2 font-body text-sm text-brand-orange no-underline hover:underline"
+                >
+                  {l.label}
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              ))}
+            </motion.div>
+          )}
         </div>
       </section>
 

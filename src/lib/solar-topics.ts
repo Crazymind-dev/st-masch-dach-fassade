@@ -6,6 +6,8 @@ export interface SolarTopic {
   longDescription: string
   features: { title: string; description: string }[]
   highlights: string[]
+  /** Optionale weiterführende Links (Ratgeber, Förderung) unterhalb der Highlights. */
+  weiterfuehrend?: { href: string; label: string }[]
 }
 
 export const solarTopics: SolarTopic[] = [
@@ -44,6 +46,11 @@ export const solarTopics: SolarTopic[] = [
       "Enphase Mikrowechselrichter",
       "25 Jahre Produktgarantie",
       "Anmeldung beim Netzbetreiber inklusive",
+    ],
+    weiterfuehrend: [
+      { href: "/ratgeber/indach-photovoltaik", label: "Ratgeber: Indach-Photovoltaik — Kosten & Vorteile" },
+      { href: "/ratgeber/mikrowechselrichter-vs-string-wechselrichter", label: "Ratgeber: Mikro-, String- oder Hybrid-Wechselrichter" },
+      { href: "/foerderung", label: "Förderung für Solar & Dach im Überblick" },
     ],
   },
   {
