@@ -2,16 +2,15 @@
 
 import { motion } from "framer-motion"
 import {
-  Award,
   CheckCircle2,
   Heart,
   Lightbulb,
-  Shield,
   Star,
-  Users,
   Clock,
-  Hammer,
-  Phone,
+  Dog,
+  Home,
+  Sun,
+  Handshake,
 } from "lucide-react"
 import PageHero from "@/components/ui/PageHero"
 import CTABanner from "@/components/ui/CTABanner"
@@ -86,28 +85,61 @@ const zertifikate = [
   },
 ]
 
-const team = [
+/**
+ * Die Unternehmensgruppe — zwei spezialisierte Betriebe, ein Anspruch.
+ * Zuordnung nach Gewerk (Briefing G.21.1).
+ */
+const unternehmen = [
   {
-    name: "Steve Masch",
-    role: "Inhaber, Dachdeckermeister & Energieberater",
-    image: "/team-1.jpg",
+    icon: Home,
+    name: "St. Masch Dach | Fassade | Solar",
+    zustaendig: "Dachdeckerei, Fassade, Klempnerarbeiten",
+    leitung: "Inhaber: Steve Masch",
   },
   {
-    name: "Patrick Conrad",
-    role: "Projektleiter Dach & Fassade",
-    image: "/team-3.jpg",
-  },
-  {
-    name: "Justin Korn",
-    role: "Solar-Spezialist",
-    image: "/team-2.jpg",
-  },
-  {
-    name: "Roxana Wenck",
-    role: "Dachdeckergesellin",
-    image: "/team-4.jpg",
+    icon: Sun,
+    name: "St. Masch Synergien Solar GmbH",
+    zustaendig: "Photovoltaik, Solar, Speicher, Wallbox",
+    leitung: "Geschäftsführer: Steve Masch",
   },
 ]
+
+/**
+ * Kernteam — Liste exakt nach Steves Angaben (Chat 30.05., 16:21).
+ * Keine Fotos ohne echte Aufnahmen: neutrale Initialen-Platzhalter,
+ * keine Stock- oder KI-Bilder (Briefing G.21.2).
+ */
+const team: { name: string; role: string; dog?: boolean }[] = [
+  { name: "Steve Masch", role: "Inhaber / Geschäftsführer" },
+  { name: "Ria Norden", role: "Finanzen & Buchhaltung" },
+  { name: "Stephan Büchner", role: "VA & Dachdeckergeselle" },
+  { name: "Roxana Wenck", role: "Dachdeckergesellin" },
+  { name: "Jaroslaw Hoffmann", role: "Zimmerergeselle" },
+  { name: "Patrick Konrad", role: "VA & Dachdeckergeselle" },
+  { name: "Justin Korn", role: "Dachdeckergeselle" },
+  // Chat-Angabe Steve („Elektromeister") — Bestätigung aussteht (offener Punkt #6)
+  { name: "Joachim Schulze", role: "Elektromeister" },
+  { name: "Ella", role: "Team-Hündin", dog: true },
+]
+
+function initialen(name: string): string {
+  return name
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .toUpperCase()
+}
+
+/** Fachpartner-Netzwerk — Partnerbetriebe, sprachlich strikt von Mitarbeitern getrennt. */
+const fachpartner = [
+  { gewerk: "Gerüstbau", anzahl: "2 Partnerbetriebe" },
+  { gewerk: "Elektro", anzahl: "2 Partnerbetriebe" },
+  { gewerk: "Statik", anzahl: "Partnerbetrieb" },
+  { gewerk: "Spengler", anzahl: "Partnerbetrieb" },
+]
+
+/** Hersteller & Systeme, mit denen wir arbeiten (Briefing G.22). */
+const marken = ["PREFA", "Solrif / Ernst Schweizer", "Enphase", "Sigenergy", "VELUX"]
 
 const milestones = [
   {
@@ -351,7 +383,60 @@ export default function UeberUnsPage() {
         </div>
       </section>
 
-      {/* Section 4 - Team */}
+      {/* Section 4a - Die Unternehmensgruppe */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <motion.div
+            className="text-center mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="font-heading text-sm font-bold uppercase tracking-widest text-brand-orange mb-3 block">
+              Die Unternehmensgruppe
+            </span>
+            <h2 className="font-display text-3xl md:text-4xl font-black text-brand-dark">
+              Zwei Betriebe, <span className="text-brand-orange">ein Anspruch</span>
+            </h2>
+            <p className="font-body text-base md:text-lg text-brand-dark/60 mt-4 max-w-2xl mx-auto">
+              Dach, Fassade und Solar aus einer Hand – zwei spezialisierte
+              Betriebe, ein Anspruch.
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={stagger}
+          >
+            {unternehmen.map((u) => (
+              <motion.div
+                key={u.name}
+                className="bg-brand-beige rounded-2xl p-8 border border-black/5"
+                variants={fadeUp}
+                transition={{ duration: 0.5 }}
+              >
+                <div className="w-12 h-12 rounded-xl bg-brand-orange/10 flex items-center justify-center mb-5">
+                  <u.icon className="w-6 h-6 text-brand-orange" />
+                </div>
+                <h3 className="font-heading text-lg font-bold text-brand-dark mb-2">
+                  {u.name}
+                </h3>
+                <p className="font-body text-sm text-brand-dark/70 leading-relaxed mb-1">
+                  {u.zustaendig}
+                </p>
+                <p className="font-body text-sm text-brand-dark/55">{u.leitung}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Section 4b - Kernteam */}
       <section className="py-24 bg-brand-beige">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <motion.div
@@ -366,12 +451,12 @@ export default function UeberUnsPage() {
               Die Menschen dahinter
             </span>
             <h2 className="font-display text-3xl md:text-4xl font-black text-brand-dark">
-              Unser <span className="text-brand-orange">Team</span>
+              Unser <span className="text-brand-orange">Kernteam</span>
             </h2>
           </motion.div>
 
           <motion.div
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+            className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -380,24 +465,23 @@ export default function UeberUnsPage() {
             {team.map((t) => (
               <motion.div
                 key={t.name}
-                className="group"
+                className="bg-white rounded-2xl p-5 sm:p-6 text-center border border-black/5"
                 variants={fadeUp}
                 transition={{ duration: 0.5 }}
               >
-                <div className="relative rounded-2xl overflow-hidden mb-4 aspect-square">
-                  <Image
-                    src={t.image}
-                    alt={`${t.name} — ${t.role} bei St. Masch Dach, Fassade & Solar in Berlin`}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/60 to-transparent" />
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-brand-orange/10 border border-brand-orange/20 flex items-center justify-center mx-auto mb-4">
+                  {t.dog ? (
+                    <Dog className="w-8 h-8 text-brand-orange" aria-hidden />
+                  ) : (
+                    <span className="font-heading text-lg sm:text-xl font-bold text-brand-orange">
+                      {initialen(t.name)}
+                    </span>
+                  )}
                 </div>
-                <h3 className="font-heading text-lg font-bold text-brand-dark">
+                <h3 className="font-heading text-base sm:text-lg font-bold text-brand-dark leading-snug">
                   {t.name}
                 </h3>
-                <p className="font-body text-sm text-brand-dark/60">
+                <p className="font-body text-xs sm:text-sm text-brand-dark/60 mt-1">
                   {t.role}
                 </p>
               </motion.div>
@@ -406,8 +490,84 @@ export default function UeberUnsPage() {
         </div>
       </section>
 
-      {/* Section 5 - Timeline / Milestones */}
+      {/* Section 4c - Fachpartner-Netzwerk + Marken */}
       <section className="py-24 bg-white">
+        <div className="max-w-5xl mx-auto px-6 md:px-12">
+          <motion.div
+            className="text-center mb-12"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="font-heading text-sm font-bold uppercase tracking-widest text-brand-orange mb-3 block">
+              Unser Fachpartner-Netzwerk
+            </span>
+            <h2 className="font-display text-3xl md:text-4xl font-black text-brand-dark mb-5">
+              Starke <span className="text-brand-orange">Partner</span> an unserer Seite
+            </h2>
+            <p className="font-body text-base text-brand-dark/65 max-w-2xl mx-auto leading-relaxed">
+              Für Spitzenlasten und Spezialgewerke arbeiten wir mit einem festen
+              Stamm geprüfter Fachbetriebe – Gerüstbau, Elektro, Statik,
+              Spengler. Diese Partner sind rechtlich eigenständige Betriebe, mit
+              denen wir seit Jahren projektweise zusammenarbeiten.
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={stagger}
+          >
+            {fachpartner.map((p) => (
+              <motion.div
+                key={p.gewerk}
+                className="bg-brand-beige rounded-xl p-5 text-center border border-black/5"
+                variants={fadeUp}
+                transition={{ duration: 0.5 }}
+              >
+                <Handshake className="w-5 h-5 text-brand-orange mx-auto mb-2" aria-hidden />
+                <div className="font-heading text-sm font-bold text-brand-dark">
+                  {p.gewerk}
+                </div>
+                <div className="font-body text-xs text-brand-dark/55 mt-0.5">
+                  {p.anzahl}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Marken & Systeme */}
+          <motion.div
+            className="text-center"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="font-heading text-xs font-bold uppercase tracking-widest text-brand-dark/50 mb-4 block">
+              Hersteller & Systeme, mit denen wir arbeiten
+            </span>
+            <div className="flex flex-wrap justify-center gap-3">
+              {marken.map((m) => (
+                <span
+                  key={m}
+                  className="px-4 py-2 rounded-full bg-brand-beige border border-black/5 font-heading text-sm font-semibold text-brand-dark/75"
+                >
+                  {m}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Section 5 - Timeline / Milestones */}
+      <section className="py-24 bg-brand-beige">
         <div className="max-w-4xl mx-auto px-6 md:px-12">
           <motion.div
             className="text-center mb-16"
@@ -477,7 +637,7 @@ export default function UeberUnsPage() {
       </section>
 
       {/* CTA Banner */}
-      <section className="py-24 bg-brand-beige">
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <CTABanner
             title="Lernen Sie uns personlich kennen"
