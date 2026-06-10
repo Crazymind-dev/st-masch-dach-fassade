@@ -7,12 +7,19 @@ export const metadata: Metadata = {
   description: `Impressum und Anbieterkennzeichnung von ${company.name}.`,
 }
 
+/**
+ * Deploy-Gate (Briefing A.3): Der GmbH-Block ist inhaltlich fertig
+ * (Daten 1:1 aus dem HRB-PDF), darf aber erst nach explizitem "Go"
+ * von Steve live geschaltet werden (offener Punkt #3).
+ * Zum Freischalten: auf true setzen.
+ */
+const SHOW_GMBH_BLOCK: boolean = false
+
 export default function ImpressumPage() {
   return (
     <>
       <PageHero
         title="Impressum"
-        subtitle="Angaben gemäß § 5 TMG"
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Impressum", href: "/impressum" },
@@ -24,13 +31,36 @@ export default function ImpressumPage() {
           <div>
             <h2 className="font-heading text-xl font-bold mb-3">Anbieter</h2>
             <p className="leading-relaxed">
-              {company.name}
+              <strong>St. Masch Dach | Fassade | Solar</strong>
               <br />
-              {company.address.street}
+              Dachdeckerei, Fassade, Klempnerarbeiten
               <br />
-              {company.address.zip} {company.address.city}
+              Inhaber: Steve Masch
+              <br />
+              Ruppiner Chaussee 221
+              <br />
+              13503 Berlin
             </p>
+            {/* HR-Zeile (e.K.) bewusst weggelassen — nur nach Bestätigung durch Steve ergänzen (offener Punkt #5) */}
           </div>
+
+          {SHOW_GMBH_BLOCK && (
+            <div>
+              <h2 className="font-heading text-xl font-bold mb-3">
+                St. Masch Synergien Solar GmbH
+              </h2>
+              <p className="leading-relaxed">
+                Photovoltaik, Solar, Speicher, Wallbox
+                <br />
+                Sitz/Geschäftsanschrift: Ruppiner Chaussee 221, 13503 Berlin
+                <br />
+                Registergericht: Amtsgericht Charlottenburg, HRB 272561 B
+                <br />
+                Geschäftsführer: Steve Masch (alleinvertretungsberechtigt)
+              </p>
+              {/* Keine USt-IdNr. im HRB-PDF enthalten → Zeile weggelassen. Niemals die Steuernummer eintragen. */}
+            </div>
+          )}
 
           <div>
             <h2 className="font-heading text-xl font-bold mb-3">Kontakt</h2>
@@ -63,30 +93,12 @@ export default function ImpressumPage() {
 
           <div>
             <h2 className="font-heading text-xl font-bold mb-3">
-              Handelsregister &amp; Umsatzsteuer
-            </h2>
-            {/* TODO: Steve muss Handelsregister-Nummer (HRB/HRA) und USt-IdNr. eintragen */}
-            <p className="leading-relaxed text-brand-dark/60">
-              Handelsregister: <span className="italic">— wird ergänzt —</span>
-              <br />
-              Umsatzsteuer-ID gemäß § 27 a UStG:{" "}
-              <span className="italic">— wird ergänzt —</span>
-            </p>
-          </div>
-
-          <div>
-            <h2 className="font-heading text-xl font-bold mb-3">
               Berufsbezeichnung &amp; Kammer
             </h2>
-            {/* TODO: Eintragungsnummer der Handwerkskammer ergänzen */}
             <p className="leading-relaxed">
               Dachdeckermeister — Handwerkskammer Berlin
               <br />
               Verliehen in: Deutschland
-              <br />
-              <span className="text-brand-dark/60 italic">
-                Eintragungsnummer HWK: — wird ergänzt —
-              </span>
             </p>
           </div>
 
@@ -111,20 +123,10 @@ export default function ImpressumPage() {
 
           <div>
             <h2 className="font-heading text-xl font-bold mb-3">
-              EU-Streitschlichtung
+              Verbraucherstreitbeilegung
             </h2>
             <p className="leading-relaxed text-sm text-brand-dark/70">
-              Die Europäische Kommission stellt eine Plattform zur
-              Online-Streitbeilegung (OS) bereit:{" "}
-              <a
-                href="https://ec.europa.eu/consumers/odr/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-brand-orange hover:underline"
-              >
-                ec.europa.eu/consumers/odr
-              </a>
-              . Wir sind nicht bereit oder verpflichtet, an Streitbeilegungs­verfahren
+              Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren
               vor einer Verbraucherschlichtungsstelle teilzunehmen.
             </p>
           </div>

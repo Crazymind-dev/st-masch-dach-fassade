@@ -8,7 +8,7 @@ import { GradientBackground } from "@/components/ui/paper-design-shader-backgrou
 interface PageHeroProps {
   title: string
   highlight?: string
-  subtitle: string
+  subtitle?: string
   breadcrumbs: { label: string; href: string }[]
   /** kept for backwards compat — ignored; all PageHeros now share the shader background */
   image?: string
@@ -63,14 +63,16 @@ export default function PageHero({ title, highlight, subtitle, breadcrumbs }: Pa
           {title} {highlight && <span className="text-brand-orange">{highlight}</span>}
         </motion.h1>
 
-        <motion.p
-          className="font-body text-base sm:text-lg font-light text-white/75 max-w-2xl leading-relaxed"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          {subtitle}
-        </motion.p>
+        {subtitle && (
+          <motion.p
+            className="font-body text-base sm:text-lg font-light text-white/75 max-w-2xl leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            {subtitle}
+          </motion.p>
+        )}
       </div>
     </section>
   )
