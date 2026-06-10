@@ -18,12 +18,36 @@ const FONT_CLASSES: Record<FontSize, string> = {
   xlarge: "font-xlarge",
 }
 
+const DEFAULT_PREFS = {
+  fontSize: "normal" as FontSize,
+  highContrast: false,
+  reduceMotion: false,
+  highlightLinks: false,
+}
+
+function loadPrefs(): typeof DEFAULT_PREFS {
+  if (typeof window === "undefined") return DEFAULT_PREFS
+  try {
+    const saved = localStorage.getItem("a11y-prefs")
+    if (saved) {
+      const prefs = JSON.parse(saved)
+      return {
+        fontSize: FONT_CLASSES[prefs.fontSize as FontSize] !== undefined ? (prefs.fontSize as FontSize) : "normal",
+        highContrast: !!prefs.highContrast,
+        reduceMotion: !!prefs.reduceMotion,
+        highlightLinks: !!prefs.highlightLinks,
+      }
+    }
+  } catch {}
+  return DEFAULT_PREFS
+}
+
 export default function AccessibilityWidget() {
   const [open, setOpen] = useState(false)
-  const [fontSize, setFontSize] = useState<FontSize>("normal")
-  const [highContrast, setHighContrast] = useState(false)
-  const [reduceMotion, setReduceMotion] = useState(false)
-  const [highlightLinks, setHighlightLinks] = useState(false)
+  const [fontSize, setFontSize] = useState<FontSize>(() => loadPrefs().fontSize)
+  const [highContrast, setHighContrast] = useState(() => loadPrefs().highContrast)
+  const [reduceMotion, setReduceMotion] = useState(() => loadPrefs().reduceMotion)
+  const [highlightLinks, setHighlightLinks] = useState(() => loadPrefs().highlightLinks)
 
   const applyClasses = useCallback(() => {
     const html = document.documentElement
@@ -46,20 +70,6 @@ export default function AccessibilityWidget() {
   useEffect(() => {
     applyClasses()
   }, [applyClasses])
-
-  // Load saved preferences
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem("a11y-prefs")
-      if (saved) {
-        const prefs = JSON.parse(saved)
-        if (prefs.fontSize) setFontSize(prefs.fontSize)
-        if (prefs.highContrast) setHighContrast(prefs.highContrast)
-        if (prefs.reduceMotion) setReduceMotion(prefs.reduceMotion)
-        if (prefs.highlightLinks) setHighlightLinks(prefs.highlightLinks)
-      }
-    } catch {}
-  }, [])
 
   // Save preferences
   useEffect(() => {

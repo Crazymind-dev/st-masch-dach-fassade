@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# interne Arbeitsdateien (Feedback-Material, nicht deployen/committen)
+/feedback-quellen/
+FEEDBACK-*.md
+/WhatsApp Chat - Steve Masch/
+/Steve Homepage/

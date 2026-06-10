@@ -127,10 +127,14 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
-  useEffect(() => {
+  // Menüs bei Routenwechsel schließen — Anpassung während des Renders
+  // (React-Pattern „adjusting state when a prop changes") statt setState im Effect
+  const [prevPathname, setPrevPathname] = useState(pathname)
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname)
     setMobileOpen(false)
     setOpenMenu(null)
-  }, [pathname])
+  }
 
   useEffect(() => {
     if (mobileOpen) {
