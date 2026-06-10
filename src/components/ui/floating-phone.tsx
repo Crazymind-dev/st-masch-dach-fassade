@@ -40,7 +40,7 @@ export default function FloatingPhone() {
         {/* Pulse ring */}
         <span className="absolute inset-0 rounded-full bg-brand-orange animate-ping opacity-20" />
 
-        <div className="relative w-12 h-12 md:w-14 md:h-14 rounded-full bg-brand-orange text-white flex items-center justify-center shadow-[0_4px_24px_rgba(255,91,1,0.4)] group-hover:bg-brand-orange-dark transition-colors">
+        <div className="relative w-12 h-12 md:w-14 md:h-14 rounded-full bg-brand-orange text-white flex items-center justify-center shadow-[0_4px_24px_rgba(236,102,8,0.4)] group-hover:bg-brand-orange-dark transition-colors">
           <Phone className="w-5 h-5 md:w-6 md:h-6" />
         </div>
       </div>

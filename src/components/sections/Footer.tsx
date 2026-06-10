@@ -2,12 +2,13 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
+import Image from "next/image"
 import { Phone, Mail, MapPin } from "lucide-react"
 
 const leistungenLinks = [
   { label: "Dach", href: "/leistungen" },
-  { label: "Solar & Energie", href: "/solar" },
   { label: "Fassade", href: "/leistungen/fassade" },
+  { label: "Solar & Energiesysteme", href: "/solar" },
   { label: "Dachfenster (VELUX)", href: "/leistungen/dachfenster" },
   { label: "Dachservice", href: "/leistungen/dachservice" },
 ]
@@ -39,16 +40,17 @@ export default function Footer() {
               href="/"
               className="block mb-4 no-underline"
             >
-              <span className="font-heading font-extrabold text-xl text-white block leading-tight">
-                ST. MASCH
-              </span>
-              <span className="font-heading text-[11px] font-bold uppercase tracking-[3px] text-brand-orange mt-1 block">
-                Dach · Fassade · Solar
-              </span>
+              <Image
+                src="/logo-st-masch-white.png"
+                alt="St. Masch — Dach, Fassade, Solar"
+                width={620}
+                height={156}
+                className="h-12 w-auto"
+              />
             </Link>
             <p className="font-body text-sm text-gray-300 font-light leading-relaxed">
-              Zertifizierter Meisterbetrieb für Dach, Fassade und Solarenergie
-              in Berlin und Brandenburg. Seit über 15 Jahren.
+              Zertifizierter Meisterbetrieb für Dach, Fassade, Solar in Berlin
+              und Brandenburg — seit über 20 Jahren.
             </p>
           </div>
 

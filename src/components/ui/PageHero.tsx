@@ -19,12 +19,13 @@ export default function PageHero({ title, highlight, subtitle, breadcrumbs }: Pa
     <section className="relative min-h-[320px] sm:min-h-[380px] md:min-h-[440px] flex items-center overflow-hidden">
       {/* Full-width Shader Background (matches homepage Hero) */}
       <div className="absolute inset-0 z-0">
+        {/* Entschärft: dunklere Teal/Orange-Töne statt grellem Vollorange (Steve, SRT-1) */}
         <GradientBackground
-          colors={["hsl(14, 100%, 50%)", "hsl(30, 100%, 48%)", "hsl(350, 80%, 45%)"]}
-          colorBack="hsl(20, 10%, 6%)"
+          colors={["hsl(22, 82%, 36%)", "hsl(30, 72%, 40%)", "hsl(192, 38%, 20%)"]}
+          colorBack="hsl(200, 16%, 7%)"
           softness={0.8}
-          intensity={0.5}
-          speed={0.5}
+          intensity={0.38}
+          speed={0.4}
         />
       </div>
 

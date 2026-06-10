@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion"
 import { Home, Building2, Sun, ArrowRight, Phone } from "lucide-react"
-import { GradientBackground } from "@/components/ui/paper-design-shader-background"
 import { GlowButton } from "@/components/ui/glow-button"
 
 const glassCards = [
@@ -29,15 +28,24 @@ const glassCards = [
 export default function Hero() {
   return (
     <section id="start" className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Full-width Shader Background */}
+      {/* Loop-Video: Dach + PV im Abendlicht (Teal-Orange-Look, Referenz enphase.com) */}
       <div className="absolute inset-0 z-0">
-        <GradientBackground
-          colors={["hsl(14, 100%, 50%)", "hsl(30, 100%, 48%)", "hsl(350, 80%, 45%)"]}
-          colorBack="hsl(20, 10%, 6%)"
-          softness={0.8}
-          intensity={0.5}
-          speed={0.5}
-        />
+        <video
+          className="absolute inset-0 w-full h-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster="/hero-dach-poster.jpg"
+          aria-hidden
+        >
+          <source src="/hero-dach-mobil.mp4" type="video/mp4" media="(max-width: 767px)" />
+          <source src="/hero-dach.mp4" type="video/mp4" />
+        </video>
+        {/* Abdunklung + Teal-Grade für Textlesbarkeit (mobil getestet: Text liegt links) */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0b1b1f]/85 via-[#0b1b1f]/60 to-[#10242a]/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0b1518]/80 via-transparent to-black/35" />
       </div>
 
       {/* Grain overlay */}
@@ -54,9 +62,9 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="w-8 md:w-10 h-[2px] bg-brand-orange" />
+              <div className="w-8 md:w-10 h-[2px] bg-brand-orange flex-shrink-0" />
               <span className="font-heading text-[10px] md:text-xs font-bold uppercase tracking-widest text-brand-orange">
-                Meisterbetrieb Berlin
+                Zertifizierter Meisterbetrieb für Dach, Fassade, Solar in Berlin und Brandenburg — seit über 20 Jahren
               </span>
             </motion.div>
 
@@ -107,8 +115,8 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.7 }}
             >
               {[
-                { label: "Meisterbetrieb", sub: "Qualifiziert & zertifiziert" },
-                { label: "Berlin & Brandenburg", sub: "Regionaler Fachbetrieb" },
+                { label: "Dachdeckermeister", sub: "HWK Berlin" },
+                { label: "Energieberater", sub: "BAFA-anerkannt" },
                 { label: "Solar Partner", sub: "Enphase zertifiziert" },
               ].map((t) => (
                 <div key={t.label} className="flex items-center gap-2 sm:gap-3">
@@ -157,7 +165,7 @@ export default function Hero() {
             {/* Stats row */}
             <div className="flex gap-3 sm:gap-4 mt-2">
               {[
-                { num: "15+", label: "Jahre Erfahrung" },
+                { num: "20+", label: "Jahre Erfahrung" },
                 { num: "500+", label: "Projekte" },
                 { num: "100%", label: "Meisterqualität" },
               ].map((s, i) => (

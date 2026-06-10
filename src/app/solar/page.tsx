@@ -337,7 +337,7 @@ export default function SolarPage() {
 
             {/* Card 4: 25+ Garantie */}
             <motion.div
-              className="md:col-span-2 relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-orange to-brand-orange-dark p-6 shadow-[0_8px_40px_rgba(255,91,1,0.3)]"
+              className="md:col-span-2 relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-orange to-brand-orange-dark p-6 shadow-[0_8px_40px_rgba(236,102,8,0.3)]"
               variants={fadeUp}
               transition={{ duration: 0.6 }}
             >

@@ -50,13 +50,14 @@ export default function StatsBanner() {
   return (
     <section className="relative py-14 sm:py-20 md:py-24 overflow-hidden">
       {/* Shader background */}
+      {/* Entschärft: dunkler Teal-Orange-Verlauf statt grellem Vollorange (Steve, SRT-1) */}
       <GradientBackground
         colors={[
-          "hsl(14, 100%, 50%)",
-          "hsl(25, 100%, 52%)",
-          "hsl(35, 100%, 55%)",
+          "hsl(22, 80%, 34%)",
+          "hsl(28, 74%, 40%)",
+          "hsl(192, 35%, 20%)",
         ]}
-        colorBack="hsl(14, 100%, 40%)"
+        colorBack="hsl(20, 30%, 12%)"
       />
 
       {/* Grain overlay */}

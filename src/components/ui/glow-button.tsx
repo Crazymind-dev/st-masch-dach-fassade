@@ -15,7 +15,7 @@ interface GlowButtonProps {
 
 const variantStyles = {
   primary: {
-    bg: "#ff5b01",
+    bg: "#EC6608",
     text: "#ffffff",
     hoverText: "#ffffff",
     glow: "#ff8c42",
@@ -23,20 +23,20 @@ const variantStyles = {
   secondary: {
     bg: "#1a1a1a",
     text: "#ffffff",
-    hoverText: "#ff5b01",
-    glow: "#ff5b01",
+    hoverText: "#EC6608",
+    glow: "#EC6608",
   },
   outline: {
     bg: "transparent",
     text: "#1a1a1a",
-    hoverText: "#ff5b01",
-    glow: "#ff5b01",
+    hoverText: "#EC6608",
+    glow: "#EC6608",
   },
   dark: {
     bg: "rgba(255,255,255,0.1)",
     text: "#ffffff",
-    hoverText: "#ff5b01",
-    glow: "#ff5b01",
+    hoverText: "#EC6608",
+    glow: "#EC6608",
   },
 }
 
@@ -108,7 +108,7 @@ export function GlowButton({
     style: {
       backgroundColor: styles.bg,
       color: isHovered ? styles.hoverText : styles.text,
-      boxShadow: variant === "primary" ? "0 4px 24px rgba(255, 91, 1, 0.3)" : undefined,
+      boxShadow: variant === "primary" ? "0 4px 24px rgba(236, 102, 8, 0.3)" : undefined,
     },
   }
 

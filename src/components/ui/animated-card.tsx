@@ -92,8 +92,8 @@ interface VisualProps {
 }
 
 export function Visual1({
-  mainColor = "#ff5b01",
-  secondaryColor = "#e86425",
+  mainColor = "#EC6608",
+  secondaryColor = "#B84F00",
   gridColor = "#80808015",
 }: VisualProps) {
   return (

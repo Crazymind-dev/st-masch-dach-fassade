@@ -86,7 +86,7 @@ export default function Solar() {
 
             <a
               href="#kontakt"
-              className="inline-flex items-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-brand-orange text-white rounded-full font-heading text-sm font-bold uppercase tracking-wider no-underline shadow-[0_4px_24px_rgba(255,91,1,0.3)] hover:bg-brand-orange-dark hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(255,91,1,0.4)] transition-all min-h-[44px]"
+              className="inline-flex items-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-brand-orange text-white rounded-full font-heading text-sm font-bold uppercase tracking-wider no-underline shadow-[0_4px_24px_rgba(236,102,8,0.3)] hover:bg-brand-orange-dark hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(236,102,8,0.4)] transition-all min-h-[44px]"
             >
               Solar-Beratung anfragen
               <ArrowRight className="w-4 h-4" />

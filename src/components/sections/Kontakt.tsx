@@ -44,8 +44,8 @@ const contactInfo = [
 
 const topicChoices = [
   { value: "dach", label: "Dach", icon: Home },
-  { value: "solar", label: "Solar & Energie", icon: Sun },
   { value: "fassade", label: "Fassade", icon: Building2 },
+  { value: "solar", label: "Solar & Energiesysteme", icon: Sun },
   { value: "sonstiges", label: "Sonstiges", icon: MessageSquare },
 ]
 
@@ -74,9 +74,9 @@ export default function Kontakt() {
     <section id="kontakt" className="relative py-16 md:py-32 bg-brand-dark overflow-hidden">
       <GradientBackground
         colors={[
-          "hsl(14, 100%, 50%)",
-          "hsl(0, 60%, 20%)",
-          "hsl(25, 100%, 45%)",
+          "hsl(22, 85%, 40%)",
+          "hsl(192, 35%, 16%)",
+          "hsl(28, 75%, 38%)",
         ]}
         colorBack="hsl(0, 0%, 5%)"
         intensity={0.3}
@@ -188,7 +188,7 @@ export default function Kontakt() {
                 </p>
                 <a
                   href="tel:+493084417068"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-brand-orange text-white rounded-full font-heading text-sm font-bold no-underline shadow-[0_4px_24px_rgba(255,91,1,0.3)] hover:bg-brand-orange-dark transition-colors min-h-[48px]"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-brand-orange text-white rounded-full font-heading text-sm font-bold no-underline shadow-[0_4px_24px_rgba(236,102,8,0.3)] hover:bg-brand-orange-dark transition-colors min-h-[48px]"
                 >
                   <Phone className="w-4 h-4" />
                   030 - 844 17 068
@@ -300,7 +300,7 @@ export default function Kontakt() {
                 <button
                   type="submit"
                   disabled={status === "sending"}
-                  className="w-full py-3.5 sm:py-4 bg-brand-orange text-white rounded-full font-heading text-sm font-bold uppercase tracking-wider cursor-pointer border-none shadow-[0_4px_24px_rgba(255,91,1,0.3)] hover:bg-brand-orange-dark hover:shadow-[0_8px_32px_rgba(255,91,1,0.4)] transition-all min-h-[48px] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="w-full py-3.5 sm:py-4 bg-brand-orange text-white rounded-full font-heading text-sm font-bold uppercase tracking-wider cursor-pointer border-none shadow-[0_4px_24px_rgba(236,102,8,0.3)] hover:bg-brand-orange-dark hover:shadow-[0_8px_32px_rgba(236,102,8,0.4)] transition-all min-h-[48px] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   {status === "sending" ? (
                     <>

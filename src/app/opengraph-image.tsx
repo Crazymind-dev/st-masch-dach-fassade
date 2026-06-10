@@ -23,7 +23,7 @@ export default function OpengraphImage() {
           padding: "80px",
           backgroundColor: "#1a1a1a",
           backgroundImage:
-            "radial-gradient(circle at 75% 20%, rgba(255,91,1,0.45) 0%, transparent 55%)",
+            "radial-gradient(circle at 75% 20%, rgba(236,102,8,0.45) 0%, transparent 55%)",
           color: "#ffffff",
           fontFamily: "sans-serif",
         }}
@@ -37,7 +37,7 @@ export default function OpengraphImage() {
               fontWeight: 800,
               letterSpacing: 4,
               textTransform: "uppercase",
-              color: "#ff5b01",
+              color: "#EC6608",
               marginBottom: 8,
             }}
           >
@@ -60,7 +60,7 @@ export default function OpengraphImage() {
               fontWeight: 700,
               letterSpacing: 3,
               textTransform: "uppercase",
-              color: "#ff5b01",
+              color: "#EC6608",
               marginTop: 16,
             }}
           >
@@ -81,7 +81,7 @@ export default function OpengraphImage() {
             }}
           >
             <div style={{ display: "flex" }}>Weil Geborgenheit</div>
-            <div style={{ display: "flex", color: "#ff5b01" }}>
+            <div style={{ display: "flex", color: "#EC6608" }}>
               beim Dach beginnt.
             </div>
           </div>

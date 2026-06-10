@@ -5,8 +5,8 @@
    @import was removed to prevent render-blocking. */
 
 @theme inline {
-  --color-brand-orange: #ff5b01;
-  --color-brand-orange-dark: #e86425;
+  --color-brand-orange: #EC6608;
+  --color-brand-orange-dark: #B84F00;
   --color-brand-orange-deep: #c44200;
   --color-brand-beige: #f5f0eb;
   --color-brand-beige-light: #f8f6f2;
@@ -43,7 +43,7 @@ body {
   border-radius: 0.75rem;
   background: radial-gradient(
     320px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(255, 91, 1, 0.55),
+    rgba(236, 102, 8, 0.55),
     rgba(255, 140, 66, 0.25) 25%,
     transparent 55%
   );

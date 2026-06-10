@@ -43,7 +43,7 @@ const services = [
   },
   {
     icon: <Sun className="w-6 h-6" />,
-    title: "Solar & Energie",
+    title: "Solar & Energiesysteme",
     description:
       "PV, Speicher und Wärmepumpe — vom Dachprofi geplant, nicht vom Vertrieb verkauft.",
     href: "/solar",

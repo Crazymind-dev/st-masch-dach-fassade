@@ -211,7 +211,7 @@ export default function UeberUns() {
           </div>
           <a
             href="#kontakt"
-            className="inline-flex items-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-brand-orange text-white rounded-full font-heading text-sm font-bold uppercase tracking-wider no-underline shadow-[0_4px_24px_rgba(255,91,1,0.3)] hover:bg-brand-orange-dark hover:-translate-y-0.5 transition-all flex-shrink-0 min-h-[44px]"
+            className="inline-flex items-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-brand-orange text-white rounded-full font-heading text-sm font-bold uppercase tracking-wider no-underline shadow-[0_4px_24px_rgba(236,102,8,0.3)] hover:bg-brand-orange-dark hover:-translate-y-0.5 transition-all flex-shrink-0 min-h-[44px]"
           >
             Kontakt aufnehmen
             <ArrowRight className="w-4 h-4" />

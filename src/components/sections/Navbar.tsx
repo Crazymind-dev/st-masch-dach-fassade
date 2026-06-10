@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
+import Image from "next/image"
 import {
   Phone,
   Mail,
@@ -68,22 +69,22 @@ const navEntries: NavEntry[] = [
   },
   {
     kind: "dropdown",
-    label: "Solar",
-    items: [
-      { href: "/solar/pv-anlagen", label: "PV-Anlagen", description: "Maßgeschneiderte Photovoltaik für Ihr Dach.", icon: Sun },
-      { href: "/solar/stromspeicher", label: "Stromspeicher", description: "Enphase IQ — Eigenverbrauch maximieren.", icon: BatteryCharging },
-      { href: "/solar/monitoring", label: "Monitoring & Wartung", description: "Echtzeit-Überwachung via Enphase App.", icon: Activity },
-      { href: "/solar/home-energy", label: "Home Energy", description: "Wallbox, Wärmepumpe und Speicher zentral.", icon: HousePlug },
-    ],
-  },
-  {
-    kind: "dropdown",
     label: "Fassade",
     items: [
       { href: "/leistungen/fassade/wdvs", label: "WDVS-Dämmung", description: "Wärmedämmverbundsysteme für bessere Energiebilanz.", icon: Thermometer },
       { href: "/leistungen/fassade/vhf", label: "Vorgehängte Fassade", description: "VHF-Systeme mit Hinterlüftung und Dämmung.", icon: PanelsTopLeft },
       { href: "/leistungen/fassade/klinker", label: "Klinker & Naturstein", description: "Hochwertige Verkleidungen mit Charakter.", icon: Building2 },
       { href: "/leistungen/fassade/sanierung", label: "Fassadensanierung", description: "Reinigung, Putz und Neuanstrich vom Profi.", icon: Paintbrush },
+    ],
+  },
+  {
+    kind: "dropdown",
+    label: "Solar",
+    items: [
+      { href: "/solar/pv-anlagen", label: "PV-Anlagen", description: "Maßgeschneiderte Photovoltaik für Ihr Dach.", icon: Sun },
+      { href: "/solar/stromspeicher", label: "Stromspeicher", description: "Enphase IQ — Eigenverbrauch maximieren.", icon: BatteryCharging },
+      { href: "/solar/monitoring", label: "Monitoring & Wartung", description: "Echtzeit-Überwachung via Enphase App.", icon: Activity },
+      { href: "/solar/home-energy", label: "Home Energy", description: "Wallbox, Wärmepumpe und Speicher zentral.", icon: HousePlug },
     ],
   },
   {
@@ -180,14 +181,16 @@ export default function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            className="no-underline flex flex-col leading-none min-h-[44px] justify-center flex-shrink-0"
+            className="no-underline flex items-center min-h-[44px] flex-shrink-0"
           >
-            <span className="font-heading font-extrabold text-base sm:text-xl text-brand-dark">
-              ST. MASCH
-            </span>
-            <span className="font-heading text-[9px] sm:text-[10px] font-bold uppercase tracking-[2px] sm:tracking-[3px] text-brand-orange mt-0.5 sm:mt-1">
-              Dach · Fassade · Solar
-            </span>
+            <Image
+              src="/logo-st-masch.png"
+              alt="St. Masch — Dach, Fassade, Solar"
+              width={620}
+              height={156}
+              priority
+              className="h-9 sm:h-11 w-auto"
+            />
           </Link>
 
           {/* Desktop Nav */}
@@ -504,7 +507,7 @@ export default function Navbar() {
               >
                 <a
                   href="tel:+493084417068"
-                  className="flex items-center justify-center gap-3 w-full py-4 bg-brand-orange text-white rounded-full font-heading text-base font-bold no-underline shadow-[0_4px_24px_rgba(255,91,1,0.3)] hover:bg-brand-orange-dark transition-colors min-h-[48px]"
+                  className="flex items-center justify-center gap-3 w-full py-4 bg-brand-orange text-white rounded-full font-heading text-base font-bold no-underline shadow-[0_4px_24px_rgba(236,102,8,0.3)] hover:bg-brand-orange-dark transition-colors min-h-[48px]"
                 >
                   <Phone className="w-5 h-5" />
                   030 - 844 17 068

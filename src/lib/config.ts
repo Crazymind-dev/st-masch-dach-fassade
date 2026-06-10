@@ -40,9 +40,13 @@ export const company = {
 
   founded: 2015,
 
-  get yearsExperience(): number {
-    return new Date().getFullYear() - this.founded
-  },
+  /**
+   * Betriebs-Claim „seit über 20 Jahren" (Steve, SRT-2) — bewusst statisch
+   * und von `founded` entkoppelt: gemeint ist Steves Berufserfahrung, nicht
+   * das Gründungsjahr. Für Personen-Bezug gilt „30 Jahre Erfahrung als
+   * Dachdeckermeister" (siehe Ratgeber-Texte).
+   */
+  yearsExperience: 20,
 
   /** Stats shown in Hero trust strip + StatsBanner. */
   stats: {
