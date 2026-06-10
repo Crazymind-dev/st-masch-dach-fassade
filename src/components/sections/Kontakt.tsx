@@ -16,6 +16,7 @@ import {
 } from "lucide-react"
 import { GradientBackground } from "@/components/ui/paper-design-shader-background"
 import { cn } from "@/lib/utils"
+import { company } from "@/lib/config"
 
 const contactInfo = [
   {
@@ -38,7 +39,7 @@ const contactInfo = [
   {
     icon: <Clock className="w-5 h-5" />,
     label: "Öffnungszeiten",
-    value: "Mo–Fr: 08:00 – 16:00 Uhr",
+    value: `${company.hours.display} · ${company.hours.appointments}`,
   },
 ]
 

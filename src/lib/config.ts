@@ -34,8 +34,10 @@ export const company = {
 
   /** One source of truth for opening hours. */
   hours: {
-    display: "Mo–Fr: 08:00 – 16:00 Uhr",
-    weekdays: { open: "08:00", close: "16:00" },
+    display: "Mo–Fr: 7:00 – 15:00 Uhr",
+    weekdays: { open: "07:00", close: "15:00" },
+    weekend: "Sa & So: geschlossen",
+    appointments: "Termine nach Vereinbarung",
   },
 
   founded: 2015,

@@ -8,8 +8,6 @@ import {
   Mail,
   Clock,
   Send,
-  ChevronDown,
-  ChevronUp,
   Home,
   Sun,
   Building2,
@@ -18,6 +16,7 @@ import {
   CheckCircle2,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { company } from "@/lib/config"
 import PageHero from "@/components/ui/PageHero"
 import CTABanner from "@/components/ui/CTABanner"
 
@@ -42,7 +41,8 @@ const contactInfo = [
   {
     icon: Clock,
     title: "Öffnungszeiten",
-    lines: ["Mo - Fr: 08:00 - 16:00 Uhr", "Sa & So: Geschlossen"],
+    lines: [company.hours.display, company.hours.weekend],
+    linkLine: { label: company.hours.appointments, href: "tel:03084417068" },
   },
 ]
 
@@ -53,28 +53,8 @@ const topicChoices = [
   { value: "sonstiges", label: "Sonstiges", icon: MessageSquare },
 ]
 
-interface FAQItem {
-  question: string
-  answer: string
-}
-
-const faqs: FAQItem[] = [
-  {
-    question: "Wie läuft der erste Kontakt ab?",
-    answer:
-      "Nach Ihrer Anfrage melden wir uns innerhalb von 24 Stunden bei Ihnen. Wir vereinbaren einen kostenlosen Vor-Ort-Termin, bei dem wir den Zustand Ihres Daches begutachten und Ihre Wünsche besprechen. Anschließend erhalten Sie ein unverbindliches Angebot.",
-  },
-  {
-    question: "Was kostet eine Dachsanierung?",
-    answer:
-      "Die Kosten hängen von vielen Faktoren ab: Dachfläche, Material, Dämmung, Gerüst und eventuelle Zusatzarbeiten. Nach unserer Vor-Ort-Besichtigung erstellen wir Ihnen ein transparentes Festpreisangebot — ohne versteckte Kosten.",
-  },
-  {
-    question: "Was tun bei Sturmschäden oder akuten Undichtigkeiten?",
-    answer:
-      "Rufen Sie uns an unter 030-844 17 068 — wir kümmern uns umgehend um eine Notabdichtung, damit keine Folgeschäden entstehen.",
-  },
-]
+// FAQ-Block ist bewusst weg von der Kontaktseite — Inhalte leben jetzt in der
+// FAQ-Sektion auf /ratgeber (Briefing E.15/F.20).
 
 const containerVariants = {
   hidden: {},
@@ -87,7 +67,6 @@ const cardVariants = {
 }
 
 export default function KontaktPage() {
-  const [openFAQ, setOpenFAQ] = useState<number | null>(null)
   const [topics, setTopics] = useState<string[]>([])
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle")
 
@@ -97,6 +76,8 @@ export default function KontaktPage() {
     )
   }
 
+  // TODO (Briefing E.17, SRT-2): Formular später tiefgreifend am Erhebungsbogen
+  // ausrichten — von Steve ausdrücklich zurückgestellt („Das lassen wir erst mal so stehen").
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (status === "sending") return
@@ -175,6 +156,14 @@ export default function KontaktPage() {
                               {line}
                             </p>
                           )
+                        )}
+                        {"linkLine" in info && info.linkLine && (
+                          <a
+                            href={info.linkLine.href}
+                            className="inline-block font-body text-sm text-brand-orange no-underline hover:underline mt-1.5"
+                          >
+                            {info.linkLine.label} →
+                          </a>
                         )}
                       </div>
                     </div>
@@ -383,75 +372,12 @@ export default function KontaktPage() {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="bg-white py-24">
-        <div className="max-w-3xl mx-auto px-6 md:px-12">
-          <motion.div
-            className="text-center mb-14"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <span className="font-heading text-sm font-bold uppercase tracking-widest text-brand-orange mb-3 block">
-              Gut zu wissen
-            </span>
-            <h2 className="font-display text-3xl md:text-4xl font-black text-brand-dark">
-              Häufig gestellte <span className="text-brand-orange">Fragen</span>
-            </h2>
-          </motion.div>
-
-          <motion.div
-            className="space-y-4"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            {faqs.map((faq, index) => (
-              <motion.div
-                key={index}
-                variants={cardVariants}
-                className="bg-brand-beige rounded-xl overflow-hidden"
-              >
-                <button
-                  onClick={() => setOpenFAQ(openFAQ === index ? null : index)}
-                  className="w-full flex items-center justify-between p-5 text-left bg-transparent border-none cursor-pointer group"
-                >
-                  <h3 className="font-heading text-base font-bold text-brand-dark group-hover:text-brand-orange transition-colors pr-4">
-                    {faq.question}
-                  </h3>
-                  {openFAQ === index ? (
-                    <ChevronUp className="w-5 h-5 text-brand-orange flex-shrink-0" />
-                  ) : (
-                    <ChevronDown className="w-5 h-5 text-brand-dark/40 flex-shrink-0" />
-                  )}
-                </button>
-                {openFAQ === index && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="px-5 pb-5"
-                  >
-                    <p className="font-body text-base sm:text-sm text-brand-dark/70 leading-relaxed m-0">
-                      {faq.answer}
-                    </p>
-                  </motion.div>
-                )}
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
       {/* CTA */}
       <section className="bg-brand-beige py-24">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <CTABanner
             title="Rufen Sie uns an"
-            subtitle="Persönliche Beratung unter 030-844 17 068 — wir sind Mo-Fr von 08:00 bis 16:00 Uhr für Sie da."
+            subtitle="Persönliche Beratung unter 030-844 17 068 — wir sind Mo–Fr von 7:00 bis 15:00 Uhr für Sie da. Termine nach Vereinbarung."
             buttonText="Jetzt anrufen"
             href="tel:03084417068"
           />
