@@ -9,6 +9,7 @@ import {
   Mail,
   Menu,
   X,
+  CalendarCheck,
   ChevronDown,
   Home,
   Layers,
@@ -308,15 +309,8 @@ export default function Navbar() {
             })}
           </ul>
 
-          {/* Desktop Contact */}
+          {/* Desktop Contact + Buchungs-CTA */}
           <div className="hidden lg:flex items-center gap-5 flex-shrink-0">
-            <a
-              href="mailto:kontakt@die-dachdecker.berlin"
-              className="flex items-center gap-2 text-brand-dark no-underline font-heading font-bold text-[14px] hover:text-brand-orange transition-colors min-h-[44px]"
-            >
-              <Mail className="w-[18px] h-[18px] text-brand-orange" />
-              <span className="hidden xl:inline">kontakt@die-dachdecker.berlin</span>
-            </a>
             <a
               href="tel:+493084417068"
               className="flex items-center gap-2 text-brand-dark no-underline font-heading font-bold text-[14px] hover:text-brand-orange transition-colors min-h-[44px]"
@@ -324,6 +318,13 @@ export default function Navbar() {
               <Phone className="w-[18px] h-[18px] text-brand-orange" />
               <span className="hidden xl:inline">030 - 844 17 068</span>
             </a>
+            <Link
+              href="/buchung"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-brand-orange text-white no-underline font-heading text-[13px] font-bold uppercase tracking-wide hover:bg-brand-orange-dark transition-colors min-h-[40px]"
+            >
+              <CalendarCheck className="w-4 h-4" />
+              Buchung &amp; Preise
+            </Link>
           </div>
 
           {/* Mobile Hamburger */}
@@ -387,6 +388,15 @@ export default function Navbar() {
               </div>
 
               <nav className="flex-1 overflow-y-auto px-4 py-4">
+                {/* Prominenter Buchungs-CTA (Briefing H: Einstieg „oben" verankern) */}
+                <Link
+                  href="/buchung"
+                  onClick={() => setMobileOpen(false)}
+                  className="mb-3 flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl bg-brand-orange text-white no-underline font-heading text-base font-bold min-h-[48px] hover:bg-brand-orange-dark transition-colors"
+                >
+                  <CalendarCheck className="w-5 h-5" />
+                  Buchung &amp; Preise
+                </Link>
                 <ul className="list-none p-0 m-0 space-y-1">
                   {navEntries.map((entry, i) => {
                     if (entry.kind === "link") {
