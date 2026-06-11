@@ -138,10 +138,10 @@ export default function UeberUns() {
               {/* Experience badge */}
               <div className="absolute bottom-4 sm:bottom-5 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-sm rounded-xl px-5 sm:px-6 py-3 sm:py-4 shadow-lg text-center">
                 <div className="font-display text-2xl sm:text-3xl font-black text-brand-orange leading-none">
-                  {company.yearsExperience}+
+                  {company.berufserfahrungJahre}
                 </div>
                 <div className="font-heading text-[10px] sm:text-xs font-bold text-brand-dark uppercase tracking-wider mt-1">
-                  Jahre Erfahrung
+                  Jahre Berufserfahrung
                 </div>
               </div>
             </div>

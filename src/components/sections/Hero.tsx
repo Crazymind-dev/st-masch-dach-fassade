@@ -165,8 +165,8 @@ export default function Hero() {
             {/* Stats row */}
             <div className="flex gap-3 sm:gap-4 mt-2">
               {[
-                { num: "20+", label: "Jahre Erfahrung" },
-                { num: "500+", label: "Projekte" },
+                { num: "30", label: "Jahre Berufserfahrung" },
+                { num: "20.000", label: "Projekte" },
                 { num: "100%", label: "Meisterqualität" },
               ].map((s, i) => (
                 <motion.div
