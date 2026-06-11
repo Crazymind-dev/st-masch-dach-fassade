@@ -64,7 +64,7 @@ export default function Hero() {
             >
               <div className="w-8 md:w-10 h-[2px] bg-brand-orange flex-shrink-0" />
               <span className="font-heading text-[10px] md:text-xs font-bold uppercase tracking-widest text-brand-orange">
-                Zertifizierter Meisterbetrieb für Dach, Fassade, Solar in Berlin und Brandenburg — seit über 20 Jahren
+                Zertifizierter Meisterbetrieb für Dach, Fassade, Solar in Berlin und Brandenburg — seit über 30 Jahren
               </span>
             </motion.div>
 
