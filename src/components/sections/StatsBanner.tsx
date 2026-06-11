@@ -7,7 +7,7 @@ import { company } from "@/lib/config"
 
 const stats = [
   { value: company.berufserfahrungJahre, suffix: "", label: "Jahre Berufserfahrung" },
-  { value: 20000, suffix: "", label: "Projekte" },
+  { value: 20000, suffix: "+", label: "Projekte" },
   { value: 100, suffix: "%", label: "Meisterqualität" },
   { value: company.certifications.length, suffix: "", label: "Zertifizierungen" },
 ]
