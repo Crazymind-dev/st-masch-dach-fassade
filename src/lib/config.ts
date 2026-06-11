@@ -44,15 +44,19 @@ export const company = {
 
   /**
    * Betriebs-Claim „seit über 20 Jahren" (Steve, SRT-2) — bewusst statisch
-   * und von `founded` entkoppelt: gemeint ist Steves Berufserfahrung, nicht
-   * das Gründungsjahr. Für Personen-Bezug gilt „30 Jahre Erfahrung als
-   * Dachdeckermeister" (siehe Ratgeber-Texte).
+   * und von `founded` entkoppelt. Für Texte mit Betriebs-Bezug.
    */
   yearsExperience: 20,
 
-  /** Stats shown in Hero trust strip + StatsBanner. */
+  /**
+   * Steves Berufserfahrung als Dachdeckermeister (Personen-Bezug) —
+   * Kennzahl für Stats/Badges (Angabe Steve/Andreas, 11.06.2026).
+   */
+  berufserfahrungJahre: 30,
+
+  /** Stats shown in Hero trust strip + StatsBanner (Angabe Steve/Andreas). */
   stats: {
-    projects: "500+",
+    projects: "20.000",
     quality: "100%",
   },
 

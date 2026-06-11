@@ -113,7 +113,7 @@ const team: { name: string; role: string; dog?: boolean }[] = [
   { name: "Steve Masch", role: "Inhaber / Geschäftsführer" },
   { name: "Ria Norden", role: "Finanzen & Buchhaltung" },
   { name: "Stephan Büchner", role: "VA & Dachdeckergeselle" },
-  { name: "Roxana Wenck", role: "Dachdeckergesellin" },
+  { name: "Roxana Wenck", role: "Office-Mitarbeiterin" },
   { name: "Jaroslaw Hoffmann", role: "Zimmerergeselle" },
   { name: "Patrick Konrad", role: "VA & Dachdeckergeselle" },
   { name: "Justin Korn", role: "Dachdeckergeselle" },
@@ -273,10 +273,10 @@ export default function UeberUnsPage() {
               {/* Experience badge */}
               <div className="absolute -bottom-6 -right-6 bg-brand-orange rounded-2xl p-6 shadow-xl text-center">
                 <p className="font-display text-3xl font-black text-white">
-                  {company.yearsExperience}+
+                  {company.berufserfahrungJahre}
                 </p>
                 <p className="font-body text-sm text-white/80">
-                  Jahre Erfahrung
+                  Jahre Berufserfahrung
                 </p>
               </div>
             </motion.div>

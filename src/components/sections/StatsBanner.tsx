@@ -6,11 +6,9 @@ import { GradientBackground } from "@/components/ui/paper-design-shader-backgrou
 import { company } from "@/lib/config"
 
 const stats = [
-  { value: company.yearsExperience, suffix: "+", label: "Jahre Erfahrung" },
-  { value: 500, suffix: "+", label: "Projekte" },
+  { value: company.berufserfahrungJahre, suffix: "", label: "Jahre Berufserfahrung" },
+  { value: 20000, suffix: "", label: "Projekte" },
   { value: 100, suffix: "%", label: "Meisterqualität" },
-  // Ersatz für die frühere „24h Notdienst"-Kachel — belegbar über config.certifications.
-  // Finale Ersatz-Kennzahl kommt noch von Steve (offener Punkt #4).
   { value: company.certifications.length, suffix: "", label: "Zertifizierungen" },
 ]
 
@@ -37,7 +35,7 @@ function AnimatedNumber({
 
   return (
     <span>
-      {display}
+      {display.toLocaleString("de-DE")}
       {suffix}
     </span>
   )
