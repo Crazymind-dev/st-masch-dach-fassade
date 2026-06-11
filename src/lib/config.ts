@@ -43,14 +43,9 @@ export const company = {
   founded: 2015,
 
   /**
-   * Betriebs-Claim „seit über 20 Jahren" (Steve, SRT-2) — bewusst statisch
-   * und von `founded` entkoppelt. Für Texte mit Betriebs-Bezug.
-   */
-  yearsExperience: 20,
-
-  /**
-   * Steves Berufserfahrung als Dachdeckermeister (Personen-Bezug) —
-   * Kennzahl für Stats/Badges (Angabe Steve/Andreas, 11.06.2026).
+   * Erfahrungs-Claim „seit über 30 Jahren" — bewusst statisch und von
+   * `founded` entkoppelt (Steves Berufserfahrung als Dachdeckermeister;
+   * Angabe Steve/Andreas, 11.06.2026). Einheitlich für Claim und Stats.
    */
   berufserfahrungJahre: 30,
 

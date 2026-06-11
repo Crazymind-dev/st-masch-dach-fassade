@@ -50,7 +50,7 @@ export default function Footer() {
             </Link>
             <p className="font-body text-sm text-gray-300 font-light leading-relaxed">
               Zertifizierter Meisterbetrieb für Dach, Fassade, Solar in Berlin
-              und Brandenburg — seit über 20 Jahren.
+              und Brandenburg — seit über 30 Jahren.
             </p>
           </div>
 
