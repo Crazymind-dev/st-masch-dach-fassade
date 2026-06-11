@@ -113,7 +113,7 @@ const team: { name: string; role: string; dog?: boolean }[] = [
   { name: "Steve Masch", role: "Inhaber / Geschäftsführer" },
   { name: "Ria Norden", role: "Finanzen & Buchhaltung" },
   { name: "Stephan Büchner", role: "VA & Dachdeckergeselle" },
-  { name: "Roxana Wenck", role: "Dachdeckergesellin" },
+  { name: "Roxana Wenck", role: "Office-Mitarbeiterin" },
   { name: "Jaroslaw Hoffmann", role: "Zimmerergeselle" },
   { name: "Patrick Konrad", role: "VA & Dachdeckergeselle" },
   { name: "Justin Korn", role: "Dachdeckergeselle" },
