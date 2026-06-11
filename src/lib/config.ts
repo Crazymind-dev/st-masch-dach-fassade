@@ -54,9 +54,9 @@ export const company = {
    */
   berufserfahrungJahre: 30,
 
-  /** Stats shown in Hero trust strip + StatsBanner (Angabe Steve/Andreas). */
+  /** Stats shown in Hero trust strip + StatsBanner (Angabe Steve/Andreas: über 20.000 Projekte). */
   stats: {
-    projects: "20.000",
+    projects: "20.000+",
     quality: "100%",
   },
 

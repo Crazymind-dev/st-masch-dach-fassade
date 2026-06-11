@@ -67,7 +67,7 @@ const projects: Project[] = [
 const filters: Category[] = ["Alle", "Steildach", "Flachdach", "Fassade", "Solar", "Dachfenster"]
 
 const stats = [
-  { icon: Building2, value: "20.000", label: "Projekte" },
+  { icon: Building2, value: "20.000+", label: "Projekte" },
   { icon: Calendar, value: "30", label: "Jahre Berufserfahrung" },
   { icon: Award, value: "100%", label: "Meisterqualität" },
   { icon: CheckCircle, value: "Berlin &", label: "Brandenburg" },
